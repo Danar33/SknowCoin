@@ -18,6 +18,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    //CLEMENT SE ESTRESA MUCHOS
     //DANIEL NO QUIERE PONER ATENCION
 
     @Override
