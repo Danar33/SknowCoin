@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "539398802986",
+    "firebase_url": "https://sknown-coin.firebaseio.com",
+    "project_id": "sknown-coin",
+    "storage_bucket": "sknown-coin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:539398802986:android:9081d38eb1587a34",
+        "android_client_info": {
+          "package_name": "dan_art.sknowcoin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "539398802986-tuof7721iguea4ktc2v3slk2hedpf6on.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzfcaFHI5DpPo6WH60IoqGfHko5PkYIic"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
