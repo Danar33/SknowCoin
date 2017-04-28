@@ -29,6 +29,4 @@ public class ConexionFirebase {
     public DatabaseReference getDatabaseReference(){
         return mDatabase;
     }
-
-
 }
