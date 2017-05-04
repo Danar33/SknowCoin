@@ -4,12 +4,11 @@ import android.content.SharedPreferences;
 
 import dan_art.sknowcoin.Firebase.ConexionFirebase;
 
-
 /**
- * Created by Luisf0425 on 27/04/17.
+ * Created by VAIO PRO on 04/05/2017.
  */
 
-public class SnowCoinApp {
+public class copySKnowCoin {
 
     public static final String MyPREFERENCES = "MyPrefs";
 
@@ -19,7 +18,7 @@ public class SnowCoinApp {
 
     private ConexionFirebase conexionFirebase;
 
-    public SnowCoinApp() {
+    public copySKnowCoin() {
 
         conexionFirebase = new ConexionFirebase();
     }
