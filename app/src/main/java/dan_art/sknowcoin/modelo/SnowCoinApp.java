@@ -1,11 +1,7 @@
 package dan_art.sknowcoin.modelo;
 
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 
-import java.lang.reflect.AccessibleObject;
-import java.util.ArrayList;
 
 /**
  * Created by Luisf0425 on 27/04/17.
