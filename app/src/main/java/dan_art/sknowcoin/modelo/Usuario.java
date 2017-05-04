@@ -13,12 +13,12 @@ public class Usuario {
     private String codigoEstudiante;
     private String carreraPrincipal;
     private String semestreActual;
-    private Roll roll;
+    private int rol;
     private Reporte reporte;
     private int calificacion;
 
     public Usuario(String nombre, int telefono, String correo, String contraseña,
-                   String codigoEstudiante, String carreraPrincipal, String semestreActual, Roll roll, int calificacion) {
+                   String codigoEstudiante, String carreraPrincipal, String semestreActual, int rol, int calificacion) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.correo = correo;
@@ -26,7 +26,7 @@ public class Usuario {
         this.codigoEstudiante = codigoEstudiante;
         this.carreraPrincipal = carreraPrincipal;
         this.semestreActual = semestreActual;
-        this.roll = roll;
+        this.rol = rol;
         this.calificacion = calificacion;
     }
 
@@ -86,12 +86,12 @@ public class Usuario {
         this.semestreActual = semestreActual;
     }
 
-    public Roll getRoll() {
-        return roll;
+    public int getRol() {
+        return rol;
     }
 
-    public void setRoll(Roll roll) {
-        this.roll = roll;
+    public void setRol(int rol) {
+        this.rol = rol;
     }
 
     public Reporte getReporte() {

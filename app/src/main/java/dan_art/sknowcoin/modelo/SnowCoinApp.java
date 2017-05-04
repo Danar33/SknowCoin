@@ -2,6 +2,8 @@ package dan_art.sknowcoin.modelo;
 
 import android.content.SharedPreferences;
 
+import dan_art.sknowcoin.Firebase.ConexionFirebase;
+
 
 /**
  * Created by Luisf0425 on 27/04/17.
@@ -9,25 +11,27 @@ import android.content.SharedPreferences;
 
 public class SnowCoinApp {
 
+    public static final String MyPREFERENCES = "MyPrefs";
+
     private Usuario usuario;
     private Tutoria tutoria;
     private SharedPreferences sharedpreferences;
-    public static final String MyPREFERENCES = "MyPrefs" ;
 
-    //hola
+    private ConexionFirebase conexionFirebase;
 
     public SnowCoinApp() {
 
+        conexionFirebase = new ConexionFirebase();
     }
 
     public void registrarUsuario(String nombre, int telefono, String correo, String contraseña, String codigoEstudiante,
-                                    String carreraPrincipal, String semestreActual, Roll roll, int calificacion) {
+                                 String carreraPrincipal, String semestreActual, int rol, int calificacion) {
 
 
-        Usuario usuario=new Usuario(nombre, telefono, correo, contraseña, codigoEstudiante,
-                                    carreraPrincipal, semestreActual, roll, calificacion);
+        Usuario usuario = new Usuario(nombre, telefono, correo, contraseña, codigoEstudiante,
+                carreraPrincipal, semestreActual, rol, calificacion);
 
-        //mDatabase.child("usuarios").child(codigoEstudiante).setValue(usuario);
+        conexionFirebase.getDatabaseReference().child(conexionFirebase.USUARIOS_REFERENCE).child(codigoEstudiante).setValue(usuario);
 
 
     }
