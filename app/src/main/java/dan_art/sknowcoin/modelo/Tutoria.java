@@ -6,20 +6,32 @@ package dan_art.sknowcoin.modelo;
 
 public class Tutoria {
 
+    private String codigo;
     private String hora;
     private String lugar;
-    private String codigo;
     private String materia;
-    private String nombreTuror;
+    private String nombreTutor;
     private int precio;
 
-    public Tutoria(String hora, String lugar, String codigo, String materia, String nombreTuror, int precio) {
+    public Tutoria(String codigo, String hora, String lugar, String materia, String nombreTutor, int precio) {
+        this.codigo = codigo;
         this.hora = hora;
         this.lugar = lugar;
-        this.codigo = codigo;
         this.materia = materia;
-        this.nombreTuror = nombreTuror;
+        this.nombreTutor = nombreTutor;
         this.precio = precio;
+    }
+
+    public Tutoria(){
+
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getHora() {
@@ -38,14 +50,6 @@ public class Tutoria {
         this.lugar = lugar;
     }
 
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
     public String getMateria() {
         return materia;
     }
@@ -54,12 +58,12 @@ public class Tutoria {
         this.materia = materia;
     }
 
-    public String getNombreTuror() {
-        return nombreTuror;
+    public String getNombreTutor() {
+        return nombreTutor;
     }
 
-    public void setNombreTuror(String nombreTuror) {
-        this.nombreTuror = nombreTuror;
+    public void setNombreTutor(String nombreTutor) {
+        this.nombreTutor = nombreTutor;
     }
 
     public int getPrecio() {
@@ -69,4 +73,6 @@ public class Tutoria {
     public void setPrecio(int precio) {
         this.precio = precio;
     }
+
+
 }
