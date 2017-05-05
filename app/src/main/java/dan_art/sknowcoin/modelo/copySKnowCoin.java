@@ -31,14 +31,14 @@ public class copySKnowCoin {
         conexionFirebase = new ConexionFirebase();
     }
 
-    public void registrarUsuario(String nombre, int telefono, String correo, String contraseña, String codigoEstudiante,
-                                 String carreraPrincipal, String semestreActual, int rol, int calificacion) {
+    public void registrarUsuario(String nombre, int telefono, String correo, String contraseña, String codigo,
+                                 String area, String semestre, int rol, int calificacion) {
 
 
-        Usuario usuario = new Usuario(nombre, telefono, correo, contraseña, codigoEstudiante,
-                carreraPrincipal, semestreActual, rol, calificacion);
+        Usuario usuario = new Usuario(nombre, telefono, correo, contraseña, codigo,
+                area, semestre, rol, calificacion);
 
-        conexionFirebase.getDatabaseReference().child(conexionFirebase.USUARIOS_REFERENCE).child(codigoEstudiante).setValue(usuario);
+        conexionFirebase.getDatabaseReference().child(conexionFirebase.USUARIOS_REFERENCE).child(codigo).setValue(usuario);
 
 
     }

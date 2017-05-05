@@ -9,25 +9,24 @@ public class Usuario {
     private String nombre;
     private int telefono;
     private String correo;
-    private String contraseña;
-    private String codigoEstudiante;
-    private String carreraPrincipal;
-    private String semestreActual;
+    private String codigo;
+    private String area;
+    private String semestre;
     private int rol;
-    private Reporte reporte;
-    private int calificacion;
 
-    public Usuario(String nombre, int telefono, String correo, String contraseña,
-                   String codigoEstudiante, String carreraPrincipal, String semestreActual, int rol, int calificacion) {
+    public Usuario(String nombre, int telefono, String correo,
+                   String codigo, String area, String semestre, int rol) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.correo = correo;
-        this.contraseña = contraseña;
-        this.codigoEstudiante = codigoEstudiante;
-        this.carreraPrincipal = carreraPrincipal;
-        this.semestreActual = semestreActual;
+        this.codigo = codigo;
+        this.area = area;
+        this.semestre = semestre;
         this.rol = rol;
-        this.calificacion = calificacion;
+    }
+
+    public Usuario(){
+
     }
 
     public String getNombre() {
@@ -54,36 +53,28 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getcodigo() {
+        return codigo;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setcodigo(String codigo) {
+        this.codigo = codigo;
     }
 
-    public String getCodigoEstudiante() {
-        return codigoEstudiante;
+    public String getarea() {
+        return area;
     }
 
-    public void setCodigoEstudiante(String codigoEstudiante) {
-        this.codigoEstudiante = codigoEstudiante;
+    public void setarea(String area) {
+        this.area = area;
     }
 
-    public String getCarreraPrincipal() {
-        return carreraPrincipal;
+    public String getsemestre() {
+        return semestre;
     }
 
-    public void setCarreraPrincipal(String carreraPrincipal) {
-        this.carreraPrincipal = carreraPrincipal;
-    }
-
-    public String getSemestreActual() {
-        return semestreActual;
-    }
-
-    public void setSemestreActual(String semestreActual) {
-        this.semestreActual = semestreActual;
+    public void setsemestre(String semestre) {
+        this.semestre = semestre;
     }
 
     public int getRol() {
@@ -92,21 +83,5 @@ public class Usuario {
 
     public void setRol(int rol) {
         this.rol = rol;
-    }
-
-    public Reporte getReporte() {
-        return reporte;
-    }
-
-    public void setReporte(Reporte reporte) {
-        this.reporte = reporte;
-    }
-
-    public int getCalificacion() {
-        return calificacion;
-    }
-
-    public void setCalificacion(int calificacion) {
-        this.calificacion = calificacion;
     }
 }
