@@ -6,42 +6,44 @@ package dan_art.sknowcoin.modelo;
 
 public class Tutoria {
 
-    private String horario;
-    private String tutor;
-    private String[] estudiantesInscritos;
+    private String hora;
+    private String lugar;
+    private String codigo;
     private String materia;
+    private String nombreTuror;
     private int precio;
 
-    public Tutoria(String horario, String tutor, String[] estudiantesInscritos, String materia, int precio) {
-        this.horario = horario;
-        this.tutor = tutor;
-        this.estudiantesInscritos = estudiantesInscritos;
+    public Tutoria(String hora, String lugar, String codigo, String materia, String nombreTuror, int precio) {
+        this.hora = hora;
+        this.lugar = lugar;
+        this.codigo = codigo;
         this.materia = materia;
+        this.nombreTuror = nombreTuror;
         this.precio = precio;
     }
 
-    public String getHorario() {
-        return horario;
+    public String getHora() {
+        return hora;
     }
 
-    public void setHorario(String horario) {
-        this.horario = horario;
+    public void setHora(String hora) {
+        this.hora = hora;
     }
 
-    public String getTutor() {
-        return tutor;
+    public String getLugar() {
+        return lugar;
     }
 
-    public void setTutor(String tutor) {
-        this.tutor = tutor;
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
     }
 
-    public String[] getEstudiantesInscritos() {
-        return estudiantesInscritos;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setEstudiantesInscritos(String[] estudiantesInscritos) {
-        this.estudiantesInscritos = estudiantesInscritos;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getMateria() {
@@ -50,6 +52,14 @@ public class Tutoria {
 
     public void setMateria(String materia) {
         this.materia = materia;
+    }
+
+    public String getNombreTuror() {
+        return nombreTuror;
+    }
+
+    public void setNombreTuror(String nombreTuror) {
+        this.nombreTuror = nombreTuror;
     }
 
     public int getPrecio() {
