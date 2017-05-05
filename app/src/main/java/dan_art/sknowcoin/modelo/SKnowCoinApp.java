@@ -28,7 +28,7 @@ public class SKnowCoinApp {
         autenticacion = new Autenticacion();
     }
 
-    public void registrarUsuario(String nombre, int telefono, String correo, String codigo, String contrasena,
+    public void registrarUsuario(String nombre, String telefono, String correo, String codigo, String contrasena,
                                  String area, String semestre, int rol, Context contexto) {
 
 

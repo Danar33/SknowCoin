@@ -1,5 +1,6 @@
 package dan_art.sknowcoin.modelo;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
@@ -10,6 +11,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import dan_art.sknowcoin.Firebase.Autenticacion;
 import dan_art.sknowcoin.Firebase.ConexionFirebase;
 
 /**
@@ -25,21 +27,24 @@ public class copySKnowCoin {
     private SharedPreferences sharedpreferences;
 
     private ConexionFirebase conexionFirebase;
+    private Autenticacion autenticacion;
 
     public copySKnowCoin() {
 
         conexionFirebase = new ConexionFirebase();
+        autenticacion = new Autenticacion();
     }
 
-    public void registrarUsuario(String nombre, int telefono, String correo, String contraseña, String codigo,
-                                 String area, String semestre, int rol, int calificacion) {
+    public void registrarUsuario(String nombre, String telefono, String correo, String codigo, String contrasena,
+                                 String area, String semestre, int rol, Context contexto) {
 
 
-        Usuario usuario = new Usuario(nombre, telefono, correo, contraseña, codigo,
-                area, semestre, rol, calificacion);
+        Usuario usuario = new Usuario(nombre, telefono, correo, codigo,
+                area, semestre, rol);
 
         conexionFirebase.getDatabaseReference().child(conexionFirebase.USUARIOS_REFERENCE).child(codigo).setValue(usuario);
 
+        autenticacion.signUp(correo, contrasena, contexto);
 
     }
 

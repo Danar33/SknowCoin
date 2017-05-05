@@ -7,14 +7,14 @@ package dan_art.sknowcoin.modelo;
 public class Usuario {
 
     private String nombre;
-    private int telefono;
+    private String telefono;
     private String correo;
     private String codigo;
     private String area;
     private String semestre;
     private int rol;
 
-    public Usuario(String nombre, int telefono, String correo,
+    public Usuario(String nombre, String telefono, String correo,
                    String codigo, String area, String semestre, int rol) {
         this.nombre = nombre;
         this.telefono = telefono;
@@ -37,11 +37,11 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
