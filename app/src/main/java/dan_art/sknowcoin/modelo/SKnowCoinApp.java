@@ -1,7 +1,9 @@
 package dan_art.sknowcoin.modelo;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 
+import dan_art.sknowcoin.Firebase.Autenticacion;
 import dan_art.sknowcoin.Firebase.ConexionFirebase;
 
 
@@ -18,21 +20,24 @@ public class SKnowCoinApp {
     private SharedPreferences sharedpreferences;
 
     private ConexionFirebase conexionFirebase;
+    private Autenticacion autenticacion;
 
     public SKnowCoinApp() {
 
         conexionFirebase = new ConexionFirebase();
+        autenticacion = new Autenticacion();
     }
 
-    public void registrarUsuario(String nombre, int telefono, String correo, String contraseña, String codigoEstudiante,
-                                 String carreraPrincipal, String semestreActual, int rol, int calificacion) {
+    public void registrarUsuario(String nombre, String telefono, String correo, String codigo, String contrasena,
+                                 String area, String semestre, int rol, Context contexto) {
 
 
-        Usuario usuario = new Usuario(nombre, telefono, correo, contraseña, codigoEstudiante,
-                carreraPrincipal, semestreActual, rol, calificacion);
+        Usuario usuario = new Usuario(nombre, telefono, correo, codigo,
+                area, semestre, rol);
 
-        conexionFirebase.getDatabaseReference().child(conexionFirebase.USUARIOS_REFERENCE).child(codigoEstudiante).setValue(usuario);
+        conexionFirebase.getDatabaseReference().child(conexionFirebase.USUARIOS_REFERENCE).child(codigo).setValue(usuario);
 
+        autenticacion.signUp(correo, contrasena, contexto);
 
     }
 

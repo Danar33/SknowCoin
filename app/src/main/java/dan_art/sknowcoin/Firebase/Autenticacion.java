@@ -36,11 +36,13 @@ public class Autenticacion {
                 }
             }
         });
+
+        mAuth.signOut();
     }
 
-    public void signIn(String email, String password, final Context contexto){
+    public void signIn(String email, String password, final Context contexto) {
 
-        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
@@ -54,6 +56,8 @@ public class Autenticacion {
                 }
             }
         });
+
+        mAuth.signOut();
     }
 
     public FirebaseAuth getmAuth() {
