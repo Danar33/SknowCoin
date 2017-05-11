@@ -28,16 +28,11 @@ public class SKnowCoinApp {
         autenticacion = new Autenticacion();
     }
 
-    public void registrarUsuario(String nombre, String telefono, String correo, String codigo, String contrasena,
-                                 String area, String semestre, int rol, Context contexto) {
+    public void registrarUsuario(Usuario usuario, Context contexto) {
 
+        conexionFirebase.getDatabaseReference().child(conexionFirebase.USUARIOS_REFERENCE).child(usuario.getCodigo()).setValue(usuario);
 
-        Usuario usuario = new Usuario(nombre, telefono, correo, codigo,
-                area, semestre, rol);
-
-        conexionFirebase.getDatabaseReference().child(conexionFirebase.USUARIOS_REFERENCE).child(codigo).setValue(usuario);
-
-        autenticacion.signUp(correo, contrasena, contexto);
+        autenticacion.signUp(usuario.getCorreo(), usuario.getContrasena(), contexto);
 
     }
 

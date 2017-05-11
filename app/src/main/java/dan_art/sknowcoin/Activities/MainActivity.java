@@ -16,6 +16,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import dan_art.sknowcoin.R;
+import dan_art.sknowcoin.modelo.SKnowCoinApp;
+import dan_art.sknowcoin.modelo.Usuario;
 
 //Main
 public class MainActivity extends AppCompatActivity
@@ -48,6 +50,16 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        Usuario usuario = new Usuario();
+        usuario.setNombre("oscar");
+        usuario.setTelefono("3113219893");
+        usuario.setArea("sis");
+        usuario.setCodigo("A00243123");
+        usuario.setRol(3);
+        usuario.setCorreo("oscardaniel99518@gmail.com");
+        usuario.setContrasena("*Qwerty1125*");
+        SKnowCoinApp sKnowCoinApp = new SKnowCoinApp();
+        sKnowCoinApp.registrarUsuario(usuario, this);
     }
 
     @Override

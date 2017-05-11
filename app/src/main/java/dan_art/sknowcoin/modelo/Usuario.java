@@ -12,6 +12,7 @@ public class Usuario {
     private String codigo;
     private String area;
     private String semestre;
+    private String contrasena;
     private int rol;
 
     public Usuario(String nombre, String telefono, String correo,
@@ -53,27 +54,27 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public String getcodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setcodigo(String codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
-    public String getarea() {
+    public String getArea() {
         return area;
     }
 
-    public void setarea(String area) {
+    public void setArea(String area) {
         this.area = area;
     }
 
-    public String getsemestre() {
+    public String getSemestre() {
         return semestre;
     }
 
-    public void setsemestre(String semestre) {
+    public void setSemestre(String semestre) {
         this.semestre = semestre;
     }
 
@@ -83,5 +84,13 @@ public class Usuario {
 
     public void setRol(int rol) {
         this.rol = rol;
+    }
+
+    public void setContrasena(String contrasena){
+        this.contrasena = contrasena;
+    }
+
+    public String getContrasena(){
+        return contrasena;
     }
 }
