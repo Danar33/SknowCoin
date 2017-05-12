@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -28,6 +29,7 @@ public class copySKnowCoin {
 
     private ConexionFirebase conexionFirebase;
     private Autenticacion autenticacion;
+    //private String var;
 
     public copySKnowCoin() {
 
@@ -48,28 +50,63 @@ public class copySKnowCoin {
 
     }
 
-    public void listarPorAsignaturas(String materia){
+    public void listarPorAsignaturas(String area){
 
         final List<Tutoria> tutorias=new ArrayList<>();
-        Object obj = conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_REFERENCE).
-                child("materia").equalTo(materia).addValueEventListener(new ValueEventListener() {
-            @Override
+
+        Object obj = conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_REFERENCE).child("A00267576").addValueEventListener(new ValueEventListener() {            @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                    tutorias.clear();
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    Tutoria tutoria = postSnapshot.getValue(Tutoria.class);
+                Tutoria tutoria = dataSnapshot.getValue(Tutoria.class);
 
-                    tutorias.add(tutoria);
-                }
+                tutorias.add(tutoria);
 
-                Log.d("test",tutorias.get(0).toString());
-            }
+                Log.d("test", tutorias.get(0).toString());
 
+        }
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 System.out.println("The read failed: " );
             }
         });
+    }
+
+    public void listarPorTutor(String tutor){
+
+        conexionFirebase.getDatabaseReference().child(conexionFirebase.USUARIOS_REFERENCE).orderByChild("nombre").equalTo(tutor).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                String var = dataSnapshot.getKey();
+
+                Log.d("test", var);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+
+        });
+    }
+
+    public void listarPorMateria(){
+
 
     }
 
