@@ -36,6 +36,11 @@ public class SKnowCoinApp {
 
     }
 
+    public void loginUusuario(String correo, String contrasena, Context contexto){
+
+        autenticacion.signIn(correo, contrasena, contexto);
+    }
+
     public Usuario getUsuario() {
         return usuario;
     }
