@@ -17,6 +17,7 @@ public class Autenticacion {
 
     private FirebaseAuth mAuth;
     private boolean retorno = true;
+    private boolean retorno1 = true;
 
     public Autenticacion() {
         mAuth = FirebaseAuth.getInstance();
@@ -53,14 +54,14 @@ public class Autenticacion {
 
                 } else {
                     Toast.makeText(contexto, task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                    retorno = false;
+                    retorno1 = false;
                 }
             }
         });
 
         mAuth.signOut();
 
-        return retorno;
+        return retorno1;
     }
 
     public FirebaseAuth getmAuth() {
