@@ -15,25 +15,56 @@
         android:layout_centerHorizontal="true" />
 
         <Button
-        android:id="@+id/iniciar_login"
+        android:id="@+id/iniciar_registro_enLogin"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="@drawable/boton_circular"
-        android:text="Button"
-        android:layout_marginTop="100dp"
-        android:layout_below="@+id/imageView2"
-        android:layout_centerHorizontal="true" />
+        android:text="Registro"
+        android:layout_marginBottom="52dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/button_login"
+            android:onClick="clickRegistro"/>
+
+    <Button
+        android:id="@+id/button_login"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="113dp"
+        android:background="@drawable/boton_circular"
+        android:text="Entrar"
+        android:onClick="clickLogin"/>
 
     <EditText
         android:id="@+id/descriptionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:text="Name"
+        android:layout_below="@+id/imageView2"
+        android:layout_centerHorizontal="true" />
 
+    <EditText
+        android:id="@+id/editText_correo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/descriptionText"
+        android:layout_below="@+id/descriptionText"
+        android:layout_marginTop="45dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Correo" />
+
+    <EditText
+        android:hint="Contraseña"
+        android:id="@+id/editText_contrasena"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/editText_correo"
+        android:layout_below="@+id/editText_correo"
+        android:ems="10"
+        android:inputType="textPassword" />
 
 </RelativeLayout>
