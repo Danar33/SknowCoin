@@ -36,9 +36,14 @@ public class SKnowCoinApp {
 
     }
 
-    public void loginUusuario(String correo, String contrasena, Context contexto){
+    public void loginUusuario(String correo, String contrasena, Context contexto) {
 
         autenticacion.signIn(correo, contrasena, contexto);
+    }
+
+    public void publicarTutoria(Tutoria tutoria) {
+
+        conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_REFERENCE).push().setValue(tutoria);
     }
 
     public Usuario getUsuario() {
