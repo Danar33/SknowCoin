@@ -25,4 +25,8 @@
     <color name="colorDeepBlueDark">#003441</color>
     <color name="colorDeepBlueBlack">#0c1318</color>
 
+    <color name="colorBlackTransparent50">#80000000</color>
+    <color name="colorBlackTransparent30">#4D000000</color>
+    <color name="colorBlackTransparent10">#1A000000</color>
+
 </resources>
