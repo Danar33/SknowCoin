@@ -33,13 +33,13 @@ public class MainActivity extends AppCompatActivity {
             }
 
             public void onFinish() {
-                iniciarMathChallenge();
+                iniciarLogin();
             }
         }.start();
     }//on create
 
-    public void iniciarMathChallenge() {
-        Intent intent = new Intent(this, HomeActivity.class);
+    public void iniciarLogin() {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }//iniciar juego
 }//Main Activity
