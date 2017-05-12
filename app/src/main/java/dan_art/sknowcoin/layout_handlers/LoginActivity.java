@@ -1,5 +1,6 @@
 package dan_art.sknowcoin.layout_handlers;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -44,15 +45,30 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void clickLogin(){
+    public void clickLogin(View v) {
+
         String elCorreo = correo.getText().toString();
         String laContrasena = contrasena.getText().toString();
 
-        sKnowCoinApp.loginUusuario(elCorreo, laContrasena, this);
+        boolean seguir = false;
+
+        if (!elCorreo.trim().matches("") && !laContrasena.trim().matches("")) {
+
+            seguir = sKnowCoinApp.loginUusuario(elCorreo, laContrasena, this);
+
+        } else {
+
+            //Mandar mensaje que no se pudo iniciar sesion
+        }
+
+        if(seguir == true) {
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
+        }
 
     }// click login
 
-    public void clickRegistro(){
+    public void clickRegistro(View v) {
 
     }// click Registro
 

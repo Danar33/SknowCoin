@@ -16,12 +16,13 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Autenticacion {
 
     private FirebaseAuth mAuth;
+    private boolean retorno = true;
 
     public Autenticacion() {
         mAuth = FirebaseAuth.getInstance();
     }
 
-    public void signUp(String email, String password, final Context contexto) {
+    public boolean signUp(String email, String password, final Context contexto) {
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -29,18 +30,19 @@ public class Autenticacion {
                 if (task.isSuccessful()) {
                     Toast.makeText(contexto, "Bienvenido.", Toast.LENGTH_SHORT).show();
 
-                    //TODO: Ir a la actividad que corresponde
-
                 } else {
                     Toast.makeText(contexto, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    retorno = false;
                 }
             }
         });
 
         mAuth.signOut();
+
+        return retorno;
     }
 
-    public void signIn(String email, String password, final Context contexto) {
+    public boolean signIn(String email, String password, final Context contexto) {
 
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -49,15 +51,16 @@ public class Autenticacion {
                 if (task.isSuccessful()) {
                     Toast.makeText(contexto, "Bienvenido.", Toast.LENGTH_SHORT).show();
 
-                    //TODO: Ir a la actividad que corresponde
-
                 } else {
                     Toast.makeText(contexto, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    retorno = false;
                 }
             }
         });
 
         mAuth.signOut();
+
+        return retorno;
     }
 
     public FirebaseAuth getmAuth() {
