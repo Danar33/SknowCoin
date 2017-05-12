@@ -68,8 +68,9 @@ public class LoginActivity extends AppCompatActivity {
 
     }// click login
 
-    public void clickRegistro(View v) {
-
+    public void iniciarRegistro(View v) {
+        Intent intent = new Intent(this, SingUpActivity_uno.class);
+        startActivity(intent);
     }// click Registro
 
     @Override

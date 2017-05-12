@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SknowCoin</string>
+    <string name="app_name">Sknow Coin</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -7,5 +7,26 @@
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
 
-    <string name="descripcion_login">¡Bienvenido! Por favor ingresa con tu nombre de usuario y contraseña.</string>
+    <string name="texto_correo">Correo</string>
+    <string name="texto_contrasena">Contraseña</string>
+    <string name="texto_nombres">Nombres</string>
+    <string name="texto_apellidos">Apellidos</string>
+    <string name="texto_nueva_contrasena">Nueva contraseña</string>
+    <string name="texto_confirmar_contrasena">Confirmar contraseña</string>
+    <string name="texto_documento_identidad">Documento de Identidad</string>
+    <string name="texto_semestre_actual">Semestre actual</string>
+    <string name="texto_semestre_carrera">Carrera Universitaria</string>
+
+    <string name="txt_btn_entrar">Entrar</string>
+    <string name="txt_btn_ir_registro">Registrarse</string>
+    <string name="txt_btn_continuar_registro">Continuar</string>
+    <string name="txt_btn_atras">Atras</string>
+    <string name="txt_btn_cancelar">Cancelar</string>
+
+    <string name="descripcion_login">¡Bienvenido! Por favor ingresa con tu correo electrónico y contraseña.</string>
+    <string name="titulo_registro">Registro</string>
+    <string name="estado_1_registro">1 / 2</string>
+    <string name="estado_2_registro">2 / 2</string>
+
+    <string name="descripcion_registro">Ingresa tus datos de identificación. Los nombres y apellidos serán visibles para otros usuarios</string>
 </resources>
