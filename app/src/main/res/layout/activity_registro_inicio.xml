@@ -22,10 +22,10 @@
         android:layout_height="wrap_content"
         android:background="@drawable/boton_circular"
         android:text="@string/txt_btn_atras"
-        android:layout_marginBottom="31dp"
+        android:layout_marginBottom="41dp"
         android:onClick="clickAtrasRegistro"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/button_continuar_registro" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/button_continuar_registro" />
 
     <Button
         style="@style/boton_resaltado"
