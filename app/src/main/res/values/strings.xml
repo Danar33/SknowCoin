@@ -14,12 +14,14 @@
     <string name="texto_nueva_contrasena">Nueva contraseña</string>
     <string name="texto_confirmar_contrasena">Confirmar contraseña</string>
     <string name="texto_documento_identidad">Documento de Identidad</string>
+    <string name="texto_codigo_estudiante">Código de Estudiante</string>
     <string name="texto_semestre_actual">Semestre actual</string>
-    <string name="texto_semestre_carrera">Carrera Universitaria</string>
+    <string name="texto_carrera">Carrera Universitaria</string>
 
     <string name="txt_btn_entrar">Entrar</string>
     <string name="txt_btn_ir_registro">Registrarse</string>
     <string name="txt_btn_continuar_registro">Continuar</string>
+    <string name="txt_btn_finalizar_registro">Finalizar</string>
     <string name="txt_btn_atras">Atras</string>
     <string name="txt_btn_cancelar">Cancelar</string>
 
