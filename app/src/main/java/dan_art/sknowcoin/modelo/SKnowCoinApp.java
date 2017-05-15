@@ -1,7 +1,6 @@
 package dan_art.sknowcoin.modelo;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import dan_art.sknowcoin.Firebase.Autenticacion;
 import dan_art.sknowcoin.Firebase.ConexionFirebase;
@@ -17,7 +16,6 @@ public class SKnowCoinApp {
 
     private Usuario usuario;
     private Tutoria tutoria;
-    private SharedPreferences sharedpreferences;
 
     private ConexionFirebase conexionFirebase;
     private Autenticacion autenticacion;
