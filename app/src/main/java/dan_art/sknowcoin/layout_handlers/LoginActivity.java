@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import dan_art.sknowcoin.R;
 import dan_art.sknowcoin.modelo.SKnowCoinApp;
 
 /**
