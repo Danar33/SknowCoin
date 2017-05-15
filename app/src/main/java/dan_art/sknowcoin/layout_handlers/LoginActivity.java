@@ -1,20 +1,16 @@
 package dan_art.sknowcoin.layout_handlers;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import dan_art.sknowcoin.R;
 import dan_art.sknowcoin.modelo.SKnowCoinApp;
 
 /**
@@ -23,10 +19,14 @@ import dan_art.sknowcoin.modelo.SKnowCoinApp;
 
 public class LoginActivity extends AppCompatActivity {
 
+    public final static String USUARIO_PREFERENCES = "USUARIO_PREFERENCES";
+
     private EditText correo;
     private EditText contrasena;
     private Button loginButton;
     private Button singupButton;
+
+    private SharedPreferences preferences;
 
     private SKnowCoinApp sKnowCoinApp;
 
@@ -62,6 +62,13 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         if(seguir == true) {
+
+            preferences = getSharedPreferences(USUARIO_PREFERENCES, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+
+            editor.putString("correo", elCorreo);
+            editor.commit();
+
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
         }
