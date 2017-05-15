@@ -46,15 +46,15 @@ public class SingUpActivity_dos extends AppCompatActivity {
     public void clickContinuarRegistro(View v) {
 
 
-        if(true) {
-          Intent intent = new Intent(this, HomeActivity.class);
-          startActivity(intent);
+        if (true) {
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
         }
 
     }// click login
 
     public void clickAtrasRegistro(View v) {
-        if(true) {
+        if (true) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
