@@ -17,26 +17,26 @@
 
         <Button
         style="@style/boton_opacidad"
-        android:id="@+id/atras_registro"
+        android:id="@+id/atras_registro_inicial"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:background="@drawable/boton_circular"
         android:text="@string/txt_btn_atras"
         android:layout_marginBottom="41dp"
-        android:onClick="clickAtrasRegistro"
-            android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/button_continuar_registro" />
+        android:onClick="clickAtrasRegistroUno"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/button_siguiente_registro" />
 
     <Button
         style="@style/boton_resaltado"
-        android:id="@+id/button_continuar_registro"
+        android:id="@+id/button_siguiente_registro"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:background="@drawable/boton_circular_resaltado"
         android:text="@string/txt_btn_continuar_registro"
-        android:onClick="clickContinuarRegistro"
-        android:layout_above="@+id/atras_registro"
+        android:onClick="clicSiguienteRegistro"
+        android:layout_above="@+id/atras_registro_inicial"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -52,12 +52,12 @@
     <EditText
         android:background="@drawable/input_text_circular"
         style="@style/input_text_inicio"
-        android:id="@+id/editText_nombre"
+        android:id="@+id/editText_nuevo_correo"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         android:layout_marginBottom="12dp"
-        android:hint="@string/texto_nombres"
+        android:hint="@string/texto_correo"
         android:layout_below="@+id/descriptionText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="26dp" />
@@ -65,25 +65,25 @@
     <EditText
         android:background="@drawable/input_text_circular"
         style="@style/input_text_inicio"
-        android:hint="@string/texto_apellidos"
-        android:id="@+id/editText_apellidos"
+        android:hint="@string/texto_nueva_contrasena"
+        android:id="@+id/editText_nueva_contrasena"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:layout_below="@+id/editText_nombre"
+        android:layout_below="@+id/editText_nuevo_correo"
         android:layout_centerHorizontal="true" />
 
     <EditText
-        android:id="@+id/editText_documento_identidad"
+        android:id="@+id/editText_confirmar_contrasena"
         style="@style/input_text_inicio"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:background="@drawable/input_text_circular"
         android:ems="10"
-        android:hint="@string/texto_documento_identidad"
+        android:hint="@string/texto_confirmar_contrasena"
         android:inputType="textPassword"
-        android:layout_below="@+id/editText_apellidos"
+        android:layout_below="@+id/editText_nueva_contrasena"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp" />
 

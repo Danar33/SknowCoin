@@ -20,9 +20,9 @@ import dan_art.sknowcoin.modelo.SKnowCoinApp;
 
 public class SingUpActivity_uno extends AppCompatActivity {
 
-    private EditText nombres;
-    private EditText apellidos;
-    private EditText documento;
+    private EditText correoE;
+    private EditText contrasena;
+    private EditText confirmContrasena;
 
     private Button continuarButton;
     private Button atrasButton;
@@ -34,31 +34,34 @@ public class SingUpActivity_uno extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_inicio);
 
-        nombres = (EditText) findViewById(R.id.editText_nombre);
-        apellidos = (EditText) findViewById(R.id.editText_apellidos);
-        documento = (EditText) findViewById(R.id.editText_documento_identidad);
+        correoE = (EditText) findViewById(R.id.editText_nuevo_correo);
+        contrasena = (EditText) findViewById(R.id.editText_nueva_contrasena);
+        confirmContrasena = (EditText) findViewById(R.id.editText_confirmar_contrasena);
 
-        continuarButton = (Button) findViewById(R.id.button_continuar_registro);
-        atrasButton = (Button) findViewById(R.id.cancelar_registro);
+        continuarButton = (Button) findViewById(R.id.button_siguiente_registro);
+        atrasButton = (Button) findViewById(R.id.atras_registro_inicial);
 
         sKnowCoinApp = new SKnowCoinApp();
 
     }
 
-    public void clickContinuarRegistro(View v) {
-        String nom = nombres.getText().toString();
-        String ape = apellidos.getText().toString();
-        String doc = documento.getText().toString();
+    public void clicSiguienteRegistro(View v) {
+        String correo = correoE.getText().toString();
+        String pass = contrasena.getText().toString();
+        String confiPass = confirmContrasena.getText().toString();
 
-        if((!isEmpty(nombres))&&(!isEmpty(apellidos))&&(!isEmpty(documento))){
-            Intent intent = new Intent(this, SingUpActivity_dos.class);
-            intent.putExtra("NOMBRES", nom);
-            intent.putExtra("APELLIDOS", ape);
-            intent.putExtra("DOCUMENTO", doc);
-            startActivity(intent);
-        }else{
-            mostrarToast("Debes ingresar todos los datos");
-        }//no ha introducido los dastos pedidos
+        if (pass.equals(confiPass)) {
+            if ((!isEmpty(correoE)) && (!isEmpty(contrasena)) && (!isEmpty(confirmContrasena))) {
+                Intent intent = new Intent(this, SingUpActivity_dos.class);
+                intent.putExtra("CORREO", correo);
+                intent.putExtra("PASS", pass);
+                startActivity(intent);
+            } else {
+                mostrarToast("Debes ingresar todos los datos");
+            }//no ha introducido los dastos pedidos
+        } else {
+            mostrarToast("Las contraseñas no coinciden");
+        }// las contraseñas no son iguales
 
     }// click login
 
@@ -66,28 +69,20 @@ public class SingUpActivity_uno extends AppCompatActivity {
         return etText.getText().toString().trim().length() == 0;
     }
 
-    public void mostrarToast (String mensaje){
+    public void mostrarToast(String mensaje) {
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context, mensaje, duration);
         toast.show();
     }// mostrar toast
 
-    public void clickAtrasRegistro(View v) {
-        if(true) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-        }
+    public void clickAtrasRegistroUno(View v) {
+        super.onBackPressed();
     }// click Registro
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+        super.onBackPressed();
     }
 
 }

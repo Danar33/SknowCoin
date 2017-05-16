@@ -53,16 +53,16 @@ public class LoginActivity extends AppCompatActivity {
         String elCorreo = correo.getText().toString();
         String laContrasena = contrasena.getText().toString();
 
-        if((!isEmpty(correo))&&(!isEmpty(contrasena))){
+        if ((!isEmpty(correo)) && (!isEmpty(contrasena))) {
             boolean seguir = false;
 
             if (!elCorreo.trim().matches("") && !laContrasena.trim().matches("")) {
                 seguir = sKnowCoinApp.loginUusuario(elCorreo, laContrasena, this);
-            }else {
+            } else {
                 mostrarToast("Correo o contraseña incorrecta");
             }// se pudo establecer conexion
 
-            if(seguir == true) {
+            if (seguir == true) {
 
                 preferences = getSharedPreferences(USUARIO_PREFERENCES, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
             }
-        }else {
+        } else {
             mostrarToast("No has ingresado tus datos");
         }// no ha llenado los datos
 
@@ -97,12 +97,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+        //super.onBackPressed();
     }
 
 }

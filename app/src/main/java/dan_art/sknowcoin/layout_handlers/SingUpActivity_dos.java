@@ -20,12 +20,17 @@ import dan_art.sknowcoin.modelo.SKnowCoinApp;
 
 public class SingUpActivity_dos extends AppCompatActivity {
 
-    private EditText ccodigo;
-    private EditText carrera;
-    private EditText semestre;
+    //variables de la pantalla anterior de registro
+    private String correo;
+    private String constrasena;
 
-    private Button finalizarButton;
-    private Button cancelarButton;
+    // Views
+    private EditText nombres;
+    private EditText apellidos;
+    private EditText documento;
+
+    private Button continuarButton;
+    private Button atrasButton;
 
     private SKnowCoinApp sKnowCoinApp;
 
@@ -35,41 +40,36 @@ public class SingUpActivity_dos extends AppCompatActivity {
         setContentView(R.layout.activity_registro_dos);
 
         Intent intent = getIntent();
-        nombres = intent.getStringExtra("NOMBRES");
-        apellidos = intent.getStringExtra("APELLIDOS");
-        documento = intent.getStringExtra("DOCUMENTO");
+        correo = intent.getStringExtra("CORREO");
+        constrasena = intent.getStringExtra("PASS");
 
-        codigo = (EditText) findViewById(R.id.editText_cod_estudiante);
-        carrera = (EditText) findViewById(R.id.editText_carrera);
-        semestre = (EditText) findViewById(R.id.editText_semestre);
+        nombres = (EditText) findViewById(R.id.editText_nombre);
+        apellidos = (EditText) findViewById(R.id.editText_apellidos);
+        documento = (EditText) findViewById(R.id.editText_documento_identidad);
 
-        finalizarButton = (Button) findViewById(R.id.button_terminar_registro_basico);
-        cancelarButton = (Button) findViewById(R.id.cancelar_registro);
+        continuarButton = (Button) findViewById(R.id.button_continuar_registro);
+        atrasButton = (Button) findViewById(R.id.atras_registro);
 
         sKnowCoinApp = new SKnowCoinApp();
 
     }
 
-    public void clickContinuarRegistro(View v) {
+    public void clickContinuarRegistroDos(View v) {
+        String nom = nombres.getText().toString();
+        String ape = apellidos.getText().toString();
+        String doc = documento.getText().toString();
 
-        String nombre;
-        String telefono;
-        String correo;
-        String codigo = codigo.getText().toString();
-        String area = this.carrera.getText().toString();
-        String semestreActual = this.semestre.getText().toString();
-        String contrasena;
-        int rol;
-
-
-        if ((!isEmpty(semestre)) && (!isEmpty(carrera)) && (!isEmpty(codigo))) {
-            if (true) {// esto es lo que debe validar que se haya registrado
-                Intent intent = new Intent(this, HomeActivity.class);
-                startActivity(intent);
-            }
+        if ((!isEmpty(nombres)) && (!isEmpty(apellidos)) && (!isEmpty(documento))) {
+            Intent intent = new Intent(this, SingUpActivity_tres.class);
+            intent.putExtra("CORREO", correo);
+            intent.putExtra("PASS", constrasena);
+            intent.putExtra("NOMBRES", nom);
+            intent.putExtra("APELLIDOS", ape);
+            intent.putExtra("DOCUMENTO", doc);
+            startActivity(intent);
         } else {
             mostrarToast("Debes ingresar todos los datos");
-        }//no ha introducido los ultimos datos
+        }//no ha introducido los dastos pedidos
 
     }// click login
 
@@ -84,21 +84,14 @@ public class SingUpActivity_dos extends AppCompatActivity {
         toast.show();
     }// mostrar toast
 
-    public void clickAtrasRegistro(View v) {
-        if (true) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-        }
+    public void clicAtrasRegistroDos(View v) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }// click Registro
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+        super.onBackPressed();
     }
 
 }

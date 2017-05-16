@@ -19,7 +19,7 @@
     <string name="texto_informacion">Información</string>
     <string name="texto_ayuda">Ayuda</string>
 
-    <string name="texto_correo">Correo</string>
+    <string name="texto_correo">Correo electrónico</string>
     <string name="texto_contrasena">Contraseña</string>
     <string name="texto_nombres">Nombres</string>
     <string name="texto_apellidos">Apellidos</string>
@@ -39,8 +39,9 @@
 
     <string name="descripcion_login">¡Bienvenido! Por favor ingresa con tu correo electrónico y contraseña.</string>
     <string name="titulo_registro">Registro</string>
-    <string name="estado_1_registro">1 / 2</string>
-    <string name="estado_2_registro">2 / 2</string>
+    <string name="estado_1_registro">1 / 3</string>
+    <string name="estado_2_registro">2 / 3</string>
+    <string name="estado_3_registro">3 / 3</string>
 
     <string name="descripcion_registro">Ingresa tus datos de identificación. Los nombres y apellidos serán visibles para otros usuarios</string>
 </resources>
