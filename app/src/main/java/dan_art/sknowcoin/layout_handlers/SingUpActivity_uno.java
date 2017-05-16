@@ -1,5 +1,6 @@
 package dan_art.sknowcoin.layout_handlers;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import dan_art.sknowcoin.R;
 import dan_art.sknowcoin.modelo.SKnowCoinApp;
@@ -19,7 +21,7 @@ import dan_art.sknowcoin.modelo.SKnowCoinApp;
 public class SingUpActivity_uno extends AppCompatActivity {
 
     private EditText nombres;
-    private EditText apelidos;
+    private EditText apellidos;
     private EditText documento;
 
     private Button continuarButton;
@@ -33,7 +35,7 @@ public class SingUpActivity_uno extends AppCompatActivity {
         setContentView(R.layout.activity_registro_inicio);
 
         nombres = (EditText) findViewById(R.id.editText_nombre);
-        apelidos = (EditText) findViewById(R.id.editText_apellidos);
+        apellidos = (EditText) findViewById(R.id.editText_apellidos);
         documento = (EditText) findViewById(R.id.editText_documento_identidad);
 
         continuarButton = (Button) findViewById(R.id.button_continuar_registro);
@@ -44,14 +46,32 @@ public class SingUpActivity_uno extends AppCompatActivity {
     }
 
     public void clickContinuarRegistro(View v) {
+        String nom = nombres.getText().toString();
+        String ape = apellidos.getText().toString();
+        String doc = documento.getText().toString();
 
-
-        if(true) {
-          //  Intent intent = new Intent(this, HomeActivity.class);
-          //  startActivity(intent);
-        }
+        if((!isEmpty(nombres))&&(!isEmpty(apellidos))&&(!isEmpty(documento))){
+            Intent intent = new Intent(this, SingUpActivity_dos.class);
+            intent.putExtra("NOMBRES", nom);
+            intent.putExtra("APELLIDOS", ape);
+            intent.putExtra("DOCUMENTO", doc);
+            startActivity(intent);
+        }else{
+            mostrarToast("Debes ingresar todos los datos");
+        }//no ha introducido los dastos pedidos
 
     }// click login
+
+    private boolean isEmpty(EditText etText) {
+        return etText.getText().toString().trim().length() == 0;
+    }
+
+    public void mostrarToast (String mensaje){
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, mensaje, duration);
+        toast.show();
+    }// mostrar toast
 
     public void clickAtrasRegistro(View v) {
         if(true) {

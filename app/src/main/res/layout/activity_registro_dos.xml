@@ -6,7 +6,7 @@
     android:background="@drawable/dark_bg">
 
     <ImageView
-        android:id="@+id/logo_login"
+        android:id="@+id/logo_singup_dos"
         android:layout_width="220dp"
         android:layout_height="160dp"
         app:srcCompat="@drawable/logo"
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:inputType="none"
         android:text="@string/titulo_registro"
-        android:layout_below="@+id/logo_login"
+        android:layout_below="@+id/logo_singup_dos"
         android:layout_centerHorizontal="true" />
 
     <EditText

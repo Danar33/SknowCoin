@@ -7,6 +7,18 @@
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
 
+    <string name="texto_perfil_tutor">Perfil de Tutor</string>
+    <string name="texto_perfil_estudiante">Perfil de Estudiante</string>
+    <string name="texto_editar_perfil">Editar Perfil</string>
+    <string name="texto_home">Inicio</string>
+    <string name="texto_materias">Materias</string>
+    <string name="texto_buscar_tutor">Buscar Tutor</string>
+    <string name="texto_tutorias_solicitadas">Tutorías Solicitadas</string>
+    <string name="texto_top_mensual">Top mensual</string>
+    <string name="texto_configuracion">Configuración</string>
+    <string name="texto_informacion">Información</string>
+    <string name="texto_ayuda">Ayuda</string>
+
     <string name="texto_correo">Correo</string>
     <string name="texto_contrasena">Contraseña</string>
     <string name="texto_nombres">Nombres</string>
