@@ -1,13 +1,18 @@
 package dan_art.sknowcoin.modelo;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +28,7 @@ public class copySKnowCoin {
 
     public static final String MyPREFERENCES = "MyPrefs";
 
-    private Usuario usuario;
+    //private Usuario usuario;
     private Tutoria tutoria;
     private SharedPreferences sharedpreferences;
 
@@ -31,91 +36,87 @@ public class copySKnowCoin {
     private Autenticacion autenticacion;
     //private String var;
 
+    private ArrayList<Usuario> tutores;
+
     public copySKnowCoin() {
 
         conexionFirebase = new ConexionFirebase();
         autenticacion = new Autenticacion();
+        //tutores=new ArrayList<Usuario>();
     }
 
-    public void registrarUsuario(String nombre, String telefono, String correo, String codigo, String contrasena,
-                                 String area, String semestre, int rol, Context contexto) {
+    //public void registrarUsuario(String nombre, String telefono, String correo, String codigo, String contrasena,
+  //                               String area, String semestre, int rol, Context contexto) {
 
+//        Usuario usuario = new Usuario(area, codigo, correo, edad, nombre, rol, semestre, telefono);
 
-        Usuario usuario = new Usuario(nombre, telefono, correo, codigo,
-                area, semestre, rol);
+    //    conexionFirebase.getDatabaseReference().child(conexionFirebase.USUARIOS_REFERENCE).child(codigo).setValue(usuario);
 
-        conexionFirebase.getDatabaseReference().child(conexionFirebase.USUARIOS_REFERENCE).child(codigo).setValue(usuario);
+//        autenticacion.signUp(correo, contrasena, contexto);
 
-        autenticacion.signUp(correo, contrasena, contexto);
+  //  }
 
-    }
-
-    public void listarPorAsignaturas(String area){
-
-        final List<Tutoria> tutorias=new ArrayList<>();
-
-        Object obj = conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_REFERENCE).child("A00267576").addValueEventListener(new ValueEventListener() {            @Override
+    public ArrayList<Tutoria> listarPorTutor(String nombre) {
+        final ArrayList<Tutoria> tutorias=new ArrayList<Tutoria>();
+        conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_REFERENCE).orderByChild("nombreTutor").equalTo(nombre).addValueEventListener(new ValueEventListener() {
+            @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Tutoria tutoria = dataSnapshot.getValue(Tutoria.class);
 
-                tutorias.add(tutoria);
-
-                Log.d("test", tutorias.get(0).toString());
-
-        }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " );
-            }
-        });
-    }
-
-    public void listarPorTutor(String tutor){
-
-        conexionFirebase.getDatabaseReference().child(conexionFirebase.USUARIOS_REFERENCE).orderByChild("nombre").equalTo(tutor).addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                String var = dataSnapshot.getKey();
-
-                Log.d("test", var);
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Tutoria tutoria=postSnapshot.getValue(Tutoria.class);
+                    tutorias.add(tutoria);
+                }
+                Log.d("test",tutorias.get(0).getNombreTutor());
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+        return tutorias;
+    }
+
+    public ArrayList<String> listarAreas(){
+        final ArrayList<String> areas=new ArrayList<String>();
+        conexionFirebase.getDatabaseReference().child("areas").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    String area=postSnapshot.getKey();
+                    areas.add(area);
+                }
+               // Log.d("test",areas.get(0));
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+        return areas;
+    }
+
+    public ArrayList<Tutoria> listarPorMateria(String nombre) {
+        final ArrayList<Tutoria> tutorias=new ArrayList<Tutoria>();
+        conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_REFERENCE).orderByChild("materia").equalTo(nombre).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+
+                    Tutoria tutoria=postSnapshot.getValue(Tutoria.class);
+                    tutorias.add(tutoria);
+                }
+                Log.d("test",tutorias.get(0).getNombreTutor());
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
             }
-
-
         });
+        return tutorias;
     }
 
-    public void listarPorMateria(){
-
-
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public ArrayList<Usuario> getTutores() {
+        return tutores;
     }
 
     public Tutoria getTutoria() {
@@ -126,3 +127,4 @@ public class copySKnowCoin {
         this.tutoria = tutoria;
     }
 }
+
