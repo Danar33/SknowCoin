@@ -45,6 +45,15 @@ public class SingUpActivity_dos extends AppCompatActivity {
 
     public void clickContinuarRegistro(View v) {
 
+        String nombre;
+        String telefono;
+        String correo;
+        String codigo = ccodigo.getText().toString();
+        String area = this.carrera.getText().toString();
+        String semestre = this.semestre.getText().toString();
+        String contrasena;
+        int rol;
+
 
         if (true) {
             Intent intent = new Intent(this, HomeActivity.class);
