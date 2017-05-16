@@ -20,18 +20,7 @@ import dan_art.sknowcoin.modelo.SKnowCoinApp;
 
 public class SingUpActivity_dos extends AppCompatActivity {
 
-    //variables de la pantalla anterior de registro
-    private String nombres;
-    private String apellidos;
-    private String documento;
-
-    //variables de esta pantalla
-    private String codigoEstudiante;
-    private String carreraUniversitaria;
-    private String semestreActual;
-
-    // Views
-    private EditText codigo;
+    private EditText ccodigo;
     private EditText carrera;
     private EditText semestre;
 
@@ -63,9 +52,15 @@ public class SingUpActivity_dos extends AppCompatActivity {
 
     public void clickContinuarRegistro(View v) {
 
-        carreraUniversitaria = carrera.getText().toString();
-        codigoEstudiante = codigo.getText().toString();
-        semestreActual = semestre.getText().toString();
+        String nombre;
+        String telefono;
+        String correo;
+        String codigo = codigo.getText().toString();
+        String area = this.carrera.getText().toString();
+        String semestreActual = this.semestre.getText().toString();
+        String contrasena;
+        int rol;
+
 
         if ((!isEmpty(semestre)) && (!isEmpty(carrera)) && (!isEmpty(codigo))) {
             if (true) {// esto es lo que debe validar que se haya registrado
