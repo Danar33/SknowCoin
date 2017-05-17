@@ -11,18 +11,15 @@
 
 
     <ListView
-        android:id="@+id/podio_list_layout"
-        android:layout_width="362dp"
+        android:id="@+id/tutorias_home_list_layout"
+        android:layout_width="368dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_editor_absoluteX="@dimen/simple_margin"
-        app:layout_editor_absoluteY="@dimen/simple_margin"
-        tools:layout_editor_absoluteY="2dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         tools:listitem="@layout/item_tutoria_disponible"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="6dp"
+        tools:layout_editor_absoluteX="8dp" />
 
 </android.support.constraint.ConstraintLayout>

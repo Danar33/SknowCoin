@@ -15,7 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="1"
-        android:layout_marginTop="6dp"
         android:layout_marginLeft="1dp"
         android:layout_marginRight="1dp"
         android:layout_marginBottom="10dp"
@@ -129,14 +128,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="1"
-        android:layout_marginTop="-5dp"
         android:layout_marginLeft="1dp"
         android:layout_marginRight="1dp"
+        android:layout_marginTop="-5dp"
         android:layout_below="@+id/tutDisp_content"
-        android:layout_alignParentStart="true">
+        android:layout_alignStart="@+id/tutDisp_content">
 
         <Button
-            android:textSize="10dp"
+            android:textSize="12dp"
             android:textColor="@color/colorBlueLight"
             android:gravity="center|center"
             android:textAlignment="center"
@@ -147,7 +146,8 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:id="@+id/tutDisp_btn_solicitar"
-            android:text="@string/txt_btn_solicitar_tutDisp"/>
+            android:text="@string/txt_btn_solicitar_tutDisp"
+           />
 
         <TextView
             style="@style/titulo_blanco_regular"
@@ -181,7 +181,7 @@
         android:layout_width="match_parent"
         android:layout_height="15dp"
         android:weightSum="1"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="0dp"
         android:layout_marginLeft="1dp"
         android:layout_marginRight="1dp"
         android:layout_marginBottom="1dp"

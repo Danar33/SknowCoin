@@ -13,9 +13,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import dan_art.sknowcoin.R;
+import dan_art.sknowcoin.modelo.Tutoria;
+
 
 /**
  * Created by dan_a on 04/05/2017.
@@ -23,6 +28,11 @@ import dan_art.sknowcoin.R;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private ArrayList<Tutoria> tutoriasDisponibles = new ArrayList<>();
+
+    private AdaptadorTutoriaDisponible adaptadorTutorias;
+    private ListView listaTutorias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +58,42 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-    }
+
+        //LLENADO DE PRUEBA
+        for (int i = 0; i < 15; i++) {
+            String codigo = "A00028300";
+            String hora = "Lunes 4:00 p.m";
+            String materia = "HCI 2";
+            String area = "Tics";
+            String nombreTutor = "Nombre de Prueba";
+            int precio = 18000;
+
+            Tutoria nueva = new Tutoria(codigo, hora, materia, area, nombreTutor, precio);
+            tutoriasDisponibles.add(nueva);
+        }// for que crea tutorias
+
+        adaptadorTutorias =  new AdaptadorTutoriaDisponible(this, tutoriasDisponibles, this);
+
+        list_view_content();
+    }// on create
+
+    public void list_view_content(){
+        /// Asignacion del adaptador
+        listaTutorias = (ListView) findViewById(R.id.tutorias_home_list_layout);
+
+        actualizarLista();
+
+        listaTutorias.setAdapter(adaptadorTutorias);
+    }// contenido del list view
+
+    public  void actualizarLista(){
+
+        for(int i = 0; i < tutoriasDisponibles.size(); i++){
+            // TODO
+            adaptadorTutorias.notifyDataSetChanged();
+        }// for top 5
+    }// actualizar lista
+
 
     @Override
     public void onBackPressed() {
