@@ -66,9 +66,10 @@ public class HomeActivity extends AppCompatActivity
             String materia = "HCI 2";
             String area = "Tics";
             String nombreTutor = "Nombre de Prueba";
+            String lugar = "Icesi";
             int precio = 18000;
 
-            Tutoria nueva = new Tutoria(codigo, hora, materia, area, nombreTutor, precio);
+            Tutoria nueva = new Tutoria(codigo, hora, materia, area, nombreTutor, precio, lugar);
             tutoriasDisponibles.add(nueva);
         }// for que crea tutorias
 
