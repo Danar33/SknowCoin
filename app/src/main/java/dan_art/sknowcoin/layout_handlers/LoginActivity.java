@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +12,7 @@ import android.widget.Toast;
 
 import dan_art.sknowcoin.R;
 import dan_art.sknowcoin.modelo.SKnowCoinApp;
+import dan_art.sknowcoin.modelo.Usuario;
 
 /**
  * Created by dan_a on 11/05/2017.
@@ -67,7 +66,9 @@ public class LoginActivity extends AppCompatActivity {
                 preferences = getSharedPreferences(USUARIO_PREFERENCES, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
 
-                editor.putString("correo", elCorreo);
+                Usuario usuario = sKnowCoinApp.buscarTutorPorCorreo(elCorreo);
+                editor.putString("codigo", usuario.getCodigo());
+
                 editor.commit();
 
                 Intent intent = new Intent(this, HomeActivity.class);

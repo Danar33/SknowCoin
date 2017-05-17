@@ -16,6 +16,7 @@ public class ConexionFirebase {
     public static final  String REPORTES_REFERENCE = "reportes";
     public static final  String ROLES_REFERENCE = "roles";
     public static final  String USUARIOS_REFERENCE = "usuarios";
+    public static final  String PUBLICACIONES_USUARIO_REFERENCE = "publicaciones_usuario";
 
     private FirebaseDatabase database;
     private DatabaseReference mDatabase;
