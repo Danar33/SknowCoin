@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:weightSum="1"
+    android:id="@+id/tutDisp_principal">
+
+    <RelativeLayout
+        android:background="@color/colorWhite"
+        android:id="@+id/tutDisp_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:id="@+id/tutDsip_foto"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            app:srcCompat="@drawable/area_biologia" />
+
+        <TextView
+            android:textStyle="bold"
+            android:textSize="22dp"
+            android:id="@+id/tutDisp_nombre_tutor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:text="Great Username"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/colorAccent"
+            android:layout_alignParentTop="true"
+            android:layout_alignEnd="@+id/horario_view"
+            android:layout_toEndOf="@+id/tutDsip_foto" />
+
+        <TextView
+            style="@style/titulo_azul_oscuro_bold"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:id="@+id/tutDisp_tutor_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Super Tutora"
+            android:layout_marginLeft="1dp"
+            android:layout_below="@+id/tutDisp_nombre_tutor"
+            android:layout_alignStart="@+id/tutDisp_nombre_tutor" />
+
+        <TextView
+            android:id="@+id/horario_view"
+            android:layout_marginEnd="10dp"
+            android:inputType="number"
+            android:text="Horarios"
+            style="@style/subtitulo_gris_inclinado"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tutDisp_tutor_rank"
+            android:layout_toStartOf="@+id/tutDisp_area" />
+
+        <TextView
+            style="@style/subtitulo_gris_inclinado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tutDisp_tutor_rank"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="7dp"
+            android:layout_toStartOf="@+id/tutDisp_area"
+            android:text="____________________________"
+            android:id="@+id/line_separacion_tutDisp" />
+
+        <ImageView
+            android:id="@+id/tutDisp_area"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/area_biologia"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:background="@color/colorDeepBlue"
+            android:padding="5dp"
+            style="@style/subtitulo_azul_light"
+            android:layout_marginLeft="1dp"
+            android:layout_width="45dp"
+            android:layout_height="33dp"
+            android:text="Nivel"
+            android:textSize="14dp"
+            android:layout_below="@+id/tutDsip_foto"
+            android:layout_alignParentStart="true"
+            android:id="@+id/nivel_view" />
+
+        <TextView
+            android:background="@color/colorDeepBlue"
+            android:padding="5dp"
+            style="@style/subtitulo_azul_claro_bold"
+            android:layout_marginLeft="-1dp"
+            android:id="@+id/tutDsip_nivel"
+            android:layout_width="34dp"
+            android:layout_height="33dp"
+            android:text="17"
+            android:textSize="20dp"
+            android:layout_below="@+id/tutDsip_foto"
+            android:layout_toEndOf="@+id/nivel_view" />
+
+        <TextView
+            style="@style/texto_gris_bold"
+            android:id="@+id/tutDisp_horario_tutoria"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line_separacion_tutDisp"
+            android:layout_alignStart="@+id/tutDisp_tutor_rank"
+            android:layout_alignEnd="@+id/line_separacion_tutDisp"
+            android:text="Lunes: 10:30 - 12:30 a.m"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:background="@color/colorAccent"
+        android:id="@+id/tutDisp_auxiliar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_marginTop="-5dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_below="@+id/tutDisp_content"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:textSize="10dp"
+            android:textColor="@color/colorBlueLight"
+            android:gravity="center|center"
+            android:textAlignment="center"
+            android:background="@drawable/mini_boton_circular"
+            android:layout_margin="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/tutDisp_btn_solicitar"
+            android:text="@string/txt_btn_solicitar_tutDisp"/>
+
+        <TextView
+            style="@style/titulo_blanco_regular"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$ 10.000"
+            android:id="@+id/tutDisp_precio_numerico"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/tutDisp_texto_xhora"
+            android:layout_marginEnd="13dp" />
+
+        <TextView
+            style="@style/texto_blanco_regular"
+            android:textColor="@color/colorWhite"
+            android:textSize="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hora de tutoría"
+            android:id="@+id/tutDisp_texto_xhora"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:background="@drawable/shadow_fade"
+        android:id="@+id/tutDisp_sombra"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:weightSum="1"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_below="@+id/tutDisp_auxiliar"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -82,10 +82,10 @@
         android:background="@drawable/input_text_circular"
         android:ems="10"
         android:hint="@string/texto_semestre_actual"
-        android:inputType="text"
+        android:inputType="number"
+        android:layout_marginTop="12dp"
         android:layout_below="@+id/editText_carrera"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp" />
+        android:layout_alignStart="@+id/editText_carrera" />
 
     <TextView
         style="@style/Descripcion_inicio"

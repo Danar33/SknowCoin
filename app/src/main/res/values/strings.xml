@@ -43,5 +43,7 @@
     <string name="estado_2_registro">2 / 3</string>
     <string name="estado_3_registro">3 / 3</string>
 
+    <string name="txt_btn_solicitar_tutDisp">Solicitar</string>
+
     <string name="descripcion_registro">Ingresa tus datos de identificación. Los nombres y apellidos serán visibles para otros usuarios</string>
 </resources>

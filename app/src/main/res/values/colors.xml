@@ -19,6 +19,7 @@
     <color name="colorBlack">#202020</color>
     <color name="colorGreyDark">#757575</color>
     <color name="colorGreySoft">#bdbdbc</color>
+    <color name="colorGreyLight">#fff3f3f3</color>
     <color name="colorWhite">#ffffff</color>
 
     <color name="colorDeepBlue">#0a5366</color>
@@ -28,5 +29,7 @@
     <color name="colorBlackTransparent50">#80000000</color>
     <color name="colorBlackTransparent30">#4D000000</color>
     <color name="colorBlackTransparent10">#1A000000</color>
+    <color name="colorBlackTransparent5">#0A000000</color>
+    <color name="colorBlackTransparent0">#00000000</color>
 
 </resources>

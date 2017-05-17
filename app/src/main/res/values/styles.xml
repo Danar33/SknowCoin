@@ -59,4 +59,51 @@
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textAlignment">center</item>
     </style>
+
+    <style name="titulo_azul_oscuro_bold" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:textColor">@color/colorDeepBlue</item>
+        <item name="android:textSize">24dp</item>
+        <item name="android:fontFamily">sans-serif-bold</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="subtitulo_gris_inclinado" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:textColor">@color/colorGreyDark</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textAlignment">viewEnd</item>
+    </style>
+
+    <style name="subtitulo_azul_light" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:gravity">left|bottom</item>
+    </style>
+
+    <style name="subtitulo_azul_claro_bold" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:textColor">@color/colorBlueLight</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:fontFamily">sans-serif-bold</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">left|bottom</item>
+    </style>
+
+    <style name="texto_gris_bold" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:textColor">@color/colorGreyDark</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:fontFamily">sans-serif-bold</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:gravity">left|bottom</item>
+    </style>
+
+    <style name="texto_blanco_regular" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:fontFamily">sans-serif-regular</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:gravity">left|bottom</item>
+    </style>
 </resources>
