@@ -14,19 +14,10 @@ public class Tutoria {
     private String nombreTutor;
     private int precio;
 
-    public Tutoria(String codigo, String hora, String materia, String nombreTutor, int precio) {
+    public Tutoria(String codigo, String hora, String materia, String nombreTutor, int precio, String lugar) {
         this.codigo = codigo;
         this.hora = hora;
         this.lugar = lugar;
-        this.materia = materia;
-        this.nombreTutor = nombreTutor;
-        this.precio = precio;
-    }
-
-    public Tutoria(String codigo, String hora, String materia, String area, String nombreTutor, int precio) {
-        this.codigo = codigo;
-        this.hora = hora;
-        this.area = area;
         this.materia = materia;
         this.nombreTutor = nombreTutor;
         this.precio = precio;

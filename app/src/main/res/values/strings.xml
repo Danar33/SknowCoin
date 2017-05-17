@@ -23,7 +23,7 @@
     <string name="texto_contrasena">Contraseña</string>
     <string name="texto_nombres">Nombres</string>
     <string name="texto_apellidos">Apellidos</string>
-    <string name="texto_nueva_contrasena">Nueva contraseña</string>
+    <string name="texto_nueva_contrasena">Contraseña</string>
     <string name="texto_confirmar_contrasena">Confirmar contraseña</string>
     <string name="texto_documento_identidad">Documento de Identidad</string>
     <string name="texto_codigo_estudiante">Código de Estudiante</string>
