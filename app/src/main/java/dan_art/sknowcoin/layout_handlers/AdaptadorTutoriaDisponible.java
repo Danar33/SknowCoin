@@ -65,30 +65,32 @@ public class AdaptadorTutoriaDisponible extends ArrayAdapter<Tutoria> {
         String nivelPrueba = "20";
         tvNivel.setText(nivelPrueba);
 
-        ImageView img = (ImageView) convertView.findViewById(R.id.tutDisp_area);
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.tutDisp_area);
+
         String area = tutoria.getMateria();
+        Bitmap bImage = null;
 
         switch (area) {
             case "Biologia":
-                img.setImageResource(R.drawable.area_biologia);
+                bImage = BitmapFactory.decodeResource(activity.getResources(), R.drawable.area_biologia);
                 break;
             case "Física":
-                img.setImageResource(R.drawable.area_fisica);
+                bImage = BitmapFactory.decodeResource(activity.getResources(), R.drawable.area_fisica);
                 break;
             case "Tics":
-                img.setImageResource(R.drawable.area_tics);
+                bImage = BitmapFactory.decodeResource(activity.getResources(), R.drawable.area_tics);
                 break;
             case "Medicina":
-                img.setImageResource(R.drawable.area_medicina);
+                bImage = BitmapFactory.decodeResource(activity.getResources(), R.drawable.area_medicina);
                 break;
             case "Sistemas":
-                img.setImageResource(R.drawable.area_sistemas);
+                bImage = BitmapFactory.decodeResource(activity.getResources(), R.drawable.area_sistemas);
                 break;
         }// switch de areas
 
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.tutDisp_area);
-        Bitmap bImage = BitmapFactory.decodeResource(activity.getResources(), R.drawable.area_tics);
-        imageView.setImageBitmap(bImage);
+        if(bImage != null){
+            imageView.setImageBitmap(bImage);
+        }// se cargo imagen
 
 
         Button solicitar = (Button) convertView.findViewById(R.id.tutDisp_btn_solicitar);
