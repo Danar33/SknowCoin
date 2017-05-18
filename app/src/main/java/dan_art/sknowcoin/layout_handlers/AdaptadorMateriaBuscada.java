@@ -42,27 +42,19 @@ public class AdaptadorMateriaBuscada extends ArrayAdapter<Tutoria> {
 
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_tutoria_disponible, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_materia, parent, false);
         }// convert view not null
 
         // Lookup view for data population
-        TextView tvNombreUsuario = (TextView) convertView.findViewById(R.id.tutDisp_nombre_tutor);
-        TextView tvRango = (TextView) convertView.findViewById(R.id.tutDisp_tutor_rank);
-        TextView tvNivel = (TextView) convertView.findViewById(R.id.tutDsip_nivel);
-        TextView tvHorario = (TextView) convertView.findViewById(R.id.tutDisp_horario_tutoria);
-        TextView tvPrecio = (TextView) convertView.findViewById(R.id.tutDisp_precio_numerico);
+        TextView tvNombreUsuario = (TextView) convertView.findViewById(R.id.materia_nombre);
 
         // LLenar los viwes con el contenido del usuario
         tvNombreUsuario.setText(tutoria.getNombreTutor());
-        tvRango.setText(tutoria.getMateria());
-        tvHorario.setText(tutoria.getHora());
 
         int miles = tutoria.getPrecio() / 1000;
         String precioTexto = "$" + miles + ".000";
-        tvPrecio.setText(precioTexto);
 
         String nivelPrueba = "20";
-        tvNivel.setText(nivelPrueba);
 
         ImageView imageView = (ImageView) convertView.findViewById(R.id.tutDisp_area);
 

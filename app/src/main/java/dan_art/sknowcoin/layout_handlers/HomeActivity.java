@@ -19,6 +19,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import dan_art.sknowcoin.R;
+import dan_art.sknowcoin.modelo.SKnowCoinApp;
 import dan_art.sknowcoin.modelo.Tutoria;
 
 
@@ -28,6 +29,9 @@ import dan_art.sknowcoin.modelo.Tutoria;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+
+    private SKnowCoinApp app;
 
     private ArrayList<Tutoria> tutoriasDisponibles = new ArrayList<>();
 
@@ -59,6 +63,7 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
         //LLENADO DE PRUEBA
         /*for (int i = 0; i < 15; i++) {
             String codigo = "A00028300";
@@ -73,14 +78,15 @@ public class HomeActivity extends AppCompatActivity
             tutoriasDisponibles.add(nueva);
         }// for que crea tutorias */
 
+        app = new SKnowCoinApp();
 
-
-        adaptadorTutorias =  new AdaptadorTutoriaDisponible(this, tutoriasDisponibles, this);
+        tutoriasDisponibles = app.totalTutorias();
+        adaptadorTutorias = new AdaptadorTutoriaDisponible(this, tutoriasDisponibles, this);
 
         list_view_content();
     }// on create
 
-    public void list_view_content(){
+    public void list_view_content() {
         /// Asignacion del adaptador
         listaTutorias = (ListView) findViewById(R.id.tutorias_home_list_layout);
 
@@ -89,9 +95,9 @@ public class HomeActivity extends AppCompatActivity
         listaTutorias.setAdapter(adaptadorTutorias);
     }// contenido del list view
 
-    public  void actualizarLista(){
+    public void actualizarLista() {
 
-        for(int i = 0; i < tutoriasDisponibles.size(); i++){
+        for (int i = 0; i < tutoriasDisponibles.size(); i++) {
             // TODO
             adaptadorTutorias.notifyDataSetChanged();
         }// for top 5

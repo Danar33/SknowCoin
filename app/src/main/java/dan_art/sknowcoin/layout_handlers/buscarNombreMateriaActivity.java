@@ -26,18 +26,18 @@ import dan_art.sknowcoin.modelo.Tutoria;
  * Created by dan_a on 04/05/2017.
  */
 
-public class buscarNombreMateriaActivity extends AppCompatActivity
+class BuscarNombreMateriaActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private ArrayList<Tutoria> tutoriasDisponibles = new ArrayList<>();
+    private ArrayList<Tutoria> tutoriasMaterias = new ArrayList<>();
 
-    private AdaptadorTutoriaDisponible adaptadorTutorias;
-    private ListView listaTutorias;
+    private AdaptadorTutoriaDisponible adaptadorMaterias;
+    private ListView listaMaterias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_buscar_materias);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -70,35 +70,35 @@ public class buscarNombreMateriaActivity extends AppCompatActivity
             int precio = 18000;
 
             Tutoria nueva = new Tutoria(codigo, hora, materia, area, nombreTutor, precio, lugar);
-            tutoriasDisponibles.add(nueva);
+            tutoriasMaterias.add(nueva);
         }// for que crea tutorias
 
-        adaptadorTutorias =  new AdaptadorTutoriaDisponible(this, tutoriasDisponibles, this);
+        adaptadorMaterias =  new AdaptadorTutoriaDisponible(this, tutoriasMaterias, this);
 
         list_view_content();
     }// on create
 
     public void list_view_content(){
         /// Asignacion del adaptador
-        listaTutorias = (ListView) findViewById(R.id.tutorias_home_list_layout);
+        listaMaterias = (ListView) findViewById(R.id.tutorias_home_list_layout);
 
         actualizarLista();
 
-        listaTutorias.setAdapter(adaptadorTutorias);
+        listaMaterias.setAdapter(adaptadorMaterias);
     }// contenido del list view
 
     public  void actualizarLista(){
 
-        for(int i = 0; i < tutoriasDisponibles.size(); i++){
+        for(int i = 0; i < tutoriasMaterias.size(); i++){
             // TODO
-            adaptadorTutorias.notifyDataSetChanged();
+            adaptadorMaterias.notifyDataSetChanged();
         }// for top 5
     }// actualizar lista
 
 
     @Override
     public void onBackPressed() {
-        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
