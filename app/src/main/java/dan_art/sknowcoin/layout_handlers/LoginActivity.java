@@ -18,8 +18,6 @@ import dan_art.sknowcoin.modelo.SKnowCoinApp;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public final static String USUARIO_PREFERENCES = "USUARIO_PREFERENCES";
-
     private EditText correo;
     private EditText contrasena;
 

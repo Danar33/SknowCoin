@@ -22,6 +22,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import dan_art.sknowcoin.R;
+import dan_art.sknowcoin.modelo.SKnowCoinApp;
 import dan_art.sknowcoin.modelo.Tutoria;
 import dan_art.sknowcoin.modelo.Usuario;
 
@@ -33,12 +34,16 @@ import dan_art.sknowcoin.modelo.Usuario;
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public final static String USUARIO_PREFERENCES = "USUARIO_PREFERENCES";
+
     private ArrayList<Tutoria> tutoriasDisponibles = new ArrayList<>();
 
     private AdaptadorTutoriaDisponible adaptadorTutorias;
     private ListView listaTutorias;
 
     private SharedPreferences preferences;
+
+    private SKnowCoinApp sKnowCoinApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +70,8 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        sKnowCoinApp = new SKnowCoinApp();
+
         Intent intent = getIntent();
         String correo = intent.getStringExtra("ELCORREO");
 
@@ -72,7 +79,7 @@ public class HomeActivity extends AppCompatActivity
         preferences = getSharedPreferences(USUARIO_PREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
 
-        Usuario usuario = sKnowCoinApp.buscarTutorPorCorreo(elCorreo);
+        Usuario usuario = sKnowCoinApp.buscarTutorPorCorreo(correo);
         editor.putString("codigo", usuario.getCodigo());
 
         editor.commit();
