@@ -30,6 +30,7 @@ public class Autenticacion {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(contexto, "Bienvenido.", Toast.LENGTH_SHORT).show();
+                    retorno = true;
 
                 } else {
                     Toast.makeText(contexto, task.getException().getMessage(), Toast.LENGTH_LONG).show();
@@ -52,6 +53,7 @@ public class Autenticacion {
                 if (task.isSuccessful()) {
                     Toast.makeText(contexto, "Bienvenido.", Toast.LENGTH_SHORT).show();
 
+                    retorno1 = true;
                 } else {
                     Toast.makeText(contexto, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     retorno1 = false;

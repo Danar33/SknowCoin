@@ -2,7 +2,6 @@ package dan_art.sknowcoin.layout_handlers;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.Toast;
 
 import dan_art.sknowcoin.R;
 import dan_art.sknowcoin.modelo.SKnowCoinApp;
-import dan_art.sknowcoin.modelo.Usuario;
 
 /**
  * Created by dan_a on 11/05/2017.
@@ -20,15 +18,11 @@ import dan_art.sknowcoin.modelo.Usuario;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public final static String USUARIO_PREFERENCES = "USUARIO_PREFERENCES";
-
     private EditText correo;
     private EditText contrasena;
 
     private Button loginButton;
     private Button singupButton;
-
-    private SharedPreferences preferences;
 
     private SKnowCoinApp sKnowCoinApp;
 
@@ -63,15 +57,8 @@ public class LoginActivity extends AppCompatActivity {
 
             if (seguir == true) {
 
-                preferences = getSharedPreferences(USUARIO_PREFERENCES, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-
-                Usuario usuario = sKnowCoinApp.buscarTutorPorCorreo(elCorreo);
-                editor.putString("codigo", usuario.getCodigo());
-
-                editor.commit();
-
                 Intent intent = new Intent(this, HomeActivity.class);
+                intent.putExtra("ELCORREO", elCorreo);
                 startActivity(intent);
             }
         } else {

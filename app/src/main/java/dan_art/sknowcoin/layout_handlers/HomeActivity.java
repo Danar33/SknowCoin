@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import dan_art.sknowcoin.R;
 import dan_art.sknowcoin.modelo.SKnowCoinApp;
 import dan_art.sknowcoin.modelo.Tutoria;
+import dan_art.sknowcoin.modelo.Usuario;
 
 
 /**
@@ -30,13 +31,16 @@ import dan_art.sknowcoin.modelo.Tutoria;
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
-    private SKnowCoinApp app;
+    public final static String USUARIO_PREFERENCES = "USUARIO_PREFERENCES";
 
     private ArrayList<Tutoria> tutoriasDisponibles = new ArrayList<>();
 
     private AdaptadorTutoriaDisponible adaptadorTutorias;
     private ListView listaTutorias;
+
+    private SharedPreferences preferences;
+
+    private SKnowCoinApp sKnowCoinApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +67,19 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        sKnowCoinApp = new SKnowCoinApp();
+
+        Intent intent = getIntent();
+        String correo = intent.getStringExtra("ELCORREO");
+
+
+        preferences = getSharedPreferences(USUARIO_PREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+
+        Usuario usuario = sKnowCoinApp.buscarTutorPorCorreo(correo);
+        editor.putString("codigo", usuario.getCodigo());
+
+        editor.commit();
 
         //LLENADO DE PRUEBA
         /*for (int i = 0; i < 15; i++) {
@@ -86,7 +103,7 @@ public class HomeActivity extends AppCompatActivity
         list_view_content();
     }// on create
 
-    public void list_view_content() {
+    public void list_view_content(){
         /// Asignacion del adaptador
         listaTutorias = (ListView) findViewById(R.id.tutorias_home_list_layout);
 
@@ -95,9 +112,9 @@ public class HomeActivity extends AppCompatActivity
         listaTutorias.setAdapter(adaptadorTutorias);
     }// contenido del list view
 
-    public void actualizarLista() {
+    public  void actualizarLista(){
 
-        for (int i = 0; i < tutoriasDisponibles.size(); i++) {
+        for(int i = 0; i < tutoriasDisponibles.size(); i++){
             // TODO
             adaptadorTutorias.notifyDataSetChanged();
         }// for top 5
