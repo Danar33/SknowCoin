@@ -115,6 +115,67 @@ public class copySKnowCoin {
         return tutorias;
     }
 
+    public ArrayList<Tutoria> listarPorArea(String nombre) {
+        final ArrayList<Tutoria> tutorias=new ArrayList<Tutoria>();
+        conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_REFERENCE).orderByChild("area").equalTo(nombre).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+
+                    Tutoria tutoria=postSnapshot.getValue(Tutoria.class);
+                    tutorias.add(tutoria);
+                }
+                Log.d("test",tutorias.get(0).getNombreTutor());
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return tutorias;
+    }
+
+    public void editarUsuario(String id, String contrasena, String correo, String nombre, int ){
+
+        final ArrayList<Tutoria> tutorias=new ArrayList<Tutoria>();
+        conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_REFERENCE).orderByChild("area").equalTo(nombre).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+
+                    Tutoria tutoria=postSnapshot.getValue(Tutoria.class);
+                    tutorias.add(tutoria);
+                }
+                Log.d("test",tutorias.get(0).getNombreTutor());
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
+    public ArrayList<Tutoria> totalTutorias(){
+
+        final ArrayList<Tutoria> tutorias=new ArrayList<Tutoria>();
+        conexionFirebase.getDatabaseReference().child("publicaciones").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Tutoria tutoria=postSnapshot.getValue(Tutoria.class);
+                    tutorias.add(tutoria);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+        return tutorias;
+    }
+
     public ArrayList<Usuario> getTutores() {
         return tutores;
     }
