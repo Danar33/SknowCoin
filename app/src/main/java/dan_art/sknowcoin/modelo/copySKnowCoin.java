@@ -135,7 +135,7 @@ public class copySKnowCoin {
         return tutorias;
     }
 
-    public void editarUsuario(String id, String contrasena, String correo, String nombre, int ){
+    public void editarUsuario(String id, String contrasena, String correo, String nombre ){
 
         final ArrayList<Tutoria> tutorias=new ArrayList<Tutoria>();
         conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_REFERENCE).orderByChild("area").equalTo(nombre).addValueEventListener(new ValueEventListener() {
