@@ -60,7 +60,7 @@ public class HomeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //LLENADO DE PRUEBA
-        for (int i = 0; i < 15; i++) {
+        /*for (int i = 0; i < 15; i++) {
             String codigo = "A00028300";
             String hora = "Lunes 4:00 p.m";
             String materia = "HCI 2";
@@ -71,7 +71,9 @@ public class HomeActivity extends AppCompatActivity
 
             Tutoria nueva = new Tutoria(codigo, hora, materia, area, nombreTutor, precio, lugar);
             tutoriasDisponibles.add(nueva);
-        }// for que crea tutorias
+        }// for que crea tutorias */
+
+
 
         adaptadorTutorias =  new AdaptadorTutoriaDisponible(this, tutoriasDisponibles, this);
 
