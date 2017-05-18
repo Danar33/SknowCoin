@@ -1,5 +1,8 @@
 package dan_art.sknowcoin.layout_handlers;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -20,6 +23,7 @@ import java.util.ArrayList;
 
 import dan_art.sknowcoin.R;
 import dan_art.sknowcoin.modelo.Tutoria;
+import dan_art.sknowcoin.modelo.Usuario;
 
 
 /**
@@ -33,6 +37,8 @@ public class HomeActivity extends AppCompatActivity
 
     private AdaptadorTutoriaDisponible adaptadorTutorias;
     private ListView listaTutorias;
+
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +64,18 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Intent intent = getIntent();
+        String correo = intent.getStringExtra("ELCORREO");
+
+
+        preferences = getSharedPreferences(USUARIO_PREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+
+        Usuario usuario = sKnowCoinApp.buscarTutorPorCorreo(elCorreo);
+        editor.putString("codigo", usuario.getCodigo());
+
+        editor.commit();
 
         //LLENADO DE PRUEBA
         /*for (int i = 0; i < 15; i++) {
