@@ -230,6 +230,24 @@ public class SKnowCoinApp {
         return publicacionesUsuarios.size();
     }
 
+    public ArrayList<Tutoria> totalTutorias(){
+
+        final ArrayList<Tutoria> tutorias=new ArrayList<Tutoria>();
+        conexionFirebase.getDatabaseReference().child("publicaciones").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Tutoria tutoria=postSnapshot.getValue(Tutoria.class);
+                    tutorias.add(tutoria);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+        return tutorias;
+    }
 
     public Usuario getUsuario() {
         return usuario;
