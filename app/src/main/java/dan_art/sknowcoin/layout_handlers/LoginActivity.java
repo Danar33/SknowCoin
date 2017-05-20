@@ -42,6 +42,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void clickLogin(View v) {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+    }// click login
+
+    public void backUpLogin(View v) {
 
         String elCorreo = correo.getText().toString();
         String laContrasena = contrasena.getText().toString();

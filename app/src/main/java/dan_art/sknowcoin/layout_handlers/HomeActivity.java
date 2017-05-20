@@ -1,5 +1,8 @@
 package dan_art.sknowcoin.layout_handlers;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +37,8 @@ public class HomeActivity extends AppCompatActivity
 
     public final static String USUARIO_PREFERENCES = "USUARIO_PREFERENCES";
 
+    private static final String TAG = "MyHome";
+
     private ArrayList<Tutoria> tutoriasDisponibles = new ArrayList<>();
 
     private AdaptadorTutoriaDisponible adaptadorTutorias;
@@ -49,7 +55,7 @@ public class HomeActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_home);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,24 +76,25 @@ public class HomeActivity extends AppCompatActivity
         sKnowCoinApp = new SKnowCoinApp();
 
         Intent intent = getIntent();
-        String correo = intent.getStringExtra("ELCORREO");
+        //String correo = intent.getStringExtra("ELCORREO");
 
 
-        preferences = getSharedPreferences(USUARIO_PREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
+        //preferences = getSharedPreferences(USUARIO_PREFERENCES, Context.MODE_PRIVATE);
+       // SharedPreferences.Editor editor = preferences.edit();
 
-        Usuario usuario = sKnowCoinApp.buscarTutorPorCorreo(correo);
-        editor.putString("codigo", usuario.getCodigo());
+        //Usuario usuario = sKnowCoinApp.buscarTutorPorCorreo(correo);
+        //editor.putString("codigo", usuario.getCodigo());
 
-        editor.commit();
+        //editor.commit();
+
 
         //LLENADO DE PRUEBA
-        /*for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 15; i++) {
             String codigo = "A00028300";
             String hora = "Lunes 4:00 p.m";
             String materia = "HCI 2";
             String area = "Tics";
-            String nombreTutor = "Nombre de Prueba";
+            String nombreTutor = "Nombre de Prueba " + i;
             String lugar = "Icesi";
             int precio = 18000;
 
@@ -95,9 +102,13 @@ public class HomeActivity extends AppCompatActivity
             tutoriasDisponibles.add(nueva);
         }// for que crea tutorias */
 
-        app = new SKnowCoinApp();
+      //  tutoriasDisponibles = sKnowCoinApp.totalTutorias();
 
-        tutoriasDisponibles = app.totalTutorias();
+     /*   Log.d(TAG, "TAMAÑOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO:::: " + tutoriasDisponibles.size());
+        for (int i = 0; i < tutoriasDisponibles.size(); i++) {
+            Log.d(TAG, "TUTORIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + tutoriasDisponibles.get(i).getMateria());
+        }//*/
+
         adaptadorTutorias = new AdaptadorTutoriaDisponible(this, tutoriasDisponibles, this);
 
         list_view_content();
@@ -157,20 +168,21 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
-        TextView tv = (TextView) findViewById(R.id.userName_MenuEstud);
+        /*TextView tv = (TextView) findViewById(R.id.userName_MenuEstud);
         Typeface face = Typeface.createFromAsset(getAssets(),
                 "fonts/epimodem.ttf");
-        tv.setTypeface(face);
+        tv.setTypeface(face);//*/
 
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_perfil_home) {
+        if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_edit_profile) {
 
         } else if (id == R.id.nav_materias) {
-
+            Intent intent = new Intent(this, BuscarNombreMateriaActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_buscar_tutor) {
 
         } else if (id == R.id.nav_top_mensual) {

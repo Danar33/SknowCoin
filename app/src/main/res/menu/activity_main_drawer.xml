@@ -8,7 +8,7 @@
                 android:icon="@drawable/ic_stars_black_24dp"
                 android:title="@string/texto_editar_perfil" />
             <item
-                android:id="@+id/nav_perfil_home"
+                android:id="@+id/nav_home"
                 android:icon="@drawable/ic_menu_camera"
                 android:title="@string/texto_home" />
             <item

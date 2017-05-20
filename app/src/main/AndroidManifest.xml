@@ -36,6 +36,9 @@
         <activity android:name=".layout_handlers.SingUpActivity_tres">
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity android:name=".layout_handlers.BuscarNombreMateriaActivity">
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

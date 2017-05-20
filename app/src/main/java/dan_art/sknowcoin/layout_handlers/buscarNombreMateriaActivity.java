@@ -1,5 +1,6 @@
 package dan_art.sknowcoin.layout_handlers;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -26,12 +27,12 @@ import dan_art.sknowcoin.modelo.Tutoria;
  * Created by dan_a on 04/05/2017.
  */
 
-class BuscarNombreMateriaActivity extends AppCompatActivity
+public class BuscarNombreMateriaActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ArrayList<Tutoria> tutoriasMaterias = new ArrayList<>();
 
-    private AdaptadorTutoriaDisponible adaptadorMaterias;
+    private AdaptadorMateriaBuscada adaptadorMaterias;
     private ListView listaMaterias;
 
     @Override
@@ -41,29 +42,20 @@ class BuscarNombreMateriaActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.menu_materias_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_materias);
         navigationView.setNavigationItemSelectedListener(this);
 
         //LLENADO DE PRUEBA
         for (int i = 0; i < 15; i++) {
             String codigo = "A00028300";
             String hora = "Lunes 4:00 p.m";
-            String materia = "HCI 2";
+            String materia = "Prueba Búsqueda Materia " + i;
             String area = "Tics";
             String nombreTutor = "Nombre de Prueba";
             String lugar = "Icesi";
@@ -73,14 +65,14 @@ class BuscarNombreMateriaActivity extends AppCompatActivity
             tutoriasMaterias.add(nueva);
         }// for que crea tutorias
 
-        adaptadorMaterias =  new AdaptadorTutoriaDisponible(this, tutoriasMaterias, this);
+        adaptadorMaterias =  new AdaptadorMateriaBuscada(this, tutoriasMaterias, this);
 
         list_view_content();
     }// on create
 
     public void list_view_content(){
         /// Asignacion del adaptador
-        listaMaterias = (ListView) findViewById(R.id.tutorias_home_list_layout);
+        listaMaterias = (ListView) findViewById(R.id.tutorias_materias_list_layout);
 
         actualizarLista();
 
@@ -132,16 +124,13 @@ class BuscarNombreMateriaActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
-        TextView tv = (TextView) findViewById(R.id.userName_MenuEstud);
-        Typeface face = Typeface.createFromAsset(getAssets(),
-                "fonts/epimodem.ttf");
-        tv.setTypeface(face);
-
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_perfil_home) {
+        if (id == R.id.nav_home) {
             // Handle the camera action
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_edit_profile) {
 
         } else if (id == R.id.nav_materias) {
@@ -154,7 +143,7 @@ class BuscarNombreMateriaActivity extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.menu_materias_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

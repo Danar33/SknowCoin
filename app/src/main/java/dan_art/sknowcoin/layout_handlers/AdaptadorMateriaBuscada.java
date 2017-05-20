@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +30,8 @@ public class AdaptadorMateriaBuscada extends ArrayAdapter<Tutoria> {
     Context context;
     int index;
 
+    private static final String TAG = "MyMateriaSerch";
+
     public AdaptadorMateriaBuscada(Context context, ArrayList<Tutoria> tutorias, Activity activity) {
         super(context, 0, tutorias);
         this.activity = activity;
@@ -35,7 +39,7 @@ public class AdaptadorMateriaBuscada extends ArrayAdapter<Tutoria> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
         Tutoria tutoria = getItem(position);
         index = position;
@@ -46,58 +50,21 @@ public class AdaptadorMateriaBuscada extends ArrayAdapter<Tutoria> {
         }// convert view not null
 
         // Lookup view for data population
-        TextView tvNombreUsuario = (TextView) convertView.findViewById(R.id.materia_nombre);
+        TextView tvNombreMateria = (TextView) convertView.findViewById(R.id.materia_nombre);
 
         // LLenar los viwes con el contenido del usuario
-        tvNombreUsuario.setText(tutoria.getNombreTutor());
+        tvNombreMateria.setText(tutoria.getMateria());
 
-        int miles = tutoria.getPrecio() / 1000;
-        String precioTexto = "$" + miles + ".000";
-
-        String nivelPrueba = "20";
-
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.tutDisp_area);
-
-        String area = tutoria.getMateria();
-        Bitmap bImage = null;
-
-        switch (area) {
-            case "Biologia":
-                bImage = BitmapFactory.decodeResource(activity.getResources(), R.drawable.area_biologia);
-                break;
-            case "Física":
-                bImage = BitmapFactory.decodeResource(activity.getResources(), R.drawable.area_fisica);
-                break;
-            case "Tics":
-                bImage = BitmapFactory.decodeResource(activity.getResources(), R.drawable.area_tics);
-                break;
-            case "Medicina":
-                bImage = BitmapFactory.decodeResource(activity.getResources(), R.drawable.area_medicina);
-                break;
-            case "Sistemas":
-                bImage = BitmapFactory.decodeResource(activity.getResources(), R.drawable.area_sistemas);
-                break;
-        }// switch de areas
-
-        if(bImage != null){
-            imageView.setImageBitmap(bImage);
-        }// se cargo imagen
-
-
-        Button solicitar = (Button) convertView.findViewById(R.id.tutDisp_btn_solicitar);
-        solicitar.setOnClickListener(new View.OnClickListener() {
+        ImageButton ver = (ImageButton) convertView.findViewById(R.id.btn_eye);
+        ver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mostrarToast("Solicitud enviada");
+                mostrarToast("Vista Previa " + position);
             }
         });
         // Return the completed view to render on screen
         return convertView;
     }// view
-
-    public void clicAdaptadorTutoriaDisponible(View v) {
-
-    }// clic of adapter
 
     public void mostrarToast(String mensaje) {
         int duration = Toast.LENGTH_SHORT;
