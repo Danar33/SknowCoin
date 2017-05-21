@@ -29,11 +29,11 @@ public class HomeTutorActivity extends AppCompatActivity
 
     public final static String USUARIO_PREFERENCES = "USUARIO_PREFERENCES";
 
-    private static final String TAG = "MyHome";
+    private static final String TAG = "TutorHome";
 
     private ArrayList<Tutoria> tutoriasDisponibles = new ArrayList<>();
 
-    private AdaptadorTutoriaDisponible adaptadorTutorias;
+    private AdaptadorHomeTutor adaptadorTutorias;
     private ListView listaTutorias;
 
     private SharedPreferences preferences;
@@ -43,7 +43,7 @@ public class HomeTutorActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_home_tutores);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -56,13 +56,13 @@ public class HomeTutorActivity extends AppCompatActivity
             }
         });//*/
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_home_tutores);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_home_tutores);
         navigationView.setNavigationItemSelectedListener(this);
 
         sKnowCoinApp = new SKnowCoinApp();
@@ -101,14 +101,14 @@ public class HomeTutorActivity extends AppCompatActivity
             Log.d(TAG, "TUTORIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + tutoriasDisponibles.get(i).getMateria());
         }//*/
 
-        adaptadorTutorias = new AdaptadorTutoriaDisponible(this, tutoriasDisponibles, this);
+        adaptadorTutorias = new AdaptadorHomeTutor(this, tutoriasDisponibles, this);
 
         list_view_content();
     }// on create
 
     public void list_view_content(){
         /// Asignacion del adaptador
-        listaTutorias = (ListView) findViewById(R.id.tutorias_home_list_layout);
+        listaTutorias = (ListView) findViewById(R.id.home_tutor_list_layout);
 
         actualizarLista();
 
@@ -182,7 +182,7 @@ public class HomeTutorActivity extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_home_tutores);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

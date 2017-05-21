@@ -74,7 +74,7 @@ public class HomeActivity extends AppCompatActivity
         // SharedPreferences.Editor editor = preferences.edit();
 
         //Usuario usuario = sKnowCoinApp.buscarTutorPorCorreo(correo);
-        //editor.putString("codigo", usuario.getCodigo());
+        //editor.putStri2ng("codigo", usuario.getCodigo());
 
         //editor.commit();
 
@@ -170,6 +170,9 @@ public class HomeActivity extends AppCompatActivity
 
         if (id == R.id.nav_edit_profile) {
 
+        } else if (id == R.id.nav_cambiar_rol) {
+            Intent intent = new Intent(this, HomeTutorActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_materias) {
             Intent intent = new Intent(this, BuscarMateriaActivity.class);
             startActivity(intent);

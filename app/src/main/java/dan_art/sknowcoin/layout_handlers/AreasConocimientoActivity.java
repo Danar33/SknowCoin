@@ -114,7 +114,7 @@ public class AreasConocimientoActivity extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_areas);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
