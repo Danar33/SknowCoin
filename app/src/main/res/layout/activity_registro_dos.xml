@@ -56,7 +56,7 @@
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:inputType="textPersonName"
-        android:hint="@string/texto_nombres"
+        android:hint="@string/texto_nombre"
         android:layout_marginTop="25dp"
         android:layout_below="@+id/descriptionText"
         android:layout_alignStart="@+id/editText_telefono" />
@@ -64,26 +64,26 @@
     <EditText
         android:background="@drawable/input_text_circular"
         style="@style/input_text_inicio"
-        android:hint="@string/texto_telefono"
-        android:id="@+id/editText_telefono"
+        android:hint="@string/texto_apellidos"
+        android:id="@+id/editText_apellidos"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:ems="10"
         android:inputType="text"
-        android:layout_below="@+id/editText_nombre"
         android:layout_marginTop="15dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/editText_nombre"
+        android:layout_alignStart="@+id/editText_telefono" />
 
     <EditText
-        android:id="@+id/editText_documento_identidad"
+        android:id="@+id/editText_telefono"
         style="@style/input_text_inicio"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:background="@drawable/input_text_circular"
         android:ems="10"
-        android:hint="@string/texto_documento_identidad"
+        android:hint="@string/texto_telefono"
         android:inputType="number"
-        android:layout_below="@+id/editText_telefono"
+        android:layout_below="@+id/editText_apellidos"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp" />
 

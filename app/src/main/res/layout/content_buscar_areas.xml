@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ligth_bg"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="dan_art.sknowcoin.layout_handlers.AreasConocimientoActivity"
+    tools:showIn="@layout/app_bar_areas">
+
+    <RelativeLayout
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/gridLayout">
+
+            <ImageButton
+                android:id="@+id/areas_btn_tics"
+                android:layout_width="110dp"
+                android:layout_height= "110dp"
+                android:background="@drawable/area_tics"
+                android:layout_margin="5dp"
+                android:onClick="onClickBotones"/>
+
+            <ImageButton
+                android:id="@+id/areas_btn_economia"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_column="1"
+                android:layout_margin="5dp"
+                android:layout_row="0"
+                android:background="@drawable/area_economia"
+                android:onClick="onClickBotones"/>
+
+            <ImageButton
+                android:id="@+id/areas_btn_medicina"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/area_medicina"
+                android:layout_margin="5dp"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:onClick="onClickBotones"/>
+
+            <ImageButton
+                android:id="@+id/areas_btn_sistemas"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/area_sistemas"
+                android:layout_margin="5dp"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:onClick="onClickBotones"/>
+
+            <ImageButton
+                android:id="@+id/areas_btn_biologia"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_column="1"
+                android:layout_margin="5dp"
+                android:layout_row="1"
+                android:background="@drawable/area_biologia"
+                android:onClick="onClickBotones"/>
+
+            <ImageButton
+                android:id="@+id/areas_btn_ecologia"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/area_ecologia"
+                android:layout_margin="5dp"
+                android:layout_row="1"
+                android:layout_column="2"
+                android:onClick="onClickBotones"/>
+
+            <ImageButton
+                android:id="@+id/areas_btn_geometria"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/area_geometria"
+                android:layout_margin="5dp"
+                android:layout_row="2"
+                android:layout_column="2"
+                android:onClick="onClickBotones"/>
+
+            <ImageButton
+                android:id="@+id/areas_btn_estadistica"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_column="1"
+                android:layout_margin="5dp"
+                android:layout_row="2"
+                android:background="@drawable/area_estadistica"
+                android:onClick="onClickBotones"/>
+
+            <ImageButton
+                android:id="@+id/areas_btn_fisica"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/area_fisica"
+                android:layout_margin="5dp"
+                android:layout_row="2"
+                android:layout_column="0"
+                android:onClick="onClickBotones"/>
+
+            <!--
+            <ImageButton
+                android:id="@+id/areas_btn_quimica"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                android:background="@drawable/area_quimica"
+                android:layout_margin="5dp"
+                android:layout_row="3"
+                android:layout_column="0"/>
+                -->
+
+        </GridLayout>
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:background="@drawable/boton_circular_resaltado"
+            style="@style/titulo_blanco_regular"
+            android:textSize="18dp"
+            android:text="@string/buscar_materia"
+            android:onClick="iniciarBusqueda"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="32dp" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

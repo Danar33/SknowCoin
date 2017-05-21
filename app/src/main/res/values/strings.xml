@@ -21,11 +21,11 @@
 
     <string name="texto_correo">Correo electrónico</string>
     <string name="texto_contrasena">Contraseña</string>
-    <string name="texto_nombres">Nombre y apellido</string>
+    <string name="texto_nombre">Nombre</string>
     <string name="texto_telefono">Teléfono</string>
     <string name="texto_nueva_contrasena">Contraseña</string>
     <string name="texto_confirmar_contrasena">Confirmar contraseña</string>
-    <string name="texto_documento_identidad">Documento de Identidad</string>
+    <string name="texto_apellidos">Apellidos</string>
     <string name="texto_codigo_estudiante">Código de Estudiante</string>
     <string name="texto_semestre_actual">Semestre actual</string>
     <string name="texto_carrera">Carrera Universitaria</string>
@@ -44,6 +44,10 @@
     <string name="estado_3_registro">3 / 3</string>
 
     <string name="txt_btn_solicitar_tutDisp">Solicitar</string>
+
+    <string name="txt_areas_conocimiento">Areas de conocimiento</string>
+
+    <string name="buscar_materia">Buscar Materias</string>
 
     <string name="descripcion_registro">Ingresa tus datos de identificación. Los nombres y apellidos serán visibles para otros usuarios</string>
 </resources>

@@ -25,7 +25,7 @@ public class SingUpActivity_dos extends AppCompatActivity {
     // Views
     private EditText nombres;
     private EditText telefono;
-    private EditText documento;
+    private EditText apellidos;
 
     private Button continuarButton;
     private Button atrasButton;
@@ -43,7 +43,7 @@ public class SingUpActivity_dos extends AppCompatActivity {
 
         nombres = (EditText) findViewById(R.id.editText_nombre);
         telefono = (EditText) findViewById(R.id.editText_telefono);
-        documento = (EditText) findViewById(R.id.editText_documento_identidad);
+        apellidos = (EditText) findViewById(R.id.editText_apellidos);
 
         continuarButton = (Button) findViewById(R.id.button_continuar_registro);
         atrasButton = (Button) findViewById(R.id.atras_registro);
@@ -54,16 +54,16 @@ public class SingUpActivity_dos extends AppCompatActivity {
 
     public void clickContinuarRegistroDos(View v) {
         String nom = nombres.getText().toString();
-        String ape = telefono.getText().toString();
-        String doc = documento.getText().toString();
+        String tel = telefono.getText().toString();
+        String ape = apellidos.getText().toString();
+        String nombreCompleto = nom + " " + ape;
 
-        if ((!isEmpty(nombres)) && (!isEmpty(telefono)) && (!isEmpty(documento))) {
+        if ((!isEmpty(nombres)) && (!isEmpty(telefono)) && (!isEmpty(apellidos))) {
             Intent intent = new Intent(this, SingUpActivity_tres.class);
             intent.putExtra("CORREO", correo);
             intent.putExtra("PASS", constrasena);
-            intent.putExtra("NOMBRES", nom);
-            intent.putExtra("TELEFONO", ape);
-            intent.putExtra("DOCUMENTO", doc);
+            intent.putExtra("NOMBRES", nombreCompleto);
+            intent.putExtra("TELEFONO", tel);
             startActivity(intent);
         } else {
             mostrarToast("Debes ingresar todos los datos");
