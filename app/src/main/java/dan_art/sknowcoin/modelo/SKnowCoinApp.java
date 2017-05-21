@@ -97,7 +97,7 @@ public class SKnowCoinApp {
 
         final ArrayList<Usuario> usuario = new ArrayList<Usuario>();
 
-        conexionFirebase.getDatabaseReference().child(conexionFirebase.USUARIOS_REFERENCE).orderByChild("correo").equalTo(correo).addListenerForSingleValueEvent(new ValueEventListener() {
+        conexionFirebase.getDatabaseReference().child(conexionFirebase.USUARIOS_REFERENCE).orderByChild("correo").equalTo(correo).addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -105,9 +105,8 @@ public class SKnowCoinApp {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Usuario usuario1 = postSnapshot.getValue(Usuario.class);
                     usuario.add(usuario1);
-                    break;
                 }
-
+                String s="";
                 //Log.d("test",tutorias.get(0).getNombreTutor());
             }
 

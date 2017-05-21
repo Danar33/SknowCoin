@@ -56,22 +56,22 @@
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:inputType="textPersonName"
-        android:layout_marginBottom="12dp"
         android:hint="@string/texto_nombres"
+        android:layout_marginTop="25dp"
         android:layout_below="@+id/descriptionText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp" />
+        android:layout_alignStart="@+id/editText_telefono" />
 
     <EditText
         android:background="@drawable/input_text_circular"
         style="@style/input_text_inicio"
-        android:hint="@string/texto_apellidos"
-        android:id="@+id/editText_apellidos"
+        android:hint="@string/texto_telefono"
+        android:id="@+id/editText_telefono"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:ems="10"
         android:inputType="text"
         android:layout_below="@+id/editText_nombre"
+        android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true" />
 
     <EditText
@@ -83,7 +83,7 @@
         android:ems="10"
         android:hint="@string/texto_documento_identidad"
         android:inputType="number"
-        android:layout_below="@+id/editText_apellidos"
+        android:layout_below="@+id/editText_telefono"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp" />
 

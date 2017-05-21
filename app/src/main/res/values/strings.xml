@@ -21,8 +21,8 @@
 
     <string name="texto_correo">Correo electrónico</string>
     <string name="texto_contrasena">Contraseña</string>
-    <string name="texto_nombres">Nombres</string>
-    <string name="texto_apellidos">Apellidos</string>
+    <string name="texto_nombres">Nombre y apellido</string>
+    <string name="texto_telefono">Teléfono</string>
     <string name="texto_nueva_contrasena">Contraseña</string>
     <string name="texto_confirmar_contrasena">Confirmar contraseña</string>
     <string name="texto_documento_identidad">Documento de Identidad</string>

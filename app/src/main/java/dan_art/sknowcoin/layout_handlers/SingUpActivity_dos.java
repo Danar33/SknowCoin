@@ -3,8 +3,6 @@ package dan_art.sknowcoin.layout_handlers;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -26,7 +24,7 @@ public class SingUpActivity_dos extends AppCompatActivity {
 
     // Views
     private EditText nombres;
-    private EditText apellidos;
+    private EditText telefono;
     private EditText documento;
 
     private Button continuarButton;
@@ -44,7 +42,7 @@ public class SingUpActivity_dos extends AppCompatActivity {
         constrasena = intent.getStringExtra("PASS");
 
         nombres = (EditText) findViewById(R.id.editText_nombre);
-        apellidos = (EditText) findViewById(R.id.editText_apellidos);
+        telefono = (EditText) findViewById(R.id.editText_telefono);
         documento = (EditText) findViewById(R.id.editText_documento_identidad);
 
         continuarButton = (Button) findViewById(R.id.button_continuar_registro);
@@ -56,15 +54,15 @@ public class SingUpActivity_dos extends AppCompatActivity {
 
     public void clickContinuarRegistroDos(View v) {
         String nom = nombres.getText().toString();
-        String ape = apellidos.getText().toString();
+        String ape = telefono.getText().toString();
         String doc = documento.getText().toString();
 
-        if ((!isEmpty(nombres)) && (!isEmpty(apellidos)) && (!isEmpty(documento))) {
+        if ((!isEmpty(nombres)) && (!isEmpty(telefono)) && (!isEmpty(documento))) {
             Intent intent = new Intent(this, SingUpActivity_tres.class);
             intent.putExtra("CORREO", correo);
             intent.putExtra("PASS", constrasena);
             intent.putExtra("NOMBRES", nom);
-            intent.putExtra("APELLIDOS", ape);
+            intent.putExtra("TELEFONO", ape);
             intent.putExtra("DOCUMENTO", doc);
             startActivity(intent);
         } else {

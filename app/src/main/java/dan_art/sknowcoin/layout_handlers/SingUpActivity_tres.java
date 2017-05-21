@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import dan_art.sknowcoin.R;
 import dan_art.sknowcoin.modelo.SKnowCoinApp;
+import dan_art.sknowcoin.modelo.Usuario;
 
 /**
  * Created by dan_a on 11/05/2017.
@@ -24,7 +25,7 @@ public class SingUpActivity_tres extends AppCompatActivity {
     private String correo;
     private String constrasena;
     private String nombres;
-    private String apellidos;
+    private String telefono;
     private String documento;
 
     //variables de esta pantalla
@@ -51,7 +52,7 @@ public class SingUpActivity_tres extends AppCompatActivity {
         correo = intent.getStringExtra("CORREO");
         constrasena = intent.getStringExtra("PASS");
         nombres = intent.getStringExtra("NOMBRES");
-        apellidos = intent.getStringExtra("APELLIDOS");
+        telefono = intent.getStringExtra("TELEFONO");
         documento = intent.getStringExtra("DOCUMENTO");
 
         codigo = (EditText) findViewById(R.id.editText_cod_estudiante);
@@ -72,10 +73,22 @@ public class SingUpActivity_tres extends AppCompatActivity {
         semestreActual = semestre.getText().toString();
 
         if ((!isEmpty(semestre)) && (!isEmpty(carrera)) && (!isEmpty(codigo))) {
-            if (true) {// esto es lo que debe validar que se haya registrado
-                Intent intent = new Intent(this, HomeActivity.class);
-                startActivity(intent);
-            }
+
+            Usuario usuario = new Usuario();
+            usuario.setRol(2);
+            usuario.setContrasena(constrasena);
+            usuario.setCorreo(correo);
+            usuario.setNombre(nombres);
+            usuario.setArea(carreraUniversitaria);
+            usuario.setCodigo(codigoEstudiante);
+            usuario.setSemestre(semestreActual);
+            usuario.setTelefono(telefono);
+
+            sKnowCoinApp.registrarUsuario(usuario, this);
+
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
+
         } else {
             mostrarToast("Debes ingresar todos los datos");
         }//no ha introducido los ultimos datos
