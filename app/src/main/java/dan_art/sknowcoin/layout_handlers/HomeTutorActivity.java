@@ -24,7 +24,7 @@ import dan_art.sknowcoin.modelo.Tutoria;
  * Created by dan_a on 04/05/2017.
  */
 
-public class HomeActivity extends AppCompatActivity
+public class HomeTutorActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public final static String USUARIO_PREFERENCES = "USUARIO_PREFERENCES";
@@ -69,9 +69,10 @@ public class HomeActivity extends AppCompatActivity
 
         Intent intent = getIntent();
         //String correo = intent.getStringExtra("ELCORREO");
-        // Hola
+
+
         //preferences = getSharedPreferences(USUARIO_PREFERENCES, Context.MODE_PRIVATE);
-        // SharedPreferences.Editor editor = preferences.edit();
+       // SharedPreferences.Editor editor = preferences.edit();
 
         //Usuario usuario = sKnowCoinApp.buscarTutorPorCorreo(correo);
         //editor.putString("codigo", usuario.getCodigo());
@@ -93,7 +94,7 @@ public class HomeActivity extends AppCompatActivity
             tutoriasDisponibles.add(nueva);
         }// for que crea tutorias */
 
-        //  tutoriasDisponibles = sKnowCoinApp.totalTutorias();
+      //  tutoriasDisponibles = sKnowCoinApp.totalTutorias();
 
      /*   Log.d(TAG, "TAMAÑOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO:::: " + tutoriasDisponibles.size());
         for (int i = 0; i < tutoriasDisponibles.size(); i++) {
@@ -105,7 +106,7 @@ public class HomeActivity extends AppCompatActivity
         list_view_content();
     }// on create
 
-    public void list_view_content() {
+    public void list_view_content(){
         /// Asignacion del adaptador
         listaTutorias = (ListView) findViewById(R.id.tutorias_home_list_layout);
 
@@ -114,9 +115,9 @@ public class HomeActivity extends AppCompatActivity
         listaTutorias.setAdapter(adaptadorTutorias);
     }// contenido del list view
 
-    public void actualizarLista() {
+    public  void actualizarLista(){
 
-        for (int i = 0; i < tutoriasDisponibles.size(); i++) {
+        for(int i = 0; i < tutoriasDisponibles.size(); i++){
             // TODO
             adaptadorTutorias.notifyDataSetChanged();
         }// for top 5
