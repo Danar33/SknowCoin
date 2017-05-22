@@ -88,7 +88,7 @@ public class CrearTutoriaActivity extends AppCompatActivity
     }// on create
 
     public void crearTutoria (View v){
-        //TODO parte de firebase
+        //TODO parte de firebase d
     }// crea una tutoria
 
     public void cancelar(View v){
