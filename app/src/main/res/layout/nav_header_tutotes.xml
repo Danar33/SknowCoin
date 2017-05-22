@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorBlack"
+    android:paddingTop="@dimen/menu_header_default_space"
+    android:paddingBottom="@dimen/menu_header_default_space"
+    android:paddingRight="@dimen/menu_header_default_space"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <ImageView
+        android:id="@+id/perfilImage_MenuEstud"
+        android:layout_width="@dimen/profeil_menu_image_width"
+        android:layout_height="@dimen/profeil_menu_image_height"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        app:srcCompat="@android:drawable/sym_def_app_icon"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="@dimen/menu_header_default_space"/>
+
+    <TextView
+        android:fontFamily="sans-serif-black"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:textColor="@color/colorPrimaryOrange"
+        android:id="@+id/userName_MenuEstud"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="User Demo Name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:layout_alignTop="@+id/perfilImage_MenuEstud"
+        android:layout_toEndOf="@+id/perfilImage_MenuEstud" />
+
+    <TextView
+        android:id="@+id/typeProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userName_MenuEstud"
+        android:layout_toEndOf="@+id/perfilImage_MenuEstud"
+        android:fontFamily="sans-serif-medium"
+        android:text="Tutor"
+        android:textSize="14dp"
+        android:textColor="@color/colorWhite"
+        android:layout_marginBottom="4dp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="italic"
+        android:textSize="18dp"
+        android:textColor="@color/colorPrimaryOrange"
+        android:id="@+id/semesterNumber_MenuEstud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10°"
+        android:layout_below="@+id/typeProfile"
+        android:layout_alignStart="@+id/typeProfile"/>
+
+    <TextView
+        android:fontFamily="sans-serif-light"
+        android:textStyle="normal"
+        android:textSize="12dp"
+        android:layout_marginLeft="2dp"
+        android:textColor="@color/colorPrimaryOrange"
+        android:id="@+id/carrier_MenuEstud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ing.de Sistemas"
+        android:layout_alignBaseline="@+id/semesterNumber_MenuEstud"
+        android:layout_alignBottom="@+id/semesterNumber_MenuEstud"
+        android:layout_toEndOf="@+id/semesterNumber_MenuEstud" />
+
+</RelativeLayout>

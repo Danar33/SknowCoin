@@ -42,7 +42,7 @@ public class AdaptadorHomeTutor extends ArrayAdapter<Tutoria> {
 
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_tutoria_disponible, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_home_tutores, parent, false);
         }// convert view not null
 
         // Lookup view for data population

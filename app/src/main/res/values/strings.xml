@@ -19,6 +19,11 @@
     <string name="texto_informacion">Información</string>
     <string name="texto_ayuda">Ayuda</string>
 
+    <string name="texto_crear_tutoria">Crear Tutoría</string>
+    <string name="texto_solicitudes">Solicitudes</string>
+    <string name="texto_mis_tutorias">Mis tutorías</string>
+    <string name="texto_estadisticas">Estadísticas</string>
+
     <string name="texto_correo">Correo electrónico</string>
     <string name="texto_contrasena">Contraseña</string>
     <string name="texto_nombre">Nombre</string>

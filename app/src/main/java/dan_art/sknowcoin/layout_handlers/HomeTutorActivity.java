@@ -31,7 +31,7 @@ public class HomeTutorActivity extends AppCompatActivity
 
     private static final String TAG = "TutorHome";
 
-    private ArrayList<Tutoria> tutoriasDisponibles = new ArrayList<>();
+    private ArrayList<Tutoria> itemsHomeTutor = new ArrayList<>();
 
     private AdaptadorHomeTutor adaptadorTutorias;
     private ListView listaTutorias;
@@ -44,7 +44,7 @@ public class HomeTutorActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_tutores);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_tutor);
         setSupportActionBar(toolbar);
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_home);
@@ -72,7 +72,7 @@ public class HomeTutorActivity extends AppCompatActivity
 
 
         //preferences = getSharedPreferences(USUARIO_PREFERENCES, Context.MODE_PRIVATE);
-       // SharedPreferences.Editor editor = preferences.edit();
+        // SharedPreferences.Editor editor = preferences.edit();
 
         //Usuario usuario = sKnowCoinApp.buscarTutorPorCorreo(correo);
         //editor.putString("codigo", usuario.getCodigo());
@@ -91,22 +91,22 @@ public class HomeTutorActivity extends AppCompatActivity
             int precio = 18000;
 
             Tutoria nueva = new Tutoria(codigo, hora, materia, area, nombreTutor, precio, lugar);
-            tutoriasDisponibles.add(nueva);
+            itemsHomeTutor.add(nueva);
         }// for que crea tutorias */
 
-      //  tutoriasDisponibles = sKnowCoinApp.totalTutorias();
+        //  tutoriasDisponibles = sKnowCoinApp.totalTutorias();
 
      /*   Log.d(TAG, "TAMAÑOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO:::: " + tutoriasDisponibles.size());
         for (int i = 0; i < tutoriasDisponibles.size(); i++) {
             Log.d(TAG, "TUTORIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + tutoriasDisponibles.get(i).getMateria());
         }//*/
 
-        adaptadorTutorias = new AdaptadorHomeTutor(this, tutoriasDisponibles, this);
+        adaptadorTutorias = new AdaptadorHomeTutor(this, itemsHomeTutor, this);
 
         list_view_content();
     }// on create
 
-    public void list_view_content(){
+    public void list_view_content() {
         /// Asignacion del adaptador
         listaTutorias = (ListView) findViewById(R.id.home_tutor_list_layout);
 
@@ -115,9 +115,9 @@ public class HomeTutorActivity extends AppCompatActivity
         listaTutorias.setAdapter(adaptadorTutorias);
     }// contenido del list view
 
-    public  void actualizarLista(){
+    public void actualizarLista() {
 
-        for(int i = 0; i < tutoriasDisponibles.size(); i++){
+        for (int i = 0; i < itemsHomeTutor.size(); i++) {
             // TODO
             adaptadorTutorias.notifyDataSetChanged();
         }// for top 5
@@ -137,7 +137,7 @@ public class HomeTutorActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.main_tutor, menu);
         return true;
     }
 
@@ -149,7 +149,7 @@ public class HomeTutorActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_areas_menu_btn) {
+        if (id == R.id.action_sol) {
             Intent intent = new Intent(this, AreasConocimientoActivity.class);
             startActivity(intent);
         }
@@ -171,9 +171,12 @@ public class HomeTutorActivity extends AppCompatActivity
 
         if (id == R.id.nav_edit_profile) {
 
-        } else if (id == R.id.nav_materias) {
-            Intent intent = new Intent(this, BuscarMateriaActivity.class);
+        } else if (id == R.id.nav_cambiar_a_estudiante) {
+            Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
+        } else if (id == R.id.nav_tutorias_solicitadas) {
+            //  Intent intent = new Intent(this, BuscarMateriaActivity.class);
+            // startActivity(intent);
         } else if (id == R.id.nav_buscar_tutor) {
 
         } else if (id == R.id.nav_top_mensual) {
