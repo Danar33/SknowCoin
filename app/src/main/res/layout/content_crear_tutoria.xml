@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="dan_art.sknowcoin.layout_handlers.CrearTutoriaActivity"
+    tools:showIn="@layout/app_bar_crear_tutoria"
+    android:background="@color/colorLightBlack">
+
+    <RelativeLayout
+        android:layout_width="344dp"
+        android:layout_height="495dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <Button
+            android:id="@+id/cancelar_creacion_tutoria"
+            style="@style/boton_opacidad"
+            android:textColor="@color/colorPrimaryOrangeLight"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/boton_circular_naranja"
+            android:onClick="cancelar"
+            android:text="@string/txt_btn_cancelar"
+            android:layout_alignParentBottom="true"
+            android:layout_alignEnd="@+id/elegir_area_tutoria" />
+
+        <Button
+            android:id="@+id/crear_tutoria"
+            style="@style/boton_resaltado"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/boton_circular_resaltado_naranja"
+            android:onClick="crearTutoria"
+            android:text="@string/txt_btn_crear_tutoria"
+            android:layout_alignBaseline="@+id/cancelar_creacion_tutoria"
+            android:layout_alignBottom="@+id/cancelar_creacion_tutoria"
+            android:layout_alignStart="@+id/elegir_area_tutoria" />
+
+        <TextView
+            android:id="@+id/descriptionText"
+            style="@style/Descripcion_inicio"
+            android:layout_marginTop="10dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:inputType="none"
+            android:text="@string/descripcion_crear_tutoria"
+            android:textColor="@color/colorPrimaryOrangeLight" />
+
+        <EditText
+            android:id="@+id/editText_nombre_materia"
+            style="@style/input_text_inicio"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/descriptionText"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="26dp"
+            android:background="@drawable/input_text_circular_naranja"
+            android:hint="@string/texto_nombre_materia"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editText_lugar_tutoria"
+            style="@style/input_text_inicio"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:background="@drawable/input_text_circular_naranja"
+            android:ems="10"
+            android:hint="@string/texto_lugar_materia"
+            android:inputType="text"
+            android:layout_below="@+id/editText_nombre_materia"
+            android:layout_alignStart="@+id/editText_nombre_materia" />
+
+        <EditText
+            android:id="@+id/editText_hora"
+            style="@style/input_text_inicio"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:background="@drawable/input_text_circular_naranja"
+            android:ems="10"
+            android:hint="@string/texto_hora_materia"
+            android:inputType="time"
+            android:layout_below="@+id/editText_lugar_tutoria"
+            android:layout_marginTop="16dp"
+            android:layout_alignStart="@+id/editText_nombre_materia" />
+
+        <EditText
+            android:id="@+id/editText_precio_tutoria"
+            style="@style/input_text_inicio"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:background="@drawable/input_text_circular_naranja"
+            android:ems="10"
+            android:hint="@string/texto_precio_tutoria"
+            android:inputType="number"
+            android:layout_below="@+id/editText_hora"
+            android:layout_marginTop="16dp"
+            android:layout_alignStart="@+id/editText_nombre_materia" />
+
+        <Button
+            android:id="@+id/elegir_area_tutoria"
+            style="@style/boton_opacidad"
+            android:textColor="@color/colorPrimaryOrangeLight"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:background="@drawable/boton_circular_naranja"
+            android:onClick="iniciarRegistro"
+            android:text="@string/texto_area_materia"
+            android:layout_below="@+id/editText_precio_tutoria"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

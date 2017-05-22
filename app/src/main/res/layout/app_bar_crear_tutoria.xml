@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="dan_art.sknowcoin.layout_handlers.AreasConocimientoActivity">
+    tools:context="dan_art.sknowcoin.layout_handlers.CrearTutoriaActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -12,18 +12,29 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar_crear_tutoria"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPrimaryOrange"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             android:titleTextColor="@color/colorWhite"
-            android:title="Materias"/>
+            android:title="Inicio"/>
 
 
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_buscar_areas" />
+    <include layout="@layout/content_crear_tutoria" />
+
+    <!--
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:rippleColor="@color/colorPrimaryOrange"
+        app:srcCompat="@drawable/ic_add" />
+        -->
 
 </android.support.design.widget.CoordinatorLayout>

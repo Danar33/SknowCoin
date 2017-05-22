@@ -1,7 +1,6 @@
 package dan_art.sknowcoin.layout_handlers;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,6 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -24,27 +26,40 @@ import dan_art.sknowcoin.modelo.Tutoria;
  * Created by dan_a on 04/05/2017.
  */
 
-public class HomeTutorActivity extends AppCompatActivity
+public class CrearTutoriaActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public final static String USUARIO_PREFERENCES = "USUARIO_PREFERENCES";
 
-    private static final String TAG = "TutorHome";
+    private static final String TAG = "CrearTutoria";
 
-    private ArrayList<Tutoria> itemsHomeTutor = new ArrayList<>();
+    //variables de la pantalla anterior de registro
+    private String correo;
+    private String constrasena;
+    private String nombres;
+    private String telefono;
+    private String documento;
 
-    private AdaptadorHomeTutor adaptadorTutorias;
-    private ListView listaTutorias;
+    //variables de esta pantalla
+    private String codigoEstudiante;
+    private String carreraUniversitaria;
+    private String semestreActual;
 
-    private SharedPreferences preferences;
+    // Views
+    private EditText codigo;
+    private EditText carrera;
+    private EditText semestre;
+
+    private Button finalizarButton;
+    private Button cancelarButton;
 
     private SKnowCoinApp sKnowCoinApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_tutores);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_tutor);
+        setContentView(R.layout.activity_crear_tutoria);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_crear_tutoria);
         setSupportActionBar(toolbar);
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_home);
@@ -56,73 +71,29 @@ public class HomeTutorActivity extends AppCompatActivity
             }
         });//*/
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_home_tutores);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_crear_tutoria);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_home_tutores);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_crear_tutoria);
         navigationView.setNavigationItemSelectedListener(this);
 
         sKnowCoinApp = new SKnowCoinApp();
 
         Intent intent = getIntent();
-        //String correo = intent.getStringExtra("ELCORREO");
 
 
-        //preferences = getSharedPreferences(USUARIO_PREFERENCES, Context.MODE_PRIVATE);
-        // SharedPreferences.Editor editor = preferences.edit();
-
-        //Usuario usuario = sKnowCoinApp.buscarTutorPorCorreo(correo);
-        //editor.putString("codigo", usuario.getCodigo());
-
-        //editor.commit();
-
-
-        //LLENADO DE PRUEBA
-        for (int i = 0; i < 15; i++) {
-            String codigo = "A00028300";
-            String hora = "Lunes 4:00 p.m";
-            String materia = "HCI 2";
-            String area = "Tics";
-            String nombreTutor = "Nombre de Prueba " + i;
-            String lugar = "Icesi";
-            int precio = 18000;
-
-            Tutoria nueva = new Tutoria(codigo, hora, materia, area, nombreTutor, precio, lugar);
-            itemsHomeTutor.add(nueva);
-        }// for que crea tutorias */
-
-        //  tutoriasDisponibles = sKnowCoinApp.totalTutorias();
-
-     /*   Log.d(TAG, "TAMAÑOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO:::: " + tutoriasDisponibles.size());
-        for (int i = 0; i < tutoriasDisponibles.size(); i++) {
-            Log.d(TAG, "TUTORIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + tutoriasDisponibles.get(i).getMateria());
-        }//*/
-
-        adaptadorTutorias = new AdaptadorHomeTutor(this, itemsHomeTutor, this);
-
-        list_view_content();
     }// on create
 
-    public void list_view_content() {
-        /// Asignacion del adaptador
-        listaTutorias = (ListView) findViewById(R.id.home_tutor_list_layout);
+    public void crearTutoria (View v){
 
-        actualizarLista();
+    }// crea una tutoria
 
-        listaTutorias.setAdapter(adaptadorTutorias);
-    }// contenido del list view
-
-    public void actualizarLista() {
-
-        for (int i = 0; i < itemsHomeTutor.size(); i++) {
-            // TODO
-            adaptadorTutorias.notifyDataSetChanged();
-        }// for top 5
-    }// actualizar lista
-
+    public void cancelar(View v){
+        super.onBackPressed();
+    }// cancela la accion
 
     @Override
     public void onBackPressed() {
@@ -132,6 +103,7 @@ public class HomeTutorActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }//*/
+        super.onBackPressed();
     }
 
     @Override
@@ -171,12 +143,15 @@ public class HomeTutorActivity extends AppCompatActivity
 
         if (id == R.id.nav_edit_profile) {
 
+        } else if (id == R.id.nav_home) {
+            Intent intent = new Intent(this, HomeTutorActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_cambiar_a_estudiante) {
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_crear_tutorias) {
-            Intent intent = new Intent(this, CrearTutoriaActivity.class);
-            startActivity(intent);
+        } else if (id == R.id.nav_tutorias_solicitadas) {
+            //  Intent intent = new Intent(this, BuscarMateriaActivity.class);
+            // startActivity(intent);
         } else if (id == R.id.nav_buscar_tutor) {
 
         } else if (id == R.id.nav_top_mensual) {
@@ -185,7 +160,7 @@ public class HomeTutorActivity extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_home_tutores);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_crear_tutoria);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

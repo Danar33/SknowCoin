@@ -62,7 +62,7 @@ public class AdaptadorTutoriaDisponible extends ArrayAdapter<Tutoria> {
         String precioTexto = "$" + miles + ".000";
         tvPrecio.setText(precioTexto);
 
-        String nivelPrueba = "20";
+        String nivelPrueba = "1";
         tvNivel.setText(nivelPrueba);
 
         ImageView imageView = (ImageView) convertView.findViewById(R.id.tutDisp_area);
@@ -85,6 +85,9 @@ public class AdaptadorTutoriaDisponible extends ArrayAdapter<Tutoria> {
                 break;
             case "Sistemas":
                 bImage = BitmapFactory.decodeResource(activity.getResources(), R.drawable.area_sistemas);
+                break;
+            default:
+                bImage = BitmapFactory.decodeResource(activity.getResources(), R.drawable.area_tics);
                 break;
         }// switch de areas
 

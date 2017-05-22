@@ -16,7 +16,7 @@
         android:layout_width="@dimen/profeil_menu_image_width"
         android:layout_height="@dimen/profeil_menu_image_height"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        app:srcCompat="@android:drawable/sym_def_app_icon"
+        app:srcCompat="@drawable/el"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="@dimen/menu_header_default_space"/>
 

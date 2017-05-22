@@ -26,7 +26,7 @@
             android:layout_height="80dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            app:srcCompat="@drawable/area_fisica" />
+            app:srcCompat="@drawable/ella" />
 
         <TextView
             android:textStyle="bold"
@@ -37,19 +37,20 @@
             android:layout_marginLeft="6dp"
             android:text="Great Username"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorAccentOrange"
             android:layout_alignParentTop="true"
             android:layout_alignEnd="@+id/horario_view"
             android:layout_toEndOf="@+id/tutDsip_foto" />
 
         <TextView
             style="@style/titulo_azul_oscuro_bold"
+            android:textColor="@color/colorPrimaryOrangeDark"
             android:textStyle="bold"
             android:textSize="16dp"
             android:id="@+id/tutDisp_tutor_rank"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Super Tutora"
+            android:text="Estudiante"
             android:layout_marginLeft="1dp"
             android:layout_below="@+id/tutDisp_nombre_tutor"
             android:layout_alignStart="@+id/tutDisp_nombre_tutor" />
@@ -58,7 +59,7 @@
             android:id="@+id/horario_view"
             android:layout_marginEnd="10dp"
             android:inputType="number"
-            android:text="Horarios"
+            android:text="Horarios Solicitados"
             style="@style/subtitulo_gris_inclinado"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
@@ -81,14 +82,15 @@
             android:id="@+id/tutDisp_area"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/area_biologia"
+            app:srcCompat="@drawable/area_fisica"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="8dp" />
 
         <TextView
-            android:background="@color/colorDeepBlue"
+            android:background="@color/colorLightBlack"
             android:padding="5dp"
-            style="@style/subtitulo_azul_light"
+            style="@style/subtitulo_naranja_light"
             android:layout_marginLeft="1dp"
             android:layout_width="45dp"
             android:layout_height="33dp"
@@ -99,9 +101,9 @@
             android:id="@+id/nivel_view" />
 
         <TextView
-            android:background="@color/colorDeepBlue"
+            android:background="@color/colorLightBlack"
             android:padding="5dp"
-            style="@style/subtitulo_azul_claro_bold"
+            style="@style/subtitulo_naranja_claro_bold"
             android:layout_marginLeft="-1dp"
             android:id="@+id/tutDsip_nivel"
             android:layout_width="34dp"
@@ -123,7 +125,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:background="@color/colorPrimaryOrange"
+        android:background="@color/colorAccentOrange"
         android:id="@+id/tutDisp_auxiliar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -136,42 +138,33 @@
 
         <Button
             android:textSize="12dp"
-            android:textColor="@color/colorBlueLight"
+            android:textColor="@color/colorWhite"
             android:gravity="center|center"
             android:textAlignment="center"
-            android:background="@drawable/mini_boton_circular"
-            android:layout_margin="6dp"
+            android:background="@drawable/mini_boton_circular_tutor"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginRight="16dp"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:id="@+id/tutDisp_btn_solicitar"
-            android:text="@string/txt_btn_solicitar_tutDisp"
-           />
-
-        <TextView
-            style="@style/titulo_blanco_regular"
-            android:textSize="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="$ 10.000"
-            android:id="@+id/tutDisp_precio_numerico"
-            android:layout_marginLeft="20dp"
-            android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/tutDisp_texto_xhora"
-            android:layout_marginEnd="13dp" />
+            android:text="@string/txt_btn_crear_tutoria"
+            />
 
         <TextView
             style="@style/texto_blanco_regular"
             android:textColor="@color/colorWhite"
-            android:textSize="16dp"
+            android:textSize="14dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hora de tutoría"
+            android:layout_marginLeft="10dp"
+            android:text="@string/texto_desea_crear_tutoria"
             android:id="@+id/tutDisp_texto_xhora"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            />
+            android:layout_alignBaseline="@+id/tutDisp_btn_solicitar"
+            android:layout_alignBottom="@+id/tutDisp_btn_solicitar"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 

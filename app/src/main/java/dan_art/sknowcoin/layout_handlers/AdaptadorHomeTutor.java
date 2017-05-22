@@ -50,18 +50,13 @@ public class AdaptadorHomeTutor extends ArrayAdapter<Tutoria> {
         TextView tvRango = (TextView) convertView.findViewById(R.id.tutDisp_tutor_rank);
         TextView tvNivel = (TextView) convertView.findViewById(R.id.tutDsip_nivel);
         TextView tvHorario = (TextView) convertView.findViewById(R.id.tutDisp_horario_tutoria);
-        TextView tvPrecio = (TextView) convertView.findViewById(R.id.tutDisp_precio_numerico);
 
         // LLenar los viwes con el contenido del usuario
         tvNombreUsuario.setText(tutoria.getNombreTutor());
         tvRango.setText(tutoria.getMateria());
         tvHorario.setText(tutoria.getHora());
 
-        int miles = tutoria.getPrecio() / 1000;
-        String precioTexto = "$" + miles + ".000";
-        tvPrecio.setText(precioTexto);
-
-        String nivelPrueba = "20";
+        String nivelPrueba = "1";
         tvNivel.setText(nivelPrueba);
 
         ImageView imageView = (ImageView) convertView.findViewById(R.id.tutDisp_area);
