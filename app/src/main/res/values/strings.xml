@@ -19,6 +19,15 @@
     <string name="texto_informacion">Información</string>
     <string name="texto_ayuda">Ayuda</string>
 
+    <string name="txt_btn_crear_tutoria">Crear</string>
+    <string name="texto_nombre_materia">Nombre de la Tutoría</string>
+    <string name="texto_lugar_materiatexto_lugar_materia">Top mensual</string>
+    <string name="texto_hora_materia">Hora disponible</string>
+    <string name="texto_precio_tutoria">Precio por hora</string>
+    <string name="texto_area_materia">Area de conocimiento</string>
+    <string name="texto_lugar_materia">Lugar de la tutoría</string>
+
+
     <string name="texto_crear_tutoria">Crear Tutoría</string>
     <string name="texto_solicitudes">Solicitudes</string>
     <string name="texto_mis_tutorias">Mis tutorías</string>
@@ -53,6 +62,6 @@
     <string name="txt_areas_conocimiento">Areas de conocimiento</string>
 
     <string name="buscar_materia">Buscar Materias</string>
-
+    <string name="descripcion_crear_tutoria">Para ofrecer una tutoría, por favor ingresa todos los datos solicitados. Una vez publicada será visible para todos.</string>
     <string name="descripcion_registro">Ingresa tus datos de identificación. Los nombres y apellidos serán visibles para otros usuarios</string>
 </resources>
