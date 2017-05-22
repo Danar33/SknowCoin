@@ -3,8 +3,11 @@ package dan_art.sknowcoin.modelo;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -32,6 +35,7 @@ public class SKnowCoinApp {
     }
 
     public boolean registrarUsuario(Usuario usuario, Context contexto) {
+
 
         conexionFirebase.getDatabaseReference().child(conexionFirebase.USUARIOS_REFERENCE).child(usuario.getCodigo()).setValue(usuario);
         conexionFirebase.getDatabaseReference().child(conexionFirebase.RANKING_REFERENCE).child(usuario.getCodigo()).setValue(5);
@@ -238,6 +242,55 @@ public class SKnowCoinApp {
             }
         });
         return tutorias;
+    }
+
+    public void dejarReporte(String idTutoria, String problema) {
+
+        Reporte reporte = new Reporte();
+        reporte.setEstado(0);
+        reporte.setProblema(problema);
+        reporte.setIdTutoria(idTutoria);
+
+        conexionFirebase.getDatabaseReference().child(conexionFirebase.REPORTES_REFERENCE).push().setValue(reporte);
+
+    }
+
+    public ArrayList<Reporte> listarReportesPorTutoria(String idTutoria, final int estado) {
+        final ArrayList<Reporte> reportes = new ArrayList<>();
+
+        Query q = conexionFirebase.getDatabaseReference();
+
+        q.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                System.out.println(dataSnapshot.getValue(Reporte.class).getProblema());
+                System.out.println(s);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        return reportes;
+
     }
 
     public Usuario getUsuario() {

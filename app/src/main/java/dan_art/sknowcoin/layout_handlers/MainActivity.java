@@ -17,7 +17,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import dan_art.sknowcoin.R;
+import dan_art.sknowcoin.modelo.Reporte;
+import dan_art.sknowcoin.modelo.SKnowCoinApp;
 
 //Main
 public class MainActivity extends AppCompatActivity {
@@ -36,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
                 iniciarLogin();
             }
         }.start();
+
+
     }//on create
 
     public void iniciarLogin() {

@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name="dan_art.sknowcoin.layout_handlers.MainActivity"
+            android:name=".layout_handlers.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/BlackTheme">
             <intent-filter>
@@ -48,6 +48,10 @@
         <activity android:name=".layout_handlers.CrearTutoriaActivity"
             android:theme="@style/dark_bg_theme">
         </activity>
+        <activity
+            android:name=".layout_handlers.PerfilUsuarioActivity"
+            android:label="@string/title_activity_perfil_usuario"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

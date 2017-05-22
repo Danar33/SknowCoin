@@ -9,25 +9,25 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class ConexionFirebase {
 
-    public static final  String AREAS_REFERENCE = "areas";
-    public static final  String ESTADOS_REFERENCE = "estados";
-    public static final  String PUBLICACIONES_REFERENCE = "publicaciones";
-    public static final  String RANKING_REFERENCE = "ranking";
-    public static final  String REPORTES_REFERENCE = "reportes";
-    public static final  String ROLES_REFERENCE = "roles";
-    public static final  String USUARIOS_REFERENCE = "usuarios";
-    public static final  String PUBLICACIONES_USUARIO_REFERENCE = "publicaciones_usuario";
+    public static final String AREAS_REFERENCE = "areas";
+    public static final String ESTADOS_REFERENCE = "estados";
+    public static final String PUBLICACIONES_REFERENCE = "publicaciones";
+    public static final String RANKING_REFERENCE = "ranking";
+    public static final String REPORTES_REFERENCE = "reportes";
+    public static final String ROLES_REFERENCE = "roles";
+    public static final String USUARIOS_REFERENCE = "usuarios";
+    public static final String PUBLICACIONES_USUARIO_REFERENCE = "publicaciones_usuario";
 
     private FirebaseDatabase database;
     private DatabaseReference mDatabase;
 
 
-    public ConexionFirebase(){
+    public ConexionFirebase() {
         database = FirebaseDatabase.getInstance();
         mDatabase = database.getReference();
     }
 
-    public DatabaseReference getDatabaseReference(){
+    public DatabaseReference getDatabaseReference() {
         return mDatabase;
     }
 }
