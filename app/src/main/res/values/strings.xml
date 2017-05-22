@@ -55,4 +55,5 @@
     <string name="buscar_materia">Buscar Materias</string>
 
     <string name="descripcion_registro">Ingresa tus datos de identificación. Los nombres y apellidos serán visibles para otros usuarios</string>
+    <string name="title_activity_perfil_usuario">PerfilUsuarioActivity</string>
 </resources>
