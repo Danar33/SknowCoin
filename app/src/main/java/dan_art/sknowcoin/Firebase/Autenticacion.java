@@ -9,6 +9,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+
 /**
  * Created by VAIO PRO on 04/05/2017.
  */
@@ -16,8 +18,14 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Autenticacion {
 
     private FirebaseAuth mAuth;
-    private boolean retorno = true;
-    private boolean retorno1 = true;
+    private boolean retorno = false;
+    public Context context;
+
+
+    public Autenticacion(Context context) {
+        mAuth = FirebaseAuth.getInstance();
+        this.context = context;
+    }
 
     public Autenticacion() {
         mAuth = FirebaseAuth.getInstance();
@@ -29,12 +37,12 @@ public class Autenticacion {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(contexto, "Bienvenido.", Toast.LENGTH_SHORT).show();
                     retorno = true;
+                    Toast.makeText(contexto, "Bienvenido.", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    Toast.makeText(contexto, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     retorno = false;
+                    Toast.makeText(contexto, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -44,26 +52,28 @@ public class Autenticacion {
         return retorno;
     }
 
-    public boolean signIn(String email, String password, final Context contexto) {
+    public Boolean signIn(String email, String password, final Context contexto) {
+
+        final ArrayList<Boolean> retorno1 = new ArrayList<Boolean>();
 
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()) {
-                    Toast.makeText(contexto, "Bienvenido.", Toast.LENGTH_SHORT).show();
+                    retorno1.add(Boolean.TRUE);
 
-                    retorno1 = true;
+                    //Toast.makeText(contexto, "Bienvenido.", Toast.LENGTH_SHORT).show();
+
                 } else {
+                    retorno1.add(Boolean.FALSE);
                     Toast.makeText(contexto, task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                    retorno1 = false;
                 }
             }
         });
 
         mAuth.signOut();
-
-        return retorno1;
+        return retorno1.get(0);
     }
 
     public FirebaseAuth getmAuth() {

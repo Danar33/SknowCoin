@@ -19,8 +19,6 @@ import dan_art.sknowcoin.Firebase.ConexionFirebase;
 
 public class SKnowCoinApp {
 
-    public static final String MyPREFERENCES = "MyPrefs";
-
     private Usuario usuario;
     private Tutoria tutoria;
 
@@ -40,11 +38,6 @@ public class SKnowCoinApp {
 
         return autenticacion.signUp(usuario.getCorreo(), usuario.getContrasena(), contexto);
 
-    }
-
-    public boolean loginUusuario(String correo, String contrasena, Context contexto) {
-
-        return autenticacion.signIn(correo, contrasena, contexto);
     }
 
     public void publicarTutoria(Tutoria tutoria) {
@@ -93,7 +86,7 @@ public class SKnowCoinApp {
 
     }
 
-    public Usuario buscarTutorPorCorreo(String correo) {
+    public ArrayList<Usuario> buscarTutorPorCorreo(String correo) {
 
         final ArrayList<Usuario> usuario = new ArrayList<Usuario>();
 
@@ -106,15 +99,13 @@ public class SKnowCoinApp {
                     Usuario usuario1 = postSnapshot.getValue(Usuario.class);
                     usuario.add(usuario1);
                 }
-                String s="";
-                //Log.d("test",tutorias.get(0).getNombreTutor());
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-        return usuario.get(0);
+        return usuario;
     }
 
     public ArrayList<Tutoria> listarTutoriasPorTutor(String nombre) {
@@ -200,13 +191,13 @@ public class SKnowCoinApp {
     }
 
 
-    public void solicitarTutoria(String codigoUsuario, String idTutoria){
+    public void solicitarTutoria(String codigoUsuario, String idTutoria) {
 
         PublicacionesUsuario publicacionesUsuario = new PublicacionesUsuario(codigoUsuario, idTutoria);
         conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_USUARIO_REFERENCE).push().setValue(publicacionesUsuario);
     }
 
-    public int contarSolicitudesTutoria(String codigoTutoria){
+    public int contarSolicitudesTutoria(String codigoTutoria) {
 
         final ArrayList<PublicacionesUsuario> publicacionesUsuarios = new ArrayList<PublicacionesUsuario>();
 
@@ -229,18 +220,19 @@ public class SKnowCoinApp {
         return publicacionesUsuarios.size();
     }
 
-    public ArrayList<Tutoria> totalTutorias(){
+    public ArrayList<Tutoria> totalTutorias() {
 
-        final ArrayList<Tutoria> tutorias=new ArrayList<Tutoria>();
+        final ArrayList<Tutoria> tutorias = new ArrayList<Tutoria>();
         conexionFirebase.getDatabaseReference().child("publicaciones").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    Tutoria tutoria=postSnapshot.getValue(Tutoria.class);
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    Tutoria tutoria = postSnapshot.getValue(Tutoria.class);
                     tutorias.add(tutoria);
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }

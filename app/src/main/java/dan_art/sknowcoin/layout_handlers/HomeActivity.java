@@ -1,7 +1,6 @@
 package dan_art.sknowcoin.layout_handlers;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,7 +15,6 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import dan_art.sknowcoin.R;
-import dan_art.sknowcoin.modelo.SKnowCoinApp;
 import dan_art.sknowcoin.modelo.Tutoria;
 
 
@@ -27,7 +25,6 @@ import dan_art.sknowcoin.modelo.Tutoria;
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public final static String USUARIO_PREFERENCES = "USUARIO_PREFERENCES";
 
     private static final String TAG = "MyHome";
 
@@ -36,25 +33,12 @@ public class HomeActivity extends AppCompatActivity
     private AdaptadorTutoriaDisponible adaptadorTutorias;
     private ListView listaTutorias;
 
-    private SharedPreferences preferences;
-
-    private SKnowCoinApp sKnowCoinApp;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_home);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });//*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -64,20 +48,6 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        sKnowCoinApp = new SKnowCoinApp();
-
-        Intent intent = getIntent();
-        //String correo = intent.getStringExtra("ELCORREO");
-
-
-        //preferences = getSharedPreferences(USUARIO_PREFERENCES, Context.MODE_PRIVATE);
-       // SharedPreferences.Editor editor = preferences.edit();
-
-        //Usuario usuario = sKnowCoinApp.buscarTutorPorCorreo(correo);
-        //editor.putString("codigo", usuario.getCodigo());
-
-        //editor.commit();
 
 
         //LLENADO DE PRUEBA
@@ -148,12 +118,6 @@ public class HomeActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_areas_menu_btn) {
-            Intent intent = new Intent(this, AreasConocimientoActivity.class);
-            startActivity(intent);
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -169,7 +133,9 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_edit_profile) {
+        if (id == R.id.nav_home) {
+            // Handle the camera action
+        } else if (id == R.id.nav_edit_profile) {
 
         } else if (id == R.id.nav_materias) {
             Intent intent = new Intent(this, BuscarMateriaActivity.class);
