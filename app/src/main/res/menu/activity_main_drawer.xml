@@ -8,6 +8,10 @@
                 android:icon="@drawable/ic_stars_black_24dp"
                 android:title="@string/texto_editar_perfil" />
             <item
+                android:id="@+id/nav_cambiar_rol"
+                android:icon="@drawable/ic_stars_black_24dp"
+                android:title="@string/texto_perfil_tutor" />
+            <item
                 android:id="@+id/nav_home"
                 android:icon="@drawable/ic_menu_camera"
                 android:title="@string/texto_home" />

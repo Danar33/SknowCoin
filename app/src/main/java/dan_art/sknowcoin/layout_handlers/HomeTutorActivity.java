@@ -1,6 +1,7 @@
 package dan_art.sknowcoin.layout_handlers;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +16,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import dan_art.sknowcoin.R;
+import dan_art.sknowcoin.modelo.SKnowCoinApp;
 import dan_art.sknowcoin.modelo.Tutoria;
 
 
@@ -22,70 +24,109 @@ import dan_art.sknowcoin.modelo.Tutoria;
  * Created by dan_a on 04/05/2017.
  */
 
-public class BuscarMateriaActivity extends AppCompatActivity
+public class HomeTutorActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private ArrayList<Tutoria> tutoriasMaterias = new ArrayList<>();
+    public final static String USUARIO_PREFERENCES = "USUARIO_PREFERENCES";
 
-    private AdaptadorMateriaBuscada adaptadorMaterias;
-    private ListView listaMaterias;
+    private static final String TAG = "TutorHome";
+
+    private ArrayList<Tutoria> tutoriasDisponibles = new ArrayList<>();
+
+    private AdaptadorHomeTutor adaptadorTutorias;
+    private ListView listaTutorias;
+
+    private SharedPreferences preferences;
+
+    private SKnowCoinApp sKnowCoinApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buscar_materias);
+        setContentView(R.layout.activity_home_tutores);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.menu_materias_layout);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_home);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });//*/
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_home_tutores);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_materias);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_home_tutores);
         navigationView.setNavigationItemSelectedListener(this);
+
+        sKnowCoinApp = new SKnowCoinApp();
+
+        Intent intent = getIntent();
+        //String correo = intent.getStringExtra("ELCORREO");
+
+
+        //preferences = getSharedPreferences(USUARIO_PREFERENCES, Context.MODE_PRIVATE);
+       // SharedPreferences.Editor editor = preferences.edit();
+
+        //Usuario usuario = sKnowCoinApp.buscarTutorPorCorreo(correo);
+        //editor.putString("codigo", usuario.getCodigo());
+
+        //editor.commit();
+
 
         //LLENADO DE PRUEBA
         for (int i = 0; i < 15; i++) {
             String codigo = "A00028300";
             String hora = "Lunes 4:00 p.m";
-            String materia = "Prueba Búsqueda Materia " + i;
+            String materia = "HCI 2";
             String area = "Tics";
-            String nombreTutor = "Nombre de Prueba";
+            String nombreTutor = "Nombre de Prueba " + i;
             String lugar = "Icesi";
             int precio = 18000;
 
             Tutoria nueva = new Tutoria(codigo, hora, materia, area, nombreTutor, precio, lugar);
-            tutoriasMaterias.add(nueva);
-        }// for que crea tutorias
+            tutoriasDisponibles.add(nueva);
+        }// for que crea tutorias */
 
-        adaptadorMaterias =  new AdaptadorMateriaBuscada(this, tutoriasMaterias, this);
+      //  tutoriasDisponibles = sKnowCoinApp.totalTutorias();
+
+     /*   Log.d(TAG, "TAMAÑOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO:::: " + tutoriasDisponibles.size());
+        for (int i = 0; i < tutoriasDisponibles.size(); i++) {
+            Log.d(TAG, "TUTORIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + tutoriasDisponibles.get(i).getMateria());
+        }//*/
+
+        adaptadorTutorias = new AdaptadorHomeTutor(this, tutoriasDisponibles, this);
 
         list_view_content();
     }// on create
 
     public void list_view_content(){
         /// Asignacion del adaptador
-        listaMaterias = (ListView) findViewById(R.id.tutorias_materias_list_layout);
+        listaTutorias = (ListView) findViewById(R.id.home_tutor_list_layout);
 
         actualizarLista();
 
-        listaMaterias.setAdapter(adaptadorMaterias);
+        listaTutorias.setAdapter(adaptadorTutorias);
     }// contenido del list view
 
     public  void actualizarLista(){
 
-        for(int i = 0; i < tutoriasMaterias.size(); i++){
+        for(int i = 0; i < tutoriasDisponibles.size(); i++){
             // TODO
-            adaptadorMaterias.notifyDataSetChanged();
+            adaptadorTutorias.notifyDataSetChanged();
         }// for top 5
     }// actualizar lista
 
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.menu_materias_layout);
+        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -108,7 +149,7 @@ public class BuscarMateriaActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.areas_btn_medicina) {
+        if (id == R.id.action_areas_menu_btn) {
             Intent intent = new Intent(this, AreasConocimientoActivity.class);
             startActivity(intent);
         }
@@ -120,16 +161,19 @@ public class BuscarMateriaActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
+        /*TextView tv = (TextView) findViewById(R.id.userName_MenuEstud);
+        Typeface face = Typeface.createFromAsset(getAssets(),
+                "fonts/epimodem.ttf");
+        tv.setTypeface(face);//*/
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-            Intent intent = new Intent(this, HomeActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_edit_profile) {
+        if (id == R.id.nav_edit_profile) {
 
         } else if (id == R.id.nav_materias) {
-
+            Intent intent = new Intent(this, BuscarMateriaActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_buscar_tutor) {
 
         } else if (id == R.id.nav_top_mensual) {
@@ -138,7 +182,7 @@ public class BuscarMateriaActivity extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.menu_materias_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_home_tutores);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

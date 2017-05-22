@@ -42,6 +42,9 @@
         <activity android:name=".layout_handlers.AreasConocimientoActivity">
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity android:name=".layout_handlers.HomeTutorActivity">
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
