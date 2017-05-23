@@ -54,9 +54,9 @@ public class HomeActivity extends AppCompatActivity
         for (int i = 0; i < 15; i++) {
             String codigo = "A00028300";
             String hora = "Lunes 4:00 p.m";
-            String materia = "HCI 2";
+            String materia = "Aplicaciones Móviles";
             String area = "Tics";
-            String nombreTutor = "Nombre de Prueba " + i;
+            String nombreTutor = "Nombre Apellido " + i;
             String lugar = "Icesi";
             int precio = 18000;
 
@@ -75,6 +75,11 @@ public class HomeActivity extends AppCompatActivity
 
         list_view_content();
     }// on create
+
+    public void verInfoTutor() {
+        VerInfoTutorDialogo newFragment = new VerInfoTutorDialogo();
+       //TODO newFragment.show(getSupportFragmentManager(), "missiles");
+    }
 
     public void list_view_content(){
         /// Asignacion del adaptador

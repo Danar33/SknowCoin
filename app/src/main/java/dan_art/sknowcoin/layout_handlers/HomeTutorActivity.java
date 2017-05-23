@@ -83,10 +83,10 @@ public class HomeTutorActivity extends AppCompatActivity
         //LLENADO DE PRUEBA
         for (int i = 0; i < 15; i++) {
             String codigo = "A00028300";
-            String hora = "Lunes 4:00 p.m";
-            String materia = "HCI 2";
+            String hora = "Viernes 2:00 p.m";
+            String materia = "Lab. Redes";
             String area = "Tics";
-            String nombreTutor = "Nombre de Prueba " + i;
+            String nombreTutor = "Nombre Estudiante " + i;
             String lugar = "Icesi";
             int precio = 18000;
 

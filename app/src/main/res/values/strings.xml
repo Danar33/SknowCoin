@@ -7,8 +7,8 @@
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
 
-    <string name="texto_perfil_tutor">Perfil de Tutor</string>
-    <string name="texto_perfil_estudiante">Perfil de Estudiante</string>
+    <string name="texto_perfil_tutor">Cambiar a Tutor</string>
+    <string name="texto_perfil_estudiante">Cambiar a Estudiante</string>
     <string name="texto_editar_perfil">Perfil</string>
     <string name="texto_home">Inicio</string>
     <string name="texto_materias">Materias</string>
@@ -61,7 +61,9 @@
 
     <string name="txt_areas_conocimiento">Areas de conocimiento</string>
 
+    <string name="title_activity_perfil_usuario"></string>
     <string name="buscar_materia">Buscar Materias</string>
+    <string name="texto_desea_crear_tutoria">¿Desea crear y ofrecer esta tutoría?</string>
     <string name="descripcion_crear_tutoria">Para ofrecer una tutoría, por favor ingresa todos los datos solicitados. Una vez publicada será visible para todos.</string>
     <string name="descripcion_registro">Ingresa tus datos de identificación. Los nombres y apellidos serán visibles para otros usuarios</string>
 </resources>
