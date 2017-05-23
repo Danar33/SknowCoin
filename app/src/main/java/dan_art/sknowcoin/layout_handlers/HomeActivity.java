@@ -66,7 +66,7 @@ public class HomeActivity extends AppCompatActivity
 
       //  tutoriasDisponibles = sKnowCoinApp.totalTutorias();
 
-     /*   Log.d(TAG, "TAMAÑOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO:::: " + tutoriasDisponibles.size());
+     /*   Log.d(TAG, "TAMAÑOOOOOOOOOOOOOOOOOOOOOOOOOOOOO:::: " + tutoriasDisponibles.size());
         for (int i = 0; i < tutoriasDisponibles.size(); i++) {
             Log.d(TAG, "TUTORIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + tutoriasDisponibles.get(i).getMateria());
         }//*/
