@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import dan_art.sknowcoin.Firebase.Autenticacion;
 import dan_art.sknowcoin.Firebase.ConexionFirebase;
+import dan_art.sknowcoin.layout_handlers.MainActivity;
 
 
 /**
@@ -255,32 +256,19 @@ public class SKnowCoinApp {
 
     }
 
-    public ArrayList<Reporte> listarReportesPorTutoria(String idTutoria, final int estado) {
+    public ArrayList<Reporte> listarReportesPorTutoria(String idTutoria, final int estado, final MainActivity gg) {
         final ArrayList<Reporte> reportes = new ArrayList<>();
 
-        Query q = conexionFirebase.getDatabaseReference();
 
-        q.addChildEventListener(new ChildEventListener() {
+        conexionFirebase.getDatabaseReference().child(ConexionFirebase.REPORTES_REFERENCE).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot d : dataSnapshot.getChildren()) {
+                    //Log.d("databse error", d.getValue(Reporte.class).getProblema());
+                    reportes.add(d.getValue(Reporte.class));
 
-                System.out.println(dataSnapshot.getValue(Reporte.class).getProblema());
-                System.out.println(s);
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
+                }
+                gg.printResportes();
             }
 
             @Override

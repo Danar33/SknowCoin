@@ -6,6 +6,7 @@ package dan_art.sknowcoin.modelo;
 
 public class Reporte {
 
+    private String id;
     private int estado;
     private String idTutoria;
     private String problema;
@@ -13,12 +14,19 @@ public class Reporte {
     public Reporte() {
     }
 
-    public String getIdTutoria() {
-        return idTutoria;
+    public Reporte(String id, int estado, String idTutoria, String problema) {
+        this.id = id;
+        this.estado = estado;
+        this.idTutoria = idTutoria;
+        this.problema = problema;
     }
 
-    public void setIdTutoria(String idTutoria) {
-        this.idTutoria = idTutoria;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public int getEstado() {
@@ -27,6 +35,14 @@ public class Reporte {
 
     public void setEstado(int estado) {
         this.estado = estado;
+    }
+
+    public String getIdTutoria() {
+        return idTutoria;
+    }
+
+    public void setIdTutoria(String idTutoria) {
+        this.idTutoria = idTutoria;
     }
 
     public String getProblema() {
