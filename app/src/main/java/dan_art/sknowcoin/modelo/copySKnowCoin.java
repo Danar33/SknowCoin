@@ -3,6 +3,7 @@ package dan_art.sknowcoin.modelo;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -19,21 +20,25 @@ import java.util.List;
 
 import dan_art.sknowcoin.Firebase.Autenticacion;
 import dan_art.sknowcoin.Firebase.ConexionFirebase;
+import dan_art.sknowcoin.layout_handlers.BuscarMateriaActivity;
+import dan_art.sknowcoin.layout_handlers.HomeActivity;
 
 /**
  * Created by VAIO PRO on 04/05/2017.
  */
 
-public class copySKnowCoin {
+public class copySKnowCoin extends AsyncTask<Void, Integer, Void>{
 
     public static final String MyPREFERENCES = "MyPrefs";
 
     //private Usuario usuario;
     private Tutoria tutoria;
+    private ArrayList<Tutoria> tutorias;
     private SharedPreferences sharedpreferences;
 
     private ConexionFirebase conexionFirebase;
     private Autenticacion autenticacion;
+
     //private String var;
 
     private ArrayList<Usuario> tutores;
@@ -43,6 +48,12 @@ public class copySKnowCoin {
         conexionFirebase = new ConexionFirebase();
         autenticacion = new Autenticacion();
         //tutores=new ArrayList<Usuario>();
+    }
+
+    @Override
+    protected Void doInBackground(Void... params) {
+
+        return null;
     }
 
     //public void registrarUsuario(String nombre, String telefono, String correo, String codigo, String contrasena,
@@ -56,9 +67,11 @@ public class copySKnowCoin {
 
   //  }
 
-    public ArrayList<Tutoria> listarPorTutor(String nombre) {
-        final ArrayList<Tutoria> tutorias=new ArrayList<Tutoria>();
-        conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_REFERENCE).orderByChild("nombreTutor").equalTo(nombre).addValueEventListener(new ValueEventListener() {
+    public void listarPorTutor(String nombre) {
+        //final ArrayList<Tutoria> tutorias=new ArrayList<Tutoria>();
+        tutorias=new ArrayList<Tutoria>();
+        conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_REFERENCE).orderByChild("nombreTutor").equalTo(nombre)
+                .addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -71,9 +84,10 @@ public class copySKnowCoin {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
             }
         });
-        return tutorias;
+     //   return tutorias;
     }
 
     public ArrayList<String> listarAreas(){
@@ -137,44 +151,89 @@ public class copySKnowCoin {
 
     public void editarUsuario(String id, String contrasena, String correo, String nombre ){
 
-        final ArrayList<Tutoria> tutorias=new ArrayList<Tutoria>();
-        conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_REFERENCE).orderByChild("area").equalTo(nombre).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
 
-                    Tutoria tutoria=postSnapshot.getValue(Tutoria.class);
-                    tutorias.add(tutoria);
-                }
-                Log.d("test",tutorias.get(0).getNombreTutor());
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+        if(!(contrasena.equals(""))){
+            conexionFirebase.getDatabaseReference().child(conexionFirebase.USUARIOS_REFERENCE).
+                    child("id").child("contrasena").setValue(contrasena);
+        }
 
-            }
-        });
+        if(!(correo.equals(""))) {
+            conexionFirebase.getDatabaseReference().child(conexionFirebase.USUARIOS_REFERENCE).
+                    child("id").child("correo").setValue(correo);
+        }
 
+        if(!(nombre.equals(""))) {
+            conexionFirebase.getDatabaseReference().child(conexionFirebase.USUARIOS_REFERENCE).
+                    child("id").child("nombre").setValue(nombre);
+        }
 
     }
 
-    public ArrayList<Tutoria> totalTutorias(){
+    public void totalTutorias(final HomeActivity act){
 
-        final ArrayList<Tutoria> tutorias=new ArrayList<Tutoria>();
-        conexionFirebase.getDatabaseReference().child("publicaciones").addValueEventListener(new ValueEventListener() {
+        //final ArrayList<Tutoria> tutorias=new ArrayList<Tutoria>();
+        tutorias=new ArrayList<Tutoria>();
+        conexionFirebase.getDatabaseReference().child("publicaciones").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     Tutoria tutoria=postSnapshot.getValue(Tutoria.class);
-                    tutorias.add(tutoria);
+                    act.getTutoriasDisponibles().add(tutoria);
+                }
+                act.tutorias();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+        //return tutorias;
+    }
+
+    public void totalTutoriasPorMaterias(final BuscarMateriaActivity act){
+        tutorias=new ArrayList<Tutoria>();
+        conexionFirebase.getDatabaseReference().child("publicaciones").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Tutoria tutoria=postSnapshot.getValue(Tutoria.class);
+                    //act.getTutoriasMaterias().add(tutoria);
+                }
+                //act.materias();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+    }
+
+    public void totalTutores(){
+
+        //final ArrayList<Tutoria> tutorias=new ArrayList<Tutoria>();
+        tutores=new ArrayList<Usuario>();
+        conexionFirebase.getDatabaseReference().child("usuarios").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Usuario tutor=postSnapshot.getValue(Usuario.class);
+                    //if(tutor.getRol()>1){
+                        tutores.add(tutor);
+                    //}
                 }
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+
             }
         });
-        return tutorias;
+        //return tutorias;
     }
+
 
     public ArrayList<Usuario> getTutores() {
         return tutores;
@@ -186,6 +245,14 @@ public class copySKnowCoin {
 
     public void setTutoria(Tutoria tutoria) {
         this.tutoria = tutoria;
+    }
+
+    public ArrayList<Tutoria> getTutorias() {
+        return tutorias;
+    }
+
+    public void setTutorias(ArrayList<Tutoria> tutorias) {
+        this.tutorias = tutorias;
     }
 }
 

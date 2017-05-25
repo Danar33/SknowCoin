@@ -15,6 +15,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import dan_art.sknowcoin.R;
+import dan_art.sknowcoin.modelo.SKnowCoinApp;
 import dan_art.sknowcoin.modelo.Tutoria;
 
 
@@ -32,6 +33,7 @@ public class HomeActivity extends AppCompatActivity
 
     private AdaptadorTutoriaDisponible adaptadorTutorias;
     private ListView listaTutorias;
+    private SKnowCoinApp sKnowCoinApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,7 @@ public class HomeActivity extends AppCompatActivity
 
 
         //LLENADO DE PRUEBA
+        /*
         for (int i = 0; i < 15; i++) {
             String codigo = "A00028300";
             String hora = "Lunes 4:00 p.m";
@@ -71,9 +74,11 @@ public class HomeActivity extends AppCompatActivity
             Log.d(TAG, "TUTORIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + tutoriasDisponibles.get(i).getMateria());
         }//*/
 
-        adaptadorTutorias = new AdaptadorTutoriaDisponible(this, tutoriasDisponibles, this);
+        sKnowCoinApp=new SKnowCoinApp();
+        //adaptadorTutorias = new AdaptadorTutoriaDisponible(this, tutoriasDisponibles, this);
 
-        list_view_content();
+        //list_view_content();
+        sKnowCoinApp.totalTutoriasUsuarios(this);
     }// on create
 
     public void verInfoTutor() {
@@ -159,5 +164,19 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public ArrayList<Tutoria> getTutoriasDisponibles() {
+        return tutoriasDisponibles;
+    }
+
+    public void setTutoriasDisponibles(ArrayList<Tutoria> tutoriasDisponibles) {
+        this.tutoriasDisponibles = tutoriasDisponibles;
+    }
+
+    public void tutorias(){
+        adaptadorTutorias = new AdaptadorTutoriaDisponible(this, tutoriasDisponibles, this);
+
+        list_view_content();
     }
 }//home activity

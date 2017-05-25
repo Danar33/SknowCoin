@@ -81,6 +81,7 @@ public class HomeTutorActivity extends AppCompatActivity
 
 
         //LLENADO DE PRUEBA
+        /*
         for (int i = 0; i < 15; i++) {
             String codigo = "A00028300";
             String hora = "Viernes 2:00 p.m";
@@ -101,9 +102,13 @@ public class HomeTutorActivity extends AppCompatActivity
             Log.d(TAG, "TUTORIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + tutoriasDisponibles.get(i).getMateria());
         }//*/
 
-        adaptadorTutorias = new AdaptadorHomeTutor(this, itemsHomeTutor, this);
+        //adaptadorTutorias = new AdaptadorHomeTutor(this, itemsHomeTutor, this);
 
-        list_view_content();
+        //list_view_content();
+
+        sKnowCoinApp=new SKnowCoinApp();
+        sKnowCoinApp.totalTutoriasTutor(this);
+
     }// on create
 
     public void list_view_content() {
@@ -188,5 +193,15 @@ public class HomeTutorActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_home_tutores);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public ArrayList<Tutoria> getItemsHomeTutor() {
+        return itemsHomeTutor;
+    }
+
+    public void tutorias(){
+        adaptadorTutorias = new AdaptadorHomeTutor(this, itemsHomeTutor, this);
+
+        list_view_content();
     }
 }//home activity

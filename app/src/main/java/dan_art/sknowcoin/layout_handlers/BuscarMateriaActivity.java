@@ -15,6 +15,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import dan_art.sknowcoin.R;
+import dan_art.sknowcoin.modelo.SKnowCoinApp;
 import dan_art.sknowcoin.modelo.Tutoria;
 
 
@@ -29,6 +30,8 @@ public class BuscarMateriaActivity extends AppCompatActivity
 
     private AdaptadorMateriaBuscada adaptadorMaterias;
     private ListView listaMaterias;
+    private SKnowCoinApp sKnowCoinApp;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,7 @@ public class BuscarMateriaActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //LLENADO DE PRUEBA
+        /*
         for (int i = 0; i < 15; i++) {
             String codigo = "A00028300";
             String hora = "Lunes 4:00 p.m";
@@ -59,10 +63,10 @@ public class BuscarMateriaActivity extends AppCompatActivity
             Tutoria nueva = new Tutoria(codigo, hora, materia, area, nombreTutor, precio, lugar);
             tutoriasMaterias.add(nueva);
         }// for que crea tutorias
+        */
+        sKnowCoinApp=new SKnowCoinApp();
+        sKnowCoinApp.totalTutoriasPorMaterias(this);
 
-        adaptadorMaterias =  new AdaptadorMateriaBuscada(this, tutoriasMaterias, this);
-
-        list_view_content();
     }// on create
 
     public void list_view_content(){
@@ -142,4 +146,14 @@ public class BuscarMateriaActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-}//home activity
+
+    public ArrayList<Tutoria> getTutoriasMaterias() {
+        return tutoriasMaterias;
+    }
+
+    public void materias(){
+        adaptadorMaterias = new AdaptadorMateriaBuscada(this, tutoriasMaterias, this);
+
+        list_view_content();
+    }
+    }//home activity

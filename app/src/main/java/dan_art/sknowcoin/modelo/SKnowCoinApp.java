@@ -11,6 +11,9 @@ import java.util.ArrayList;
 
 import dan_art.sknowcoin.Firebase.Autenticacion;
 import dan_art.sknowcoin.Firebase.ConexionFirebase;
+import dan_art.sknowcoin.layout_handlers.BuscarMateriaActivity;
+import dan_art.sknowcoin.layout_handlers.HomeActivity;
+import dan_art.sknowcoin.layout_handlers.HomeTutorActivity;
 import dan_art.sknowcoin.layout_handlers.MainActivity;
 
 
@@ -260,6 +263,62 @@ public class SKnowCoinApp {
 
         return reportes;
 
+    }
+
+    public void totalTutoriasUsuarios(final HomeActivity act){
+
+        conexionFirebase.getDatabaseReference().child("publicaciones").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Tutoria tutoria=postSnapshot.getValue(Tutoria.class);
+                    act.getTutoriasDisponibles().add(tutoria);
+                }
+                act.tutorias();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+    }
+
+    public void totalTutoriasPorMaterias(final BuscarMateriaActivity act){
+        conexionFirebase.getDatabaseReference().child("publicaciones").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Tutoria tutoria=postSnapshot.getValue(Tutoria.class);
+                    act.getTutoriasMaterias().add(tutoria);
+                }
+                act.materias();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+    }
+
+    public void totalTutoriasTutor(final HomeTutorActivity act){
+
+        conexionFirebase.getDatabaseReference().child("publicaciones").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Tutoria tutoria=postSnapshot.getValue(Tutoria.class);
+                    act.getItemsHomeTutor().add(tutoria);
+                }
+                act.tutorias();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
     }
 
     public Usuario getUsuario() {
