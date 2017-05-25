@@ -1,6 +1,8 @@
 package dan_art.sknowcoin.layout_handlers;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,11 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-
-import java.util.ArrayList;
 
 import dan_art.sknowcoin.R;
 import dan_art.sknowcoin.modelo.SKnowCoinApp;
@@ -33,27 +31,14 @@ public class CrearTutoriaActivity extends AppCompatActivity
 
     private static final String TAG = "CrearTutoria";
 
-    //variables de la pantalla anterior de registro
-    private String correo;
-    private String constrasena;
-    private String nombres;
-    private String telefono;
-    private String documento;
-
-    //variables de esta pantalla
-    private String codigoEstudiante;
-    private String carreraUniversitaria;
-    private String semestreActual;
-
-    // Views
-    private EditText codigo;
-    private EditText carrera;
-    private EditText semestre;
-
-    private Button finalizarButton;
-    private Button cancelarButton;
+    private EditText nombreTutoria;
+    private EditText lugarTutoria;
+    private EditText horaTutoria;
+    private EditText precioTutoria;
 
     private SKnowCoinApp sKnowCoinApp;
+
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +65,13 @@ public class CrearTutoriaActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_crear_tutoria);
         navigationView.setNavigationItemSelectedListener(this);
 
+        nombreTutoria = (EditText) findViewById(R.id.editText_nombre_materia);
+        lugarTutoria = (EditText) findViewById(R.id.editText_lugar_tutoria);
+        horaTutoria = (EditText) findViewById(R.id.editText_hora);
+        precioTutoria = (EditText) findViewById(R.id.editText_precio_tutoria);
+
+        prefs = getSharedPreferences(USUARIO_PREFERENCES, Context.MODE_PRIVATE);
+
         sKnowCoinApp = new SKnowCoinApp();
 
         Intent intent = getIntent();
@@ -87,11 +79,34 @@ public class CrearTutoriaActivity extends AppCompatActivity
 
     }// on create
 
-    public void crearTutoria (View v){
-        //TODO parte de firebase d
-    }// crea una tutoria
+    public void crearTutoria(View v) {
 
-    public void cancelar(View v){
+        String nombre = nombreTutoria.getText().toString();
+        String lugar = lugarTutoria.getText().toString();
+        String hora = horaTutoria.getText().toString();
+        String precio = precioTutoria.getText().toString();
+        String codigoUsuario = prefs.getString("codigo_usuario", "000");
+        String nombreUsuario = prefs.getString("nombre_usuario", "aaa");
+
+        if (!nombre.isEmpty() && !lugar.isEmpty() && !hora.isEmpty() && !precio.isEmpty() && !codigoUsuario.matches("000") && !nombreUsuario.matches("aaa")) {
+
+            Tutoria tutoria = new Tutoria();
+            tutoria.setPrecio(Integer.parseInt(precio));
+            tutoria.setMateria(nombre);
+            tutoria.setLugar(lugar);
+            tutoria.setHora(hora);
+            tutoria.setCodigo(codigoUsuario);
+            tutoria.setNombreTutor(nombreUsuario);
+            tutoria.setArea("mat");
+
+            String id = sKnowCoinApp.publicarTutoria(tutoria, "");
+
+            tutoria.setId(id);
+            sKnowCoinApp.publicarTutoria(tutoria, id);
+        }
+    }
+
+    public void cancelar(View v) {
         super.onBackPressed();
     }// cancela la accion
 

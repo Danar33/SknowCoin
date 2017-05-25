@@ -13,6 +13,7 @@ public class Tutoria {
     private String area;
     private String nombreTutor;
     private int precio;
+    private String id;
 
     public Tutoria(String codigo, String hora, String materia, String area, String nombreTutor, int precio, String lugar) {
         this.codigo = codigo;
@@ -84,5 +85,11 @@ public class Tutoria {
         this.area = area;
     }
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
 }

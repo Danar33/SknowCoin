@@ -2,6 +2,7 @@ package dan_art.sknowcoin.layout_handlers;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -20,6 +21,9 @@ import dan_art.sknowcoin.modelo.Usuario;
  */
 
 public class SingUpActivity_tres extends AppCompatActivity {
+
+
+    public final static String USUARIO_PREFERENCES = "USUARIO_PREFERENCES";
 
     //variables de la pantalla anterior de registro
     private String correo;
@@ -43,6 +47,8 @@ public class SingUpActivity_tres extends AppCompatActivity {
 
     private SKnowCoinApp sKnowCoinApp;
 
+    private SharedPreferences prefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +69,8 @@ public class SingUpActivity_tres extends AppCompatActivity {
         cancelarButton = (Button) findViewById(R.id.cancelar_registro);
 
         sKnowCoinApp = new SKnowCoinApp();
+
+        prefs = getSharedPreferences(USUARIO_PREFERENCES, Context.MODE_PRIVATE);
 
     }
 
@@ -85,6 +93,11 @@ public class SingUpActivity_tres extends AppCompatActivity {
             usuario.setTelefono(telefono);
 
             sKnowCoinApp.registrarUsuario(usuario, this);
+
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("codigo_usuario",usuario.getCodigo());
+            editor.putString("nombre_usuario", usuario.getNombre());
+            editor.commit();
 
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);

@@ -98,6 +98,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                     SharedPreferences.Editor editor = prefs.edit();
                                     editor.putString("codigo_usuario",usuario1.getCodigo());
+                                    editor.putString("nombre_usuario", usuario1.getNombre());
                                     editor.commit();
 
                                 }

@@ -42,9 +42,15 @@ public class SKnowCoinApp {
 
     }
 
-    public void publicarTutoria(Tutoria tutoria) {
+    public String publicarTutoria(Tutoria tutoria, String push2) {
 
-        conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_REFERENCE).push().setValue(tutoria);
+        if (push2.isEmpty()) {
+            String push = conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_REFERENCE).push().getKey();
+            return push;
+        } else {
+            conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_REFERENCE).child(push2).setValue(tutoria);
+            return "";
+        }
     }
 
     public void recalcularRankingUsuario(final String codigo, final int calificacion) {
