@@ -97,6 +97,8 @@ public class CrearTutoriaActivity extends AppCompatActivity
             tutoria.setHora(hora);
             tutoria.setCodigo(codigoUsuario);
             tutoria.setNombreTutor(nombreUsuario);
+
+            // TODO debo hacer que se cambie el area
             tutoria.setArea("mat");
 
             String id = sKnowCoinApp.publicarTutoria(tutoria, "");
