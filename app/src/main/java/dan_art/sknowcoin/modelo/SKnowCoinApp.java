@@ -3,11 +3,8 @@ package dan_art.sknowcoin.modelo;
 import android.content.Context;
 import android.util.Log;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -89,28 +86,6 @@ public class SKnowCoinApp {
         });
 
 
-    }
-
-    public ArrayList<Usuario> buscarTutorPorCorreo(String correo) {
-
-        final ArrayList<Usuario> usuario = new ArrayList<Usuario>();
-
-        conexionFirebase.getDatabaseReference().child(conexionFirebase.USUARIOS_REFERENCE).orderByChild("correo").equalTo(correo).addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    Usuario usuario1 = postSnapshot.getValue(Usuario.class);
-                    usuario.add(usuario1);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-        return usuario;
     }
 
     public ArrayList<Tutoria> listarTutoriasPorTutor(String nombre) {
