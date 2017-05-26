@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/dark_bg">
+    android:background="@drawable/ligth_bg"
+    android:orientation="vertical">
 
 
     <ImageView
         android:id="@+id/imageView_Area"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="30dp"
         android:layout_marginTop="25dp"
-        app:srcCompat="@drawable/area_tics"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"/>
+        app:srcCompat="@drawable/area_tics" />
 
     <TextView
+        android:textSize="18dp"
+        android:textColor="@color/colorGreyDark"
         android:id="@+id/textView_Materia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Materia"
         android:layout_alignTop="@+id/imageView_Area"
-        android:layout_toEndOf="@+id/editText_Reporte" />
+        android:layout_centerHorizontal="true"
+        android:text="Materia" />
 
     <TextView
         android:id="@+id/textView_Editable_Materia"
@@ -30,100 +33,137 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/textView_Materia"
         android:layout_below="@+id/textView_Materia"
-        android:layout_marginTop="14dp"
-        android:text="APO 2" />
+        android:layout_marginTop="9dp"
+        android:text="APO 2"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18dp"
+        android:textStyle="bold" />
 
     <TextView
+        android:textSize="18dp"
+        android:textColor="@color/colorGreyDark"
         android:id="@+id/textView_Lugar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:text="Lugar"
-        android:layout_below="@+id/textView_Editable_Materia"
+        android:layout_above="@+id/textView_Fecha"
         android:layout_alignStart="@+id/textView_Editable_Materia" />
 
     <TextView
         android:id="@+id/textView_Editable_Lugar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView_Lugar"
-        android:layout_below="@+id/textView_Lugar"
-        android:layout_marginTop="13dp"
-        android:text="ICESI" />
+        android:layout_alignBaseline="@+id/textView_Lugar"
+        android:layout_alignBottom="@+id/textView_Lugar"
+        android:layout_marginLeft="10dp"
+        android:layout_toEndOf="@id/textView_Lugar"
+        android:text="ICESI"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16dp"
+        android:textStyle="italic" />
 
     <TextView
+        android:textSize="18dp"
+        android:textColor="@color/colorGreyDark"
         android:id="@+id/textView_Tutor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/imageView_Area"
-        android:layout_below="@+id/imageView_Area"
-        android:layout_marginTop="17dp"
+        android:layout_below="@+id/textView_Fecha"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
         android:text="Tutor:" />
 
     <TextView
         android:id="@+id/textView_Editable_Tutor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
         android:text="Daniel Arenas"
-        android:layout_alignBaseline="@+id/textView_Tutor"
-        android:layout_alignBottom="@+id/textView_Tutor"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:layout_below="@+id/textView_Tutor"
         android:layout_centerHorizontal="true" />
 
     <RatingBar
+        android:background="@drawable/input_text_circular"
         android:id="@+id/ratingBar_Tutoria"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_Editable_Tutor"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        android:stepSize="1" />
+        android:paddingLeft="5dp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:stepSize="0"
+        android:layout_alignTop="@+id/textView"
+        android:layout_alignEnd="@+id/editText_Reporte"
+        android:layout_marginTop="27dp" />
 
     <TextView
+        android:layout_marginTop="15dp"
         android:id="@+id/textView_Reporte"
+        style="@style/texto_gris_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/pedir_comentario"
+        android:textAlignment="center"
         android:layout_below="@+id/ratingBar_Tutoria"
-        android:layout_alignStart="@+id/textView_Tutor"
-        android:layout_marginTop="20dp" />
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/texto_gris_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pedir_calificacion"
+        android:textAlignment="center"
+        android:layout_below="@+id/textView_Editable_Tutor"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp" />
 
     <EditText
+        android:layout_marginTop="10dp"
         android:id="@+id/editText_Reporte"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView_Reporte"
-        android:layout_below="@+id/textView_Reporte"
-        android:layout_marginTop="13dp"
+        android:layout_width="260dp"
+        android:layout_height="40dp"
+        android:background="@drawable/input_text_circular"
         android:ems="10"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:textColor="@color/colorBlueDark"
+        android:textSize="16dp"
+        android:textAlignment="center"
+        android:layout_below="@+id/textView_Reporte"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/button_Enviar"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="wrap_content"
+        style="@style/boton_resaltado"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="12dp"
-        android:layout_marginEnd="18dp"
-        android:elevation="0dp"
-        android:text="Enviar"
-        android:onClick="buttonEnviarAction"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/boton_circular_resaltado"
+        android:onClick="buttonEnviarAction"
+        android:text="Enviar" />
 
     <TextView
+        android:textSize="18dp"
+        android:textColor="@color/colorGreyDark"
         android:id="@+id/textView_Fecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView_Editable_Fecha"
-        android:layout_alignStart="@+id/textView_Editable_Lugar"
-        android:layout_marginBottom="13dp"
+        android:layout_alignBottom="@+id/imageView_Area"
+        android:layout_alignStart="@+id/textView_Lugar"
         android:text="Fecha" />
 
     <TextView
         android:id="@+id/textView_Editable_Fecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView_Area"
-        android:layout_alignStart="@+id/textView_Fecha"
-        android:text="5/26/17 - 12:50 AM" />
+        android:layout_alignBaseline="@+id/textView_Fecha"
+        android:layout_alignBottom="@+id/textView_Fecha"
+        android:layout_alignStart="@+id/textView_Editable_Lugar"
+        android:text="5/26/17 - 12:50 AM"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="14dp"
+        android:textStyle="italic"
+        />
 </RelativeLayout>

@@ -66,4 +66,7 @@
     <string name="texto_desea_crear_tutoria">¿Desea crear y ofrecer esta tutoría?</string>
     <string name="descripcion_crear_tutoria">Para ofrecer una tutoría, por favor ingresa todos los datos solicitados. Una vez publicada será visible para todos.</string>
     <string name="descripcion_registro">Ingresa tus datos de identificación. Los nombres y apellidos serán visibles para otros usuarios</string>
+
+    <string name="pedir_calificacion">¿Qué puntuación le darías al tutor?</string>
+    <string name="pedir_comentario">Tu opinión es muy importante\n¿Qué te pareció la tutoría?</string>
 </resources>
