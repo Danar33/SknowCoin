@@ -76,12 +76,12 @@ public class PerfilUsuarioActivity extends AppCompatActivity
         sKnowCoinApp = new SKnowCoinApp();
         prefs = getSharedPreferences(USUARIO_PREFERENCES, Context.MODE_PRIVATE);
 
-        String nombreImagen = prefs.getString("nombre_imagen","iii");
+        String nombreImagen = prefs.getString("nombre_imagen", "iii");
         String codigo = prefs.getString("codigo_usuario", "000");
 
-        if(!nombreImagen.matches("iii") && !codigo.matches("000")){
+        if (!nombreImagen.matches("iii") && !codigo.matches("000")) {
 
-            File fotoFile = sKnowCoinApp.setFotoPerfil(codigo,nombreImagen);
+            File fotoFile = sKnowCoinApp.setFotoPerfil(codigo, nombreImagen);
             Uri uri = Uri.fromFile(fotoFile);
             imageView.setImageURI(uri);
         }
@@ -174,9 +174,9 @@ public class PerfilUsuarioActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data.getData()!=null) {
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data.getData() != null) {
             Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
             Cursor cursor = getContentResolver().query(selectedImage,
                     filePathColumn, null, null, null);
@@ -200,7 +200,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity
             Log.i("INFO: ", selectedImage.getLastPathSegment());
 
             SharedPreferences.Editor editor = prefs.edit();
-            editor.putString("nombre_imagen",selectedImage.getLastPathSegment());
+            editor.putString("nombre_imagen", selectedImage.getLastPathSegment());
 
             Bitmap resizedbitmap = Bitmap.createScaledBitmap(bmp, 400, 600, true);
 
@@ -222,12 +222,9 @@ public class PerfilUsuarioActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }//*/
+
+        super.onBackPressed();
+
     }
 
     @Override
