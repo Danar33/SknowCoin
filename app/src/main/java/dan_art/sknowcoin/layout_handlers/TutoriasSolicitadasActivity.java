@@ -44,7 +44,7 @@ public class TutoriasSolicitadasActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorias_solicitadas);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_tutor);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_tutorias_solicitadas);
         setSupportActionBar(toolbar);
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_home);
