@@ -15,6 +15,7 @@ import dan_art.sknowcoin.Firebase.Autenticacion;
 import dan_art.sknowcoin.Firebase.ConexionFirebase;
 import dan_art.sknowcoin.layout_handlers.BuscarMateriaActivity;
 import dan_art.sknowcoin.layout_handlers.DetalleTutoriaActivity;
+import dan_art.sknowcoin.layout_handlers.BuscarTutorActivity;
 import dan_art.sknowcoin.layout_handlers.HomeActivity;
 import dan_art.sknowcoin.layout_handlers.HomeTutorActivity;
 import dan_art.sknowcoin.layout_handlers.MainActivity;
@@ -108,7 +109,7 @@ public class SKnowCoinApp {
 
     }
 
-    public ArrayList<Tutoria> listarTutoriasPorTutor(String nombre) {
+    public void listarTutoriasPorTutor(final HomeActivity act,String nombre) {
         final ArrayList<Tutoria> tutorias = new ArrayList<Tutoria>();
         conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_REFERENCE).orderByChild("nombreTutor").equalTo(nombre).addValueEventListener(new ValueEventListener() {
             @Override
@@ -116,8 +117,10 @@ public class SKnowCoinApp {
 
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Tutoria tutoria = postSnapshot.getValue(Tutoria.class);
-                    tutorias.add(tutoria);
+                    //tutorias.add(tutoria);
+                    act.getTutoriasDisponibles().add(tutoria);
                 }
+                act.tutorias();
                 //Log.d("test",tutorias.get(0).getNombreTutor());
             }
 
@@ -125,7 +128,7 @@ public class SKnowCoinApp {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-        return tutorias;
+        //return tutorias;
     }
 
     public ArrayList<String> listarAreas() {
@@ -162,7 +165,6 @@ public class SKnowCoinApp {
                 act.tutorias();
                 //Log.d("test",tutorias.get(0).getNombreTutor());
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -171,7 +173,7 @@ public class SKnowCoinApp {
         //return tutorias;
     }
 
-    public void listarTutoriasPorArea(final HomeActivity act, String nombre) {
+    public void listarTutoriasPorArea(final HomeActivity act,String nombre) {
         //final ArrayList<Tutoria> tutorias = new ArrayList<Tutoria>();
         conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_REFERENCE).orderByChild("area").equalTo(nombre).addValueEventListener(new ValueEventListener() {
             @Override
@@ -183,7 +185,7 @@ public class SKnowCoinApp {
                     act.getTutoriasDisponibles().add(tutoria);
                 }
                 act.tutorias();
-                //  Log.d("test", tutorias.get(0).getNombreTutor());
+              //  Log.d("test", tutorias.get(0).getNombreTutor());
             }
 
             @Override
@@ -244,9 +246,14 @@ public class SKnowCoinApp {
         return tutorias;
     }
 
-    public void dejarReporte(Reporte r) {
+    public void dejarReporte(String idTutoria, String problema) {
 
-        conexionFirebase.getDatabaseReference().child(conexionFirebase.REPORTES_REFERENCE).push().setValue(r);
+        Reporte reporte = new Reporte();
+        reporte.setEstado(0);
+        reporte.setProblema(problema);
+        reporte.setIdTutoria(idTutoria);
+
+        conexionFirebase.getDatabaseReference().child(conexionFirebase.REPORTES_REFERENCE).push().setValue(reporte);
 
     }
 
@@ -302,18 +309,39 @@ public class SKnowCoinApp {
 
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Tutoria tutoria = postSnapshot.getValue(Tutoria.class);
-                    if (act.getTutoriasMaterias().isEmpty()) {
+                    if(act.getTutoriasMaterias().isEmpty()) {
                         act.getTutoriasMaterias().add(tutoria);
-                    } else {
-                        for (int i = 0; i < act.getTutoriasMaterias().size(); i++) {
+                    }else {
+                        for (int i=0;i<act.getTutoriasMaterias().size();i++){
 
-                            if (!(tutoria.getMateria().equals(act.getTutoriasMaterias().get(i).getMateria()))) {
+                            if(!(tutoria.getMateria().equals(act.getTutoriasMaterias().get(i).getMateria()))) {
                                 act.getTutoriasMaterias().add(tutoria);
                             }
                         }
                     }
                 }
                 act.materias();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+    }
+
+    public void totalTutoriasPorTutor(final BuscarTutorActivity act){
+        conexionFirebase.getDatabaseReference().child("usuarios").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    Usuario tutor = postSnapshot.getValue(Usuario.class);
+                    if(tutor.getRol()>1) {
+                        act.getTutoriasTutores().add(tutor);
+                    }
+                }
+                act.tutores();
             }
 
             @Override
@@ -394,34 +422,6 @@ public class SKnowCoinApp {
 
     }
 
-    public Tutoria consultarTutoriaPorId(String id, final DetalleTutoriaActivity act) {
 
-        final Tutoria[] tutorias = new Tutoria[1];
-
-        Query q = conexionFirebase.getDatabaseReference().child(ConexionFirebase.PUBLICACIONES_REFERENCE).orderByKey().equalTo(id);
-
-        q.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot d : dataSnapshot.getChildren()) {
-
-                    tutorias[0] = d.getValue(Tutoria.class);
-                    act.setTutoria(tutorias[0]);
-                    break;
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        return tutorias[0];
-
-    }
 
 }
