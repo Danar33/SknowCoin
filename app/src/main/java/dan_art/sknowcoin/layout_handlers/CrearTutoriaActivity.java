@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import dan_art.sknowcoin.R;
@@ -35,6 +36,7 @@ public class CrearTutoriaActivity extends AppCompatActivity
     private EditText lugarTutoria;
     private EditText horaTutoria;
     private EditText precioTutoria;
+    private Button boton;
 
     private SKnowCoinApp sKnowCoinApp;
 
@@ -70,6 +72,8 @@ public class CrearTutoriaActivity extends AppCompatActivity
         horaTutoria = (EditText) findViewById(R.id.editText_hora);
         precioTutoria = (EditText) findViewById(R.id.editText_precio_tutoria);
 
+        boton = (Button) findViewById(R.id.btn_seleccionar_area);
+
         prefs = getSharedPreferences(USUARIO_PREFERENCES, Context.MODE_PRIVATE);
 
         sKnowCoinApp = new SKnowCoinApp();
@@ -78,6 +82,11 @@ public class CrearTutoriaActivity extends AppCompatActivity
 
 
     }// on create
+
+    public void seleccionarArea (View v){
+        Intent intent = new Intent(this, AreasConocimientoActivity.class);
+        startActivity(intent);
+    }// selesccionar area
 
     public void crearTutoria(View v) {
 

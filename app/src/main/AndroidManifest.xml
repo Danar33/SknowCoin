@@ -53,7 +53,9 @@
             android:theme="@style/dark_bg_theme"></activity>
         <activity
             android:name=".layout_handlers.PerfilUsuarioActivity"
-            android:label="@string/title_activity_perfil_usuario"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/dark_bg_theme"></activity>
+        <activity
+            android:name=".layout_handlers.TutoriasSolicitadasActivity"
+            android:theme="@style/dark_bg_theme"></activity>
     </application>
 </manifest>

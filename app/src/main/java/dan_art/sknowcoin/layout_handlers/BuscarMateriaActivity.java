@@ -130,8 +130,9 @@ public class BuscarMateriaActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_edit_profile) {
-
+        }  else if (id == R.id.nav_edit_profile) {
+            Intent intent = new Intent(this, PerfilUsuarioActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_materias) {
 
         } else if (id == R.id.nav_buscar_tutor) {
@@ -139,7 +140,8 @@ public class BuscarMateriaActivity extends AppCompatActivity
         } else if (id == R.id.nav_top_mensual) {
 
         } else if (id == R.id.nav_tutorias_solicitadas) {
-
+            Intent intent = new Intent(this, TutoriasSolicitadasActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.menu_materias_layout);
