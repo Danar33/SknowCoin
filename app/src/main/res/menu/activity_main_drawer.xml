@@ -6,11 +6,11 @@
         <menu>
             <item
                 android:id="@+id/nav_edit_profile"
-                android:icon="@drawable/ic_stars_black_24dp"
+                android:icon="@drawable/ic_pencil"
                 android:title="@string/texto_editar_perfil" />
             <item
                 android:id="@+id/nav_cambiar_rol"
-                android:icon="@drawable/ic_stars_black_24dp"
+                android:icon="@drawable/ic_eyeglasses"
                 android:title="@string/texto_perfil_tutor" />
         </menu>
     </item>
@@ -18,23 +18,23 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_home"
             android:title="@string/texto_home" />
         <item
             android:id="@+id/nav_materias"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_books"
             android:title="@string/texto_materias" />
         <item
             android:id="@+id/nav_buscar_tutor"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_lupa"
             android:title="@string/texto_buscar_tutor" />
         <item
             android:id="@+id/nav_tutorias_solicitadas"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_note"
             android:title="@string/texto_tutorias_solicitadas" />
         <item
             android:id="@+id/nav_top_mensual"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_star"
             android:title="@string/texto_top_mensual" />
     </group>
 
@@ -42,15 +42,15 @@
         <menu>
             <item
                 android:id="@+id/nav_config"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/ic_tuerca"
                 android:title="@string/texto_configuracion" />
             <item
                 android:id="@+id/nav_ayuda"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_question"
                 android:title="@string/texto_ayuda" />
             <item
                 android:id="@+id/nav_info"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_info"
                 android:title="@string/texto_informacion" />
         </menu>
     </item>
