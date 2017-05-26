@@ -57,5 +57,12 @@
         <activity
             android:name=".layout_handlers.TutoriasSolicitadasActivity"
             android:theme="@style/dark_bg_theme"></activity>
+        <activity
+            android:name=".layout_handlers.DetalleTutoriaActivity"
+            android:theme="@style/dark_bg_theme"></activity>
+        <activity
+            android:name=".layout_handlers.BuscarTutorActivity"
+            android:theme="@style/dark_bg_theme"></activity>
+
     </application>
 </manifest>
