@@ -305,16 +305,13 @@ public class SKnowCoinApp {
 
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Tutoria tutoria = postSnapshot.getValue(Tutoria.class);
-                    act.getTutoriasMaterias().add(tutoria);
                     if(act.getTutoriasMaterias().isEmpty()) {
                         act.getTutoriasMaterias().add(tutoria);
                     }else {
-                        boolean encon=false;
-                        for (int i=0;i<act.getTutoriasMaterias().size() && encon;i++){
+                        for (int i=0;i<act.getTutoriasMaterias().size();i++){
 
-                            if(!(tutoria.getMateria().equals(act.getTutoriasMaterias().get(i).getMateria()))){
+                            if(!(tutoria.getMateria().equals(act.getTutoriasMaterias().get(i).getMateria()))) {
                                 act.getTutoriasMaterias().add(tutoria);
-                                encon=true;
                             }
                         }
                     }
