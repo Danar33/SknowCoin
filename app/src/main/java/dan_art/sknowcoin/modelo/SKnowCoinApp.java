@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import dan_art.sknowcoin.Firebase.Autenticacion;
 import dan_art.sknowcoin.Firebase.ConexionFirebase;
 import dan_art.sknowcoin.layout_handlers.BuscarMateriaActivity;
+import dan_art.sknowcoin.layout_handlers.DetalleTutoriaActivity;
 import dan_art.sknowcoin.layout_handlers.HomeActivity;
 import dan_art.sknowcoin.layout_handlers.HomeTutorActivity;
 import dan_art.sknowcoin.layout_handlers.MainActivity;
@@ -394,6 +395,36 @@ public class SKnowCoinApp {
     public void mergeUsuario(Usuario usuario) {
 
         conexionFirebase.getDatabaseReference().child(ConexionFirebase.USUARIOS_REFERENCE).child(usuario.getCodigo()).setValue(usuario);
+
+    }
+
+    public Tutoria consultarTutoriaPorId(String id, final DetalleTutoriaActivity act) {
+
+        final Tutoria[] tutorias = new Tutoria[1];
+
+        Query q = conexionFirebase.getDatabaseReference().child(ConexionFirebase.PUBLICACIONES_REFERENCE).orderByKey().equalTo(id);
+
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot d : dataSnapshot.getChildren()) {
+
+                    tutorias[0] = d.getValue(Tutoria.class);
+                    act.setTutoria(tutorias[0]);
+                    break;
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        return tutorias[0];
 
     }
 
