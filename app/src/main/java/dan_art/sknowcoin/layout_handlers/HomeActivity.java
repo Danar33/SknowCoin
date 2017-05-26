@@ -67,14 +67,14 @@ public class HomeActivity extends AppCompatActivity
             tutoriasDisponibles.add(nueva);
         }// for que crea tutorias */
 
-      //  tutoriasDisponibles = sKnowCoinApp.totalTutorias();
+        //  tutoriasDisponibles = sKnowCoinApp.totalTutorias();
 
      /*   Log.d(TAG, "TAMAÑOOOOOOOOOOOOOOOOOOOOOOOOOOOOO:::: " + tutoriasDisponibles.size());
         for (int i = 0; i < tutoriasDisponibles.size(); i++) {
             Log.d(TAG, "TUTORIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + tutoriasDisponibles.get(i).getMateria());
         }//*/
 
-        sKnowCoinApp=new SKnowCoinApp();
+        sKnowCoinApp = new SKnowCoinApp();
         //adaptadorTutorias = new AdaptadorTutoriaDisponible(this, tutoriasDisponibles, this);
         //list_view_content();
         Bundle datos = this.getIntent().getExtras();
@@ -90,10 +90,10 @@ public class HomeActivity extends AppCompatActivity
 
     public void verInfoTutor() {
         VerInfoTutorDialogo newFragment = new VerInfoTutorDialogo();
-       //TODO newFragment.show(getSupportFragmentManager(), "missiles");
+        //TODO newFragment.show(getSupportFragmentManager(), "missiles");
     }
 
-    public void list_view_content(){
+    public void list_view_content() {
         /// Asignacion del adaptador
         listaTutorias = (ListView) findViewById(R.id.tutorias_home_list_layout);
 
@@ -102,9 +102,9 @@ public class HomeActivity extends AppCompatActivity
         listaTutorias.setAdapter(adaptadorTutorias);
     }// contenido del list view
 
-    public  void actualizarLista(){
+    public void actualizarLista() {
 
-        for(int i = 0; i < tutoriasDisponibles.size(); i++){
+        for (int i = 0; i < tutoriasDisponibles.size(); i++) {
             // TODO
             adaptadorTutorias.notifyDataSetChanged();
         }// for top 5
@@ -153,7 +153,8 @@ public class HomeActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_edit_profile) {
-
+            Intent intent = new Intent(this, PerfilUsuarioActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_cambiar_rol) {
             Intent intent = new Intent(this, HomeTutorActivity.class);
             startActivity(intent);
@@ -181,7 +182,7 @@ public class HomeActivity extends AppCompatActivity
         this.tutoriasDisponibles = tutoriasDisponibles;
     }
 
-    public void tutorias(){
+    public void tutorias() {
         adaptadorTutorias = new AdaptadorTutoriaDisponible(this, tutoriasDisponibles, this);
 
         list_view_content();

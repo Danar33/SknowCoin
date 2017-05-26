@@ -1,10 +1,12 @@
 package dan_art.sknowcoin.modelo;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import dan_art.sknowcoin.layout_handlers.BuscarMateriaActivity;
 import dan_art.sknowcoin.layout_handlers.HomeActivity;
 import dan_art.sknowcoin.layout_handlers.HomeTutorActivity;
 import dan_art.sknowcoin.layout_handlers.MainActivity;
+import dan_art.sknowcoin.layout_handlers.PerfilUsuarioActivity;
 
 
 /**
@@ -251,11 +254,11 @@ public class SKnowCoinApp {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot d : dataSnapshot.getChildren()) {
-                    //Log.d("databse error", d.getValue(Reporte.class).getProblema());
+
                     reportes.add(d.getValue(Reporte.class));
 
                 }
-                gg.printResportes();
+
             }
 
             @Override
@@ -268,18 +271,19 @@ public class SKnowCoinApp {
 
     }
 
-    public void totalTutoriasUsuarios(final HomeActivity act){
+    public void totalTutoriasUsuarios(final HomeActivity act) {
 
         conexionFirebase.getDatabaseReference().child("publicaciones").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    Tutoria tutoria=postSnapshot.getValue(Tutoria.class);
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    Tutoria tutoria = postSnapshot.getValue(Tutoria.class);
                     act.getTutoriasDisponibles().add(tutoria);
                 }
                 act.tutorias();
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 throw databaseError.toException();
@@ -287,13 +291,13 @@ public class SKnowCoinApp {
         });
     }
 
-    public void totalTutoriasPorMaterias(final BuscarMateriaActivity act){
+    public void totalTutoriasPorMaterias(final BuscarMateriaActivity act) {
         conexionFirebase.getDatabaseReference().child("publicaciones").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    Tutoria tutoria=postSnapshot.getValue(Tutoria.class);
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    Tutoria tutoria = postSnapshot.getValue(Tutoria.class);
                     act.getTutoriasMaterias().add(tutoria);
                     if(act.getTutoriasMaterias().isEmpty()) {
                         act.getTutoriasMaterias().add(tutoria);
@@ -310,6 +314,7 @@ public class SKnowCoinApp {
                 }
                 act.materias();
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 throw databaseError.toException();
@@ -317,18 +322,19 @@ public class SKnowCoinApp {
         });
     }
 
-    public void totalTutoriasTutor(final HomeTutorActivity act){
+    public void totalTutoriasTutor(final HomeTutorActivity act) {
 
         conexionFirebase.getDatabaseReference().child("publicaciones").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    Tutoria tutoria=postSnapshot.getValue(Tutoria.class);
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    Tutoria tutoria = postSnapshot.getValue(Tutoria.class);
                     act.getItemsHomeTutor().add(tutoria);
                 }
                 act.tutorias();
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 throw databaseError.toException();
@@ -351,4 +357,40 @@ public class SKnowCoinApp {
     public void setTutoria(Tutoria tutoria) {
         this.tutoria = tutoria;
     }
+
+    public Usuario getUsuarioPorCodigo(String id, final PerfilUsuarioActivity activity) {
+
+        final Usuario[] usuario = new Usuario[1];
+        usuario[0] = new Usuario();
+
+        Query q = conexionFirebase.getDatabaseReference().child(ConexionFirebase.USUARIOS_REFERENCE).orderByChild("codigo").equalTo(id);
+
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot d : dataSnapshot.getChildren()) {
+                    usuario[0] = d.getValue(Usuario.class);
+                    activity.pintarInfoUsuario(usuario[0]);
+                    break;
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        return usuario[0];
+
+    }
+
+    public void mergeUsuario(Usuario usuario) {
+
+        conexionFirebase.getDatabaseReference().child(ConexionFirebase.USUARIOS_REFERENCE).child(usuario.getCodigo()).setValue(usuario);
+
+    }
+
 }

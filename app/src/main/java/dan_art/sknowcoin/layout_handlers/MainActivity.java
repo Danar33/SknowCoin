@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -27,8 +26,6 @@ import dan_art.sknowcoin.modelo.SKnowCoinApp;
 //Main
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<Reporte> reportes;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,28 +41,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }.start();
 
-        SKnowCoinApp sk = new SKnowCoinApp();
-
-        reportes = sk.listarReportesPorTutoria("KjtkHCrWdq1CGwoX8zE", 0, this);
-
-
-
-
-
     }//on create
 
     public void iniciarLogin() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
-
-    }
-
-    public void printResportes(){
-        for (Reporte reporte :reportes) {
-            Log.d("MainActivuty", reporte.getProblema());
-        }
-    }
-
-
-
-}
+    }//iniciar juego
+}//Main Activity
