@@ -3,9 +3,9 @@ package dan_art.sknowcoin.layout_handlers;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +19,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import dan_art.sknowcoin.R;
+import dan_art.sknowcoin.modelo.PublicacionesUsuario;
+import dan_art.sknowcoin.modelo.SKnowCoinApp;
 import dan_art.sknowcoin.modelo.Tutoria;
 
 /**
@@ -27,9 +29,15 @@ import dan_art.sknowcoin.modelo.Tutoria;
 
 public class AdaptadorTutoriaDisponible extends ArrayAdapter<Tutoria> {
 
+
+    public final static String USUARIO_PREFERENCES = "USUARIO_PREFERENCES";
+    private SharedPreferences prefs;
+
     Activity activity;
     Context context;
     int index;
+
+    private SKnowCoinApp sKnowCoinApp;
 
     public AdaptadorTutoriaDisponible(Context context, ArrayList<Tutoria> tutorias, Activity activity) {
         super(context, 0, tutorias);
@@ -63,6 +71,9 @@ public class AdaptadorTutoriaDisponible extends ArrayAdapter<Tutoria> {
         int miles = tutoria.getPrecio() / 1000;
         String precioTexto = "$" + miles + ".000";
         tvPrecio.setText(precioTexto);
+
+        sKnowCoinApp = new SKnowCoinApp();
+        prefs = context.getSharedPreferences(USUARIO_PREFERENCES, Context.MODE_PRIVATE);
 
         String nivelPrueba = "1";
         tvNivel.setText(nivelPrueba);
@@ -102,8 +113,19 @@ public class AdaptadorTutoriaDisponible extends ArrayAdapter<Tutoria> {
         solicitar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mostrarToast("Solicitud enviada");
-                mostrarDetalleTutoria(tutoria);
+
+                PublicacionesUsuario publicacionesUsuario = new PublicacionesUsuario();
+
+                String codigo = prefs.getString("codigo_usuario", "000");
+
+                publicacionesUsuario.setCodigoUsuario(codigo);
+                publicacionesUsuario.setIdTutoria(tutoria.getId());
+
+                String pus2 = sKnowCoinApp.solicitarPublicacionSolicitada(publicacionesUsuario, "");
+                sKnowCoinApp.solicitarPublicacionSolicitada(publicacionesUsuario, pus2);
+
+                mostrarToast("Solicitud a " + tutoria.getMateria() + " enviada.");
+               // mostrarDetalleTutoria(tutoria);
             }
         });
         // Return the completed view to render on screen
@@ -117,8 +139,7 @@ public class AdaptadorTutoriaDisponible extends ArrayAdapter<Tutoria> {
 
         try {
             activity.startActivity(intent);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

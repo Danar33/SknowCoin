@@ -128,7 +128,7 @@
         android:background="@color/colorAccentOrange"
         android:id="@+id/tutDisp_auxiliar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:weightSum="1"
         android:layout_marginLeft="1dp"
         android:layout_marginRight="1dp"
@@ -136,7 +136,7 @@
         android:layout_below="@+id/tutDisp_content"
         android:layout_alignStart="@+id/tutDisp_content">
 
-        <Button
+       <!-- <Button
             android:textSize="12dp"
             android:textColor="@color/colorWhite"
             android:gravity="center|center"
@@ -151,7 +151,7 @@
             android:layout_alignParentEnd="true"
             android:id="@+id/tutDisp_btn_solicitar"
             android:text="@string/txt_btn_crear_tutoria"
-            />
+            /> -->
 
         <TextView
             style="@style/texto_blanco_regular"
@@ -160,11 +160,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_centerInParent="true"
             android:text="@string/texto_desea_crear_tutoria"
             android:id="@+id/tutDisp_texto_xhora"
-            android:layout_alignBaseline="@+id/tutDisp_btn_solicitar"
-            android:layout_alignBottom="@+id/tutDisp_btn_solicitar"
-            android:layout_alignParentStart="true" />
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 

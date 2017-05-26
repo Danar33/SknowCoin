@@ -101,7 +101,7 @@ public class SKnowCoinApp {
         }
     }
 
-    public String publicacionesSolicitadasUsuario(PublicacionesUsuario publicacionesUsuario, String push2) {
+    public String solicitarPublicacionSolicitada(PublicacionesUsuario publicacionesUsuario, String push2) {
 
         if (push2.isEmpty()) {
             String push = conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_USUARIO_REFERENCE).push().getKey();
