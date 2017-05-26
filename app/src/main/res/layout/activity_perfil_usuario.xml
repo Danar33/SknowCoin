@@ -70,12 +70,13 @@
         android:text="Semestre:" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonEditar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Editar"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="buttonEditarAction"
+        android:text="Editar" />
 
     <EditText
         android:id="@+id/editText_Semestre"
