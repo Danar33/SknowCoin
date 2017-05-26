@@ -2,7 +2,6 @@ package dan_art.sknowcoin.modelo;
 
 import android.content.Context;
 import android.net.Uri;
-import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -10,7 +9,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import dan_art.sknowcoin.Firebase.Autenticacion;
@@ -40,9 +38,9 @@ public class SKnowCoinApp {
         autenticacion = new Autenticacion();
     }
 
-    public void subirFotoPerfil(String idUsuario, String rutaFoto) {
+    public void subirFotoPerfil(String idUsuario, Uri rutaFoto) {
 
-        Uri file = Uri.fromFile(new File(rutaFoto));
+        Uri file = rutaFoto;
         StorageReference profileRef = conexionFirebase.getStorageRef().child(idUsuario + "/" + file.getLastPathSegment());
         profileRef.putFile(file);
     }
