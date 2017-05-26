@@ -128,7 +128,7 @@
         android:background="@color/colorAccentOrange"
         android:id="@+id/tutDisp_auxiliar"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="20dp"
         android:weightSum="1"
         android:layout_marginLeft="1dp"
         android:layout_marginRight="1dp"
@@ -153,7 +153,7 @@
             android:text="@string/txt_btn_crear_tutoria"
             /> -->
 
-        <TextView
+        <!--<TextView
             style="@style/texto_blanco_regular"
             android:textColor="@color/colorWhite"
             android:textSize="14dp"
@@ -164,7 +164,7 @@
             android:text="@string/texto_desea_crear_tutoria"
             android:id="@+id/tutDisp_texto_xhora"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true" /> -->
 
     </RelativeLayout>
 

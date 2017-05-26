@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -87,7 +86,7 @@ public class AdaptadorHomeTutor extends ArrayAdapter<Tutoria> {
             imageView.setImageBitmap(bImage);
         }// se cargo imagen
 
-
+/*
         Button solicitar = (Button) convertView.findViewById(R.id.tutDisp_btn_solicitar);
         solicitar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +94,7 @@ public class AdaptadorHomeTutor extends ArrayAdapter<Tutoria> {
                 mostrarToast("Solicitud enviada");
                 mostrarDetalleTutoria(tutoria);
             }
-        });
+        }); */
         // Return the completed view to render on screen
         return convertView;
     }// view
