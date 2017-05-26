@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import dan_art.sknowcoin.Firebase.Autenticacion;
 import dan_art.sknowcoin.Firebase.ConexionFirebase;
 import dan_art.sknowcoin.layout_handlers.BuscarMateriaActivity;
+import dan_art.sknowcoin.layout_handlers.DetalleTutoriaActivity;
 import dan_art.sknowcoin.layout_handlers.HomeActivity;
 import dan_art.sknowcoin.layout_handlers.HomeTutorActivity;
 import dan_art.sknowcoin.layout_handlers.MainActivity;
@@ -161,6 +162,7 @@ public class SKnowCoinApp {
                 act.tutorias();
                 //Log.d("test",tutorias.get(0).getNombreTutor());
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -169,7 +171,7 @@ public class SKnowCoinApp {
         //return tutorias;
     }
 
-    public void listarTutoriasPorArea(final HomeActivity act,String nombre) {
+    public void listarTutoriasPorArea(final HomeActivity act, String nombre) {
         //final ArrayList<Tutoria> tutorias = new ArrayList<Tutoria>();
         conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_REFERENCE).orderByChild("area").equalTo(nombre).addValueEventListener(new ValueEventListener() {
             @Override
@@ -181,7 +183,7 @@ public class SKnowCoinApp {
                     act.getTutoriasDisponibles().add(tutoria);
                 }
                 act.tutorias();
-              //  Log.d("test", tutorias.get(0).getNombreTutor());
+                //  Log.d("test", tutorias.get(0).getNombreTutor());
             }
 
             @Override
@@ -242,14 +244,9 @@ public class SKnowCoinApp {
         return tutorias;
     }
 
-    public void dejarReporte(String idTutoria, String problema) {
+    public void dejarReporte(Reporte r) {
 
-        Reporte reporte = new Reporte();
-        reporte.setEstado(0);
-        reporte.setProblema(problema);
-        reporte.setIdTutoria(idTutoria);
-
-        conexionFirebase.getDatabaseReference().child(conexionFirebase.REPORTES_REFERENCE).push().setValue(reporte);
+        conexionFirebase.getDatabaseReference().child(conexionFirebase.REPORTES_REFERENCE).push().setValue(r);
 
     }
 
@@ -305,12 +302,12 @@ public class SKnowCoinApp {
 
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Tutoria tutoria = postSnapshot.getValue(Tutoria.class);
-                    if(act.getTutoriasMaterias().isEmpty()) {
+                    if (act.getTutoriasMaterias().isEmpty()) {
                         act.getTutoriasMaterias().add(tutoria);
-                    }else {
-                        for (int i=0;i<act.getTutoriasMaterias().size();i++){
+                    } else {
+                        for (int i = 0; i < act.getTutoriasMaterias().size(); i++) {
 
-                            if(!(tutoria.getMateria().equals(act.getTutoriasMaterias().get(i).getMateria()))) {
+                            if (!(tutoria.getMateria().equals(act.getTutoriasMaterias().get(i).getMateria()))) {
                                 act.getTutoriasMaterias().add(tutoria);
                             }
                         }
@@ -394,6 +391,36 @@ public class SKnowCoinApp {
     public void mergeUsuario(Usuario usuario) {
 
         conexionFirebase.getDatabaseReference().child(ConexionFirebase.USUARIOS_REFERENCE).child(usuario.getCodigo()).setValue(usuario);
+
+    }
+
+    public Tutoria consultarTutoriaPorId(String id, final DetalleTutoriaActivity act) {
+
+        final Tutoria[] tutorias = new Tutoria[1];
+
+        Query q = conexionFirebase.getDatabaseReference().child(ConexionFirebase.PUBLICACIONES_REFERENCE).orderByKey().equalTo(id);
+
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot d : dataSnapshot.getChildren()) {
+
+                    tutorias[0] = d.getValue(Tutoria.class);
+                    act.setTutoria(tutorias[0]);
+                    break;
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        return tutorias[0];
 
     }
 
