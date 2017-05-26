@@ -1,5 +1,6 @@
 package dan_art.sknowcoin.layout_handlers;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ public class TutoriasSolicitadasActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "TutorSolicitadasEstudiante";
+    public final static String USUARIO_PREFERENCES = "USUARIO_PREFERENCES";
 
     private ArrayList<Tutoria> tutoriasSolicitadas = new ArrayList<>();
 
@@ -64,6 +66,12 @@ public class TutoriasSolicitadasActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         sKnowCoinApp = new SKnowCoinApp();
+
+        preferences = getSharedPreferences(USUARIO_PREFERENCES, Context.MODE_PRIVATE);
+
+        String codigo = preferences.getString("codigo_usuario", "000");
+
+        sKnowCoinApp.tutoriasSolicitadasPorUsuario(codigo, this);
 
         Intent intent = getIntent();
 
@@ -179,12 +187,17 @@ public class TutoriasSolicitadasActivity extends AppCompatActivity
     }
 
     public ArrayList<Tutoria> getItemsHomeTutor() {
-        return tutoriasSolicitadas ;
+        return tutoriasSolicitadas;
     }
 
-    public void tutorias(){
+    public void tutorias() {
         //TODO adaptadorTutorias = new AdaptadorHomeTutor(this, itemsHomeTutor, this);
 
         list_view_content();
     }
+
+    public void setTutorias(ArrayList<Tutoria> tuts) {
+        tutoriasSolicitadas = tuts;
+    }
+
 }//home activity

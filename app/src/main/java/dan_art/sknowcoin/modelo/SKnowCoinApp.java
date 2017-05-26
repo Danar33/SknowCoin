@@ -2,6 +2,7 @@ package dan_art.sknowcoin.modelo;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -10,6 +11,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import dan_art.sknowcoin.Firebase.Autenticacion;
 import dan_art.sknowcoin.Firebase.ConexionFirebase;
@@ -20,6 +22,7 @@ import dan_art.sknowcoin.layout_handlers.HomeActivity;
 import dan_art.sknowcoin.layout_handlers.HomeTutorActivity;
 import dan_art.sknowcoin.layout_handlers.MainActivity;
 import dan_art.sknowcoin.layout_handlers.PerfilUsuarioActivity;
+import dan_art.sknowcoin.layout_handlers.TutoriasSolicitadasActivity;
 
 
 /**
@@ -253,16 +256,18 @@ public class SKnowCoinApp {
 
     }
 
-    public ArrayList<Reporte> listarReportesPorTutoria(String idTutoria, final int estado, final MainActivity gg) {
+    public ArrayList<Reporte> listarReportesPorTutoria(String idTutoria, final DetalleTutoriaActivity act) {
         final ArrayList<Reporte> reportes = new ArrayList<>();
+        reportes.add(null);
 
-
-        conexionFirebase.getDatabaseReference().child(ConexionFirebase.REPORTES_REFERENCE).addListenerForSingleValueEvent(new ValueEventListener() {
+        conexionFirebase.getDatabaseReference().child(ConexionFirebase.REPORTES_REFERENCE).orderByChild("idTutoria").equalTo(idTutoria).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot d : dataSnapshot.getChildren()) {
 
                     reportes.add(d.getValue(Reporte.class));
+                    act.setReporte(d.getValue(Reporte.class));
+                    break;
 
                 }
 
@@ -445,6 +450,59 @@ public class SKnowCoinApp {
         });
 
         return tutorias[0];
+
+    }
+
+    public ArrayList<Tutoria> tutoriasSolicitadasPorUsuario(String codUsu, TutoriasSolicitadasActivity tsa) {
+
+        final ArrayList<Tutoria> tutoriass = new ArrayList<>();
+
+        Query q = conexionFirebase.getDatabaseReference().child(ConexionFirebase.PUBLICACIONES_USUARIO_REFERENCE).orderByChild("usuario").equalTo(codUsu);
+
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                final HashSet<String> publs = new HashSet<>();
+
+                for (DataSnapshot d : dataSnapshot.getChildren()) {
+
+                    publs.add(d.getValue(PublicacionesUsuario.class).getIdTutoria());
+
+                }
+
+                Query qq = conexionFirebase.getDatabaseReference().child(ConexionFirebase.PUBLICACIONES_REFERENCE).orderByChild("codigo");
+
+                qq.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        for (DataSnapshot dd : dataSnapshot.getChildren()) {
+
+                            if (publs.contains(dd.getValue(Tutoria.class).getId())) {
+                                tutoriass.add(dd.getValue(Tutoria.class));
+                            }
+
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        return tutoriass;
 
     }
 

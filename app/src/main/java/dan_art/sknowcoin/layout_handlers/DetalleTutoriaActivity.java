@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +29,7 @@ public class DetalleTutoriaActivity extends AppCompatActivity {
     private SKnowCoinApp sKnowCoinApp;
 
     private Tutoria tutoria;
+    private Reporte reporte;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,11 @@ public class DetalleTutoriaActivity extends AppCompatActivity {
 
     public void setTutoria(Tutoria t) {
         tutoria = t;
+        reporte = sKnowCoinApp.listarReportesPorTutoria(tutoria.getId(), this).get(0);
+    }
+
+    public void setReporte(Reporte r) {
+        reporte = r;
         actualizarCampos();
     }
 
@@ -120,20 +127,36 @@ public class DetalleTutoriaActivity extends AppCompatActivity {
             imageView_Area.setImageDrawable(getResources().getDrawable(drawable));
         }// se cargo imagen
 
+        if (reporte != null && (reporte.getEstado() == 2 || reporte.getEstado() == 1)) {
+            ratingBar_Tutoria.setNumStars(reporte.getCalificacion());
+            ratingBar_Tutoria.setEnabled(false);
+            editText_Reporte.setText(reporte.getProblema());
+            editText_Reporte.setEnabled(false);
+            button_Enviar.setEnabled(false);
+        }
+
     }
 
     public void buttonEnviarAction(View v) {
 
+
         int calificacion = ratingBar_Tutoria.getNumStars();
         String comentario = editText_Reporte.getText().toString();
 
-        Reporte r = new Reporte();
-        r.setIdTutoria(tutoria.getId());
-        r.setProblema(comentario);
-        r.setEstado(0);
-        r.setCalificacion(calificacion);
+        if (reporte == null) {
 
-        sKnowCoinApp.dejarReporte(r);
+            Reporte r = new Reporte();
+            r.setIdTutoria(tutoria.getId());
+            r.setProblema(comentario);
+            r.setEstado(2);
+            r.setCalificacion(calificacion);
+
+            sKnowCoinApp.dejarReporte(r);
+            sKnowCoinApp.recalcularRankingUsuario(tutoria.getCodigo(), r.getCalificacion());
+
+            actualizarCampos();
+
+        }
 
     }
 
