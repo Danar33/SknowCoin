@@ -14,6 +14,9 @@ public class PublicacionesUsuario {
         this.idTutoria = idTutoria;
 
     }
+    public PublicacionesUsuario(){
+
+    }
 
     public String getCodigoUsuario() {
         return codigoUsuario;

@@ -98,6 +98,17 @@ public class SKnowCoinApp {
         }
     }
 
+    public String publicacionesSolicitadasUsuario(PublicacionesUsuario publicacionesUsuario, String push2) {
+
+        if (push2.isEmpty()) {
+            String push = conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_USUARIO_REFERENCE).push().getKey();
+            return push;
+        } else {
+            conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_USUARIO_REFERENCE).child(push2).setValue(publicacionesUsuario);
+            return "";
+        }
+    }
+
     public void recalcularRankingUsuario(final String codigo, final int calificacion) {
 
         conexionFirebase.getDatabaseReference().child(conexionFirebase.RANKING_REFERENCE).child(codigo).addListenerForSingleValueEvent(new ValueEventListener() {
