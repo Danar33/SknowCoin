@@ -15,8 +15,10 @@ import android.view.MenuItem;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import dan_art.sknowcoin.R;
+import dan_art.sknowcoin.modelo.PublicacionesUsuario;
 import dan_art.sknowcoin.modelo.SKnowCoinApp;
 import dan_art.sknowcoin.modelo.Tutoria;
 
@@ -39,6 +41,7 @@ public class TutoriasSolicitadasActivity extends AppCompatActivity
     private SharedPreferences preferences;
 
     private SKnowCoinApp sKnowCoinApp;
+    private HashSet<PublicacionesUsuario> publicacionesUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +74,7 @@ public class TutoriasSolicitadasActivity extends AppCompatActivity
 
         String codigo = preferences.getString("codigo_usuario", "000");
 
-        sKnowCoinApp.tutoriasSolicitadasPorUsuario(codigo, this);
+        publicacionesUsuario = sKnowCoinApp.publicacionesUsuarioPorUsuario(codigo, this);
 
         Intent intent = getIntent();
 
@@ -201,4 +204,16 @@ public class TutoriasSolicitadasActivity extends AppCompatActivity
         list_view_content();
     }
 
+    public void setPublicacionesUsuario(HashSet<PublicacionesUsuario> publicacionesUsuario) {
+        this.publicacionesUsuario = publicacionesUsuario;
+
+        HashSet<String> ss = new HashSet<>();
+
+        for (PublicacionesUsuario p : publicacionesUsuario) {
+            ss.add(p.getIdTutoria());
+        }
+
+        sKnowCoinApp.tutoriasPorPublicacionesUsuario(ss, this);
+
+    }
 }//home activity
