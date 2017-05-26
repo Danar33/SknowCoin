@@ -17,41 +17,43 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <uses-permission android:name="android.permission.INTERNET" />
-
+                <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+                <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".layout_handlers.HomeActivity"
+        <activity
+            android:name=".layout_handlers.HomeActivity"
+            android:theme="@style/dark_bg_theme"></activity>
+        <activity
+            android:name=".layout_handlers.LoginActivity"
             android:theme="@style/dark_bg_theme">
+            android:theme="@style/dark_bg_theme">android:theme="@style/dark_bg_theme">
         </activity>
-        <activity android:name=".layout_handlers.LoginActivity"
-            android:theme="@style/dark_bg_theme">android:theme="@style/dark_bg_theme">android:theme="@style/dark_bg_theme">
-        </activity>
-        <activity android:name=".layout_handlers.SingUpActivity_uno"
-            android:theme="@style/dark_bg_theme">
-        </activity>
-        <activity android:name=".layout_handlers.SingUpActivity_dos"
-            android:theme="@style/dark_bg_theme">
-        </activity>
-        <activity android:name=".layout_handlers.SingUpActivity_tres"
-            android:theme="@style/dark_bg_theme">
-        </activity>
-        <activity android:name=".layout_handlers.BuscarMateriaActivity"
-            android:theme="@style/dark_bg_theme">
-        </activity>
-        <activity android:name=".layout_handlers.AreasConocimientoActivity"
-            android:theme="@style/dark_bg_theme">
-        </activity>
-        <activity android:name=".layout_handlers.HomeTutorActivity"
-           android:theme="@style/dark_bg_theme">
-        </activity>
-        <activity android:name=".layout_handlers.CrearTutoriaActivity"
-            android:theme="@style/dark_bg_theme">
-        </activity>
+        <activity
+            android:name=".layout_handlers.SingUpActivity_uno"
+            android:theme="@style/dark_bg_theme"></activity>
+        <activity
+            android:name=".layout_handlers.SingUpActivity_dos"
+            android:theme="@style/dark_bg_theme"></activity>
+        <activity
+            android:name=".layout_handlers.SingUpActivity_tres"
+            android:theme="@style/dark_bg_theme"></activity>
+        <activity
+            android:name=".layout_handlers.BuscarMateriaActivity"
+            android:theme="@style/dark_bg_theme"></activity>
+        <activity
+            android:name=".layout_handlers.AreasConocimientoActivity"
+            android:theme="@style/dark_bg_theme"></activity>
+        <activity
+            android:name=".layout_handlers.HomeTutorActivity"
+            android:theme="@style/dark_bg_theme"></activity>
+        <activity
+            android:name=".layout_handlers.CrearTutoriaActivity"
+            android:theme="@style/dark_bg_theme"></activity>
         <activity
             android:name=".layout_handlers.PerfilUsuarioActivity"
             android:label="@string/title_activity_perfil_usuario"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
-
 </manifest>

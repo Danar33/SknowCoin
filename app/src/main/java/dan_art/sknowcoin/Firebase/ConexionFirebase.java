@@ -2,6 +2,8 @@ package dan_art.sknowcoin.Firebase;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 /**
  * Created by VAIO PRO on 27/04/2017.
@@ -21,13 +23,23 @@ public class ConexionFirebase {
     private FirebaseDatabase database;
     private DatabaseReference mDatabase;
 
+    private FirebaseStorage storage;
+    private StorageReference storageRef;
+
 
     public ConexionFirebase() {
         database = FirebaseDatabase.getInstance();
         mDatabase = database.getReference();
+
+        storage = FirebaseStorage.getInstance();
+        storageRef = storage.getReferenceFromUrl("gs://sknown-coin.appspot.com");
     }
 
     public DatabaseReference getDatabaseReference() {
         return mDatabase;
+    }
+
+    public StorageReference getStorageRef() {
+        return storageRef;
     }
 }
