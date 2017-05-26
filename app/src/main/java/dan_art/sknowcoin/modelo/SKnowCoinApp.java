@@ -2,13 +2,18 @@ package dan_art.sknowcoin.modelo;
 
 import android.content.Context;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import dan_art.sknowcoin.Firebase.Autenticacion;
@@ -44,6 +49,31 @@ public class SKnowCoinApp {
         Uri file = rutaFoto;
         StorageReference profileRef = conexionFirebase.getStorageRef().child(idUsuario + "/" + file.getLastPathSegment());
         profileRef.putFile(file);
+    }
+
+    public File setFotoPerfil(String idUsuario, String nombreImagen) {
+
+        StorageReference fotoRef = conexionFirebase.getStorageRef().child(idUsuario + "/" + nombreImagen + ".jpg");
+
+        File localFile = null;
+        try {
+            localFile = File.createTempFile(nombreImagen, "jpg");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        fotoRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                // Got the download URL for 'users/me/profile.png'
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+        return localFile;
     }
 
     public boolean registrarUsuario(Usuario usuario, Context contexto) {

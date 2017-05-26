@@ -16,6 +16,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,13 +24,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import java.io.File;
 import java.io.FileDescriptor;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import dan_art.sknowcoin.R;
 import dan_art.sknowcoin.modelo.SKnowCoinApp;
-import dan_art.sknowcoin.modelo.Tutoria;
 import dan_art.sknowcoin.modelo.Usuario;
 
 public class PerfilUsuarioActivity extends AppCompatActivity
@@ -41,6 +41,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity
     private EditText editText_Semestre, editText_Area, editText_Telefono, editText_Correo, editText_Codigo, editText_Nombre;
     private Button buttonEditar;
     private SharedPreferences prefs;
+    private ImageView imageView;
 
     private Usuario usuario;
 
@@ -69,8 +70,21 @@ public class PerfilUsuarioActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });//*/ // NO BORREN ESTAS LINEAS
+
+        imageView = (ImageView) findViewById(R.id.imageView2);
+
         sKnowCoinApp = new SKnowCoinApp();
         prefs = getSharedPreferences(USUARIO_PREFERENCES, Context.MODE_PRIVATE);
+
+        String nombreImagen = prefs.getString("nombre_imagen","iii");
+        String codigo = prefs.getString("codigo_usuario", "000");
+
+        if(!nombreImagen.matches("iii") && !codigo.matches("000")){
+
+            File fotoFile = sKnowCoinApp.setFotoPerfil(codigo,nombreImagen);
+            Uri uri = Uri.fromFile(fotoFile);
+            imageView.setImageURI(uri);
+        }
 
         inicializarComponentes();
         inicializarInfo();
@@ -172,9 +186,6 @@ public class PerfilUsuarioActivity extends AppCompatActivity
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
 
-            ImageView imageView = (ImageView) findViewById(R.id.imageView2);
-
-
             Bitmap bmp = null;
             try {
                 bmp = getBitmapFromUri(selectedImage);
@@ -186,7 +197,13 @@ public class PerfilUsuarioActivity extends AppCompatActivity
 
             sKnowCoinApp.subirFotoPerfil(codigo, selectedImage);
 
+            Log.i("INFO: ", selectedImage.getLastPathSegment());
+
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("nombre_imagen",selectedImage.getLastPathSegment());
+
             Bitmap resizedbitmap = Bitmap.createScaledBitmap(bmp, 400, 600, true);
+
             imageView.setImageBitmap(resizedbitmap);
 
         }
