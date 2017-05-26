@@ -2,6 +2,7 @@ package dan_art.sknowcoin.layout_handlers;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -31,13 +32,13 @@ public class AdaptadorHomeTutor extends ArrayAdapter<Tutoria> {
     public AdaptadorHomeTutor(Context context, ArrayList<Tutoria> tutorias, Activity activity) {
         super(context, 0, tutorias);
         this.activity = activity;
-        this.context=context;
+        this.context = context;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        Tutoria tutoria = getItem(position);
+        final Tutoria tutoria = getItem(position);
         index = position;
 
         // Check if an existing view is being reused, otherwise inflate the view
@@ -82,7 +83,7 @@ public class AdaptadorHomeTutor extends ArrayAdapter<Tutoria> {
                 break;
         }// switch de areas
 
-        if(bImage != null){
+        if (bImage != null) {
             imageView.setImageBitmap(bImage);
         }// se cargo imagen
 
@@ -92,11 +93,22 @@ public class AdaptadorHomeTutor extends ArrayAdapter<Tutoria> {
             @Override
             public void onClick(View v) {
                 mostrarToast("Solicitud enviada");
+                mostrarDetalleTutoria(tutoria);
             }
         });
         // Return the completed view to render on screen
         return convertView;
     }// view
+
+    private void mostrarDetalleTutoria(Tutoria tutoria) {
+
+        Intent intent = new Intent(activity, DetalleTutoriaActivity.class);
+        intent.putExtra("codigo_tutoria", tutoria.getId());
+
+        activity.startActivity(intent);
+
+
+    }
 
     public void clicAdaptadorTutoriaDisponible(View v) {
 
