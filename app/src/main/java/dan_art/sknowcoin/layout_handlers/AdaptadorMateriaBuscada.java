@@ -2,18 +2,16 @@ package dan_art.sknowcoin.layout_handlers;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
@@ -41,7 +39,7 @@ public class AdaptadorMateriaBuscada extends ArrayAdapter<Tutoria> {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        Tutoria tutoria = getItem(position);
+        final Tutoria tutoria = getItem(position);
         index = position;
 
         // Check if an existing view is being reused, otherwise inflate the view
@@ -59,7 +57,10 @@ public class AdaptadorMateriaBuscada extends ArrayAdapter<Tutoria> {
         ver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mostrarToast("Vista Previa " + position);
+                //mostrarToast("Vista Previa " + position);
+                Intent intent = new Intent(getContext(), HomeActivity.class);
+                intent.putExtra("materia",tutoria.getMateria());
+                getContext().startActivity(intent);
             }
         });
         // Return the completed view to render on screen

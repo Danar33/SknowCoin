@@ -178,6 +178,7 @@ public class HomeTutorActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_cambiar_a_estudiante) {
             Intent intent = new Intent(this, HomeActivity.class);
+            intent.putExtra("materia","home");
             startActivity(intent);
         } else if (id == R.id.nav_crear_tutorias) {
             Intent intent = new Intent(this, CrearTutoriaActivity.class);

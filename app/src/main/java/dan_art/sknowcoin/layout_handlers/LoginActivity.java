@@ -22,6 +22,7 @@ import dan_art.sknowcoin.Firebase.Autenticacion;
 import dan_art.sknowcoin.Firebase.ConexionFirebase;
 import dan_art.sknowcoin.R;
 import dan_art.sknowcoin.modelo.Usuario;
+import dan_art.sknowcoin.modelo.copySKnowCoin;
 
 /**
  * Created by dan_a on 11/05/2017.
@@ -60,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
 
             Intent intent = new Intent(this, HomeActivity.class);
             intent.putExtra("codigo_usuario", codigo);
+            intent.putExtra("materia","home");
             startActivity(intent);
 
         }
@@ -119,6 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                 autenticacion.getmAuth().signOut();
 
                 Intent intent = new Intent(this, HomeActivity.class);
+                intent.putExtra("materia","home");
                 startActivity(intent);
 
             } else {
@@ -137,6 +140,7 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(this, "entro", Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(this, HomeActivity.class);
+                intent.putExtra("materia","home");
                 startActivity(intent);
             }
         } else {

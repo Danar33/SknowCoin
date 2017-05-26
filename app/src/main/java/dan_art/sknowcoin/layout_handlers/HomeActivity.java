@@ -76,9 +76,16 @@ public class HomeActivity extends AppCompatActivity
 
         sKnowCoinApp=new SKnowCoinApp();
         //adaptadorTutorias = new AdaptadorTutoriaDisponible(this, tutoriasDisponibles, this);
-
         //list_view_content();
-        sKnowCoinApp.totalTutoriasUsuarios(this);
+        Bundle datos = this.getIntent().getExtras();
+
+        String materia=datos.getString("materia");
+        if(materia.equals("home")) {
+            sKnowCoinApp.totalTutoriasUsuarios(this);
+        }else {
+            sKnowCoinApp.listarTutoriasPorMateria(this,materia);
+        }
+
     }// on create
 
     public void verInfoTutor() {

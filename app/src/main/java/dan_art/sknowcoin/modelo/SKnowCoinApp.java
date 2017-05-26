@@ -137,38 +137,41 @@ public class SKnowCoinApp {
         return areas;
     }
 
-    public ArrayList<Tutoria> listarTutoriasPorMateria(String nombre) {
-        final ArrayList<Tutoria> tutorias = new ArrayList<Tutoria>();
+    public void listarTutoriasPorMateria(final HomeActivity act, String nombre) {
+        //final ArrayList<Tutoria> tutorias = new ArrayList<Tutoria>();
         conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_REFERENCE).orderByChild("materia").equalTo(nombre).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
 
                     Tutoria tutoria = postSnapshot.getValue(Tutoria.class);
-                    tutorias.add(tutoria);
+                    //tutorias.add(tutoria);
+                    act.getTutoriasDisponibles().add(tutoria);
                 }
+                act.tutorias();
                 //Log.d("test",tutorias.get(0).getNombreTutor());
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
-        return tutorias;
+        //return tutorias;
     }
 
-    public ArrayList<Tutoria> listarTutoriasPorArea(String nombre) {
-        final ArrayList<Tutoria> tutorias = new ArrayList<Tutoria>();
+    public void listarTutoriasPorArea(final HomeActivity act,String nombre) {
+        //final ArrayList<Tutoria> tutorias = new ArrayList<Tutoria>();
         conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_REFERENCE).orderByChild("area").equalTo(nombre).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
 
                     Tutoria tutoria = postSnapshot.getValue(Tutoria.class);
-                    tutorias.add(tutoria);
+                    //tutorias.add(tutoria);
+                    act.getTutoriasDisponibles().add(tutoria);
                 }
-                Log.d("test", tutorias.get(0).getNombreTutor());
+                act.tutorias();
+              //  Log.d("test", tutorias.get(0).getNombreTutor());
             }
 
             @Override
@@ -176,7 +179,7 @@ public class SKnowCoinApp {
 
             }
         });
-        return tutorias;
+        //return tutorias;
     }
 
 
@@ -292,6 +295,18 @@ public class SKnowCoinApp {
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     Tutoria tutoria=postSnapshot.getValue(Tutoria.class);
                     act.getTutoriasMaterias().add(tutoria);
+                    if(act.getTutoriasMaterias().isEmpty()) {
+                        act.getTutoriasMaterias().add(tutoria);
+                    }else {
+                        boolean encon=false;
+                        for (int i=0;i<act.getTutoriasMaterias().size() && encon;i++){
+
+                            if(!(tutoria.getMateria().equals(act.getTutoriasMaterias().get(i).getMateria()))){
+                                act.getTutoriasMaterias().add(tutoria);
+                                encon=true;
+                            }
+                        }
+                    }
                 }
                 act.materias();
             }
