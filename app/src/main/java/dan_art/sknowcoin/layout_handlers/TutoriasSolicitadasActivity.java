@@ -198,6 +198,7 @@ public class TutoriasSolicitadasActivity extends AppCompatActivity
 
     public void setTutorias(ArrayList<Tutoria> tuts) {
         tutoriasSolicitadas = tuts;
+        list_view_content();
     }
 
 }//home activity

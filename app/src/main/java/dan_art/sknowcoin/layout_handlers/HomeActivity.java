@@ -176,7 +176,8 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_top_mensual) {
 
         } else if (id == R.id.nav_tutorias_solicitadas) {
-
+            Intent intent = new Intent(this, TutoriasSolicitadasActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

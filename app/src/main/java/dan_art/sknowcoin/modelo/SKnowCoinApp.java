@@ -518,7 +518,7 @@ public class SKnowCoinApp {
         //return tutorias;
     }
 
-    public ArrayList<Tutoria> tutoriasSolicitadasPorUsuario(String codUsu, TutoriasSolicitadasActivity tsa) {
+    public ArrayList<Tutoria> tutoriasSolicitadasPorUsuario(String codUsu, final TutoriasSolicitadasActivity tsa) {
 
         final ArrayList<Tutoria> tutoriass = new ArrayList<>();
 
@@ -536,7 +536,7 @@ public class SKnowCoinApp {
 
                 }
 
-                Query qq = conexionFirebase.getDatabaseReference().child(ConexionFirebase.PUBLICACIONES_REFERENCE).orderByChild("codigo");
+                Query qq = conexionFirebase.getDatabaseReference().child(ConexionFirebase.PUBLICACIONES_REFERENCE);
 
                 qq.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -558,6 +558,8 @@ public class SKnowCoinApp {
 
                     }
                 });
+
+                tsa.setTutorias(tutoriass);
 
             }
 
