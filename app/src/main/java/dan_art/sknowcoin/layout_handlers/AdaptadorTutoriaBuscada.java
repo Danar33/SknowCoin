@@ -59,7 +59,7 @@ public class AdaptadorTutoriaBuscada extends ArrayAdapter<Usuario> {
                 //mostrarToast("Vista Previa " + position);
                 Intent intent = new Intent(getContext(), HomeActivity.class);
                 intent.putExtra("materia",tutor.getNombre());
-                intent.putExtra("materia",'t');
+                intent.putExtra("char",'a');
                 getContext().startActivity(intent);
             }
         });
