@@ -162,6 +162,7 @@ public class SKnowCoinApp {
                 act.tutorias();
                 //Log.d("test",tutorias.get(0).getNombreTutor());
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -170,7 +171,7 @@ public class SKnowCoinApp {
         //return tutorias;
     }
 
-    public void listarTutoriasPorArea(final HomeActivity act,String nombre) {
+    public void listarTutoriasPorArea(final HomeActivity act, String nombre) {
         //final ArrayList<Tutoria> tutorias = new ArrayList<Tutoria>();
         conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_REFERENCE).orderByChild("area").equalTo(nombre).addValueEventListener(new ValueEventListener() {
             @Override
@@ -182,7 +183,7 @@ public class SKnowCoinApp {
                     act.getTutoriasDisponibles().add(tutoria);
                 }
                 act.tutorias();
-              //  Log.d("test", tutorias.get(0).getNombreTutor());
+                //  Log.d("test", tutorias.get(0).getNombreTutor());
             }
 
             @Override
@@ -243,14 +244,9 @@ public class SKnowCoinApp {
         return tutorias;
     }
 
-    public void dejarReporte(String idTutoria, String problema) {
+    public void dejarReporte(Reporte r) {
 
-        Reporte reporte = new Reporte();
-        reporte.setEstado(0);
-        reporte.setProblema(problema);
-        reporte.setIdTutoria(idTutoria);
-
-        conexionFirebase.getDatabaseReference().child(conexionFirebase.REPORTES_REFERENCE).push().setValue(reporte);
+        conexionFirebase.getDatabaseReference().child(conexionFirebase.REPORTES_REFERENCE).push().setValue(r);
 
     }
 
@@ -306,12 +302,12 @@ public class SKnowCoinApp {
 
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Tutoria tutoria = postSnapshot.getValue(Tutoria.class);
-                    if(act.getTutoriasMaterias().isEmpty()) {
+                    if (act.getTutoriasMaterias().isEmpty()) {
                         act.getTutoriasMaterias().add(tutoria);
-                    }else {
-                        for (int i=0;i<act.getTutoriasMaterias().size();i++){
+                    } else {
+                        for (int i = 0; i < act.getTutoriasMaterias().size(); i++) {
 
-                            if(!(tutoria.getMateria().equals(act.getTutoriasMaterias().get(i).getMateria()))) {
+                            if (!(tutoria.getMateria().equals(act.getTutoriasMaterias().get(i).getMateria()))) {
                                 act.getTutoriasMaterias().add(tutoria);
                             }
                         }

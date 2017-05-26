@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,6 +13,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import dan_art.sknowcoin.R;
+import dan_art.sknowcoin.modelo.Reporte;
 import dan_art.sknowcoin.modelo.SKnowCoinApp;
 import dan_art.sknowcoin.modelo.Tutoria;
 
@@ -119,4 +121,20 @@ public class DetalleTutoriaActivity extends AppCompatActivity {
         }// se cargo imagen
 
     }
+
+    public void buttonEnviarAction(View v) {
+
+        int calificacion = ratingBar_Tutoria.getNumStars();
+        String comentario = editText_Reporte.getText().toString();
+
+        Reporte r = new Reporte();
+        r.setIdTutoria(tutoria.getId());
+        r.setProblema(comentario);
+        r.setEstado(0);
+        r.setCalificacion(calificacion);
+
+        sKnowCoinApp.dejarReporte(r);
+
+    }
+
 }
