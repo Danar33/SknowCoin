@@ -354,10 +354,14 @@ public class SKnowCoinApp {
                     if (act.getTutoriasMaterias().isEmpty()) {
                         act.getTutoriasMaterias().add(tutoria);
                     } else {
-                        for (int i = 0; i < act.getTutoriasMaterias().size(); i++) {
+                        boolean parar=false;
+                        for (int i = 0; i < act.getTutoriasMaterias().size() && !parar; i++) {
 
-                            if (!(tutoria.getMateria().equals(act.getTutoriasMaterias().get(i).getMateria()))) {
+                            if ((tutoria.getMateria().equals(act.getTutoriasMaterias().get(i).getMateria()))) {
+                            parar=true;
+                            }else{
                                 act.getTutoriasMaterias().add(tutoria);
+                                parar=true;
                             }
                         }
                     }
@@ -373,15 +377,13 @@ public class SKnowCoinApp {
     }
 
     public void totalTutoriasPorTutor(final BuscarTutorActivity act) {
-        conexionFirebase.getDatabaseReference().child("usuarios").addListenerForSingleValueEvent(new ValueEventListener() {
+        conexionFirebase.getDatabaseReference().child("usuarios").orderByChild("rol").equalTo(2).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Usuario tutor = postSnapshot.getValue(Usuario.class);
-                    if (tutor.getRol() > 1) {
                         act.getTutoriasTutores().add(tutor);
-                    }
                 }
                 act.tutores();
             }
@@ -492,6 +494,28 @@ public class SKnowCoinApp {
 
         return tutorias[0];
 
+    }
+
+    public void totalTutoriasIdTutor(final HomeTutorActivity act, String codigo){
+        final ArrayList<Tutoria> tutorias = new ArrayList<Tutoria>();
+        conexionFirebase.getDatabaseReference().child(conexionFirebase.PUBLICACIONES_REFERENCE).orderByChild("codigo").equalTo(codigo).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    Tutoria tutoria = postSnapshot.getValue(Tutoria.class);
+                    //tutorias.add(tutoria);
+                    act.getItemsHomeTutor().add(tutoria);
+                }
+                act.tutorias();
+                //Log.d("test",tutorias.get(0).getNombreTutor());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+        //return tutorias;
     }
 
     public ArrayList<Tutoria> tutoriasSolicitadasPorUsuario(String codUsu, TutoriasSolicitadasActivity tsa) {

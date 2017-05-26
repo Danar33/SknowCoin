@@ -79,13 +79,16 @@ public class HomeActivity extends AppCompatActivity
         //list_view_content();
         Bundle datos = this.getIntent().getExtras();
 
-        if (datos != null){
-            String materia = datos.getString("materia");
-            if (materia.equals("home")) {
-                sKnowCoinApp.totalTutoriasUsuarios(this);
-            } else {
-                sKnowCoinApp.listarTutoriasPorMateria(this, materia);
-            }
+        String materia=datos.getString("materia");
+        char a=datos.getChar("char");
+        String t="";
+
+        if(materia.equals("home")) {
+            sKnowCoinApp.totalTutoriasUsuarios(this);
+        }else if(a==('a')){
+            sKnowCoinApp.listarTutoriasPorTutor(this,materia);
+        }else{
+            sKnowCoinApp.listarTutoriasPorMateria(this,materia);
         }
 
     }// on create
@@ -154,22 +157,26 @@ public class HomeActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             // Handle the camera action
+            Intent intent = new Intent(this, HomeActivity.class);
+            intent.putExtra("materia","home");
+            startActivity(intent);
         } else if (id == R.id.nav_edit_profile) {
             Intent intent = new Intent(this, PerfilUsuarioActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_cambiar_rol) {
             Intent intent = new Intent(this, HomeTutorActivity.class);
+
             startActivity(intent);
         } else if (id == R.id.nav_materias) {
             Intent intent = new Intent(this, BuscarMateriaActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_buscar_tutor) {
-
+            Intent intent = new Intent(this, BuscarTutorActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_top_mensual) {
 
         } else if (id == R.id.nav_tutorias_solicitadas) {
-            Intent intent = new Intent(this, TutoriasSolicitadasActivity.class);
-            startActivity(intent);
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

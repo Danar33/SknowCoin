@@ -1,5 +1,6 @@
 package dan_art.sknowcoin.layout_handlers;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -67,6 +68,8 @@ public class HomeTutorActivity extends AppCompatActivity
 
         sKnowCoinApp = new SKnowCoinApp();
 
+        preferences = getSharedPreferences(USUARIO_PREFERENCES, Context.MODE_PRIVATE);
+
         Intent intent = getIntent();
         //String correo = intent.getStringExtra("ELCORREO");
 
@@ -107,7 +110,7 @@ public class HomeTutorActivity extends AppCompatActivity
         //list_view_content();
 
         sKnowCoinApp=new SKnowCoinApp();
-        sKnowCoinApp.totalTutoriasTutor(this);
+        sKnowCoinApp.totalTutoriasIdTutor(this,preferences.getString("codigo_usuario","000"));
 
     }// on create
 
